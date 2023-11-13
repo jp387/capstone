@@ -18,6 +18,8 @@
 		22BFB66D2B01942A009FF65B /* RandomRecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB66C2B01942A009FF65B /* RandomRecipeService.swift */; };
 		22BFB66F2B019436009FF65B /* RandomRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB66E2B019436009FF65B /* RandomRecipeViewModel.swift */; };
 		22BFB6712B019440009FF65B /* RandomRecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB6702B019440009FF65B /* RandomRecipeModel.swift */; };
+		22BFB6742B01968B009FF65B /* recipestub.json in Resources */ = {isa = PBXBuildFile; fileRef = 22BFB6722B01968B009FF65B /* recipestub.json */; };
+		22BFB6752B01968B009FF65B /* Spoonacular-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BFB6732B01968B009FF65B /* Spoonacular-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		22BFB66C2B01942A009FF65B /* RandomRecipeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRecipeService.swift; sourceTree = "<group>"; };
 		22BFB66E2B019436009FF65B /* RandomRecipeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRecipeViewModel.swift; sourceTree = "<group>"; };
 		22BFB6702B019440009FF65B /* RandomRecipeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRecipeModel.swift; sourceTree = "<group>"; };
+		22BFB6722B01968B009FF65B /* recipestub.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recipestub.json; sourceTree = "<group>"; };
+		22BFB6732B01968B009FF65B /* Spoonacular-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Spoonacular-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,8 @@
 		22BFB62E2B0192C4009FF65B = {
 			isa = PBXGroup;
 			children = (
+				22BFB6722B01968B009FF65B /* recipestub.json */,
+				22BFB6732B01968B009FF65B /* Spoonacular-Info.plist */,
 				22BFB6392B0192C4009FF65B /* WhatsForDinner */,
 				22BFB64A2B0192C5009FF65B /* WhatsForDinnerTests */,
 				22BFB6542B0192C5009FF65B /* WhatsForDinnerUITests */,
@@ -194,6 +200,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22BFB65B2B0192C5009FF65B /* Build configuration list for PBXNativeTarget "WhatsForDinner" */;
 			buildPhases = (
+				22BFB6762B0196B7009FF65B /* ShellScript */,
 				22BFB6332B0192C4009FF65B /* Sources */,
 				22BFB6342B0192C4009FF65B /* Frameworks */,
 				22BFB6352B0192C4009FF65B /* Resources */,
@@ -291,7 +298,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22BFB6752B01968B009FF65B /* Spoonacular-Info.plist in Resources */,
 				22BFB6422B0192C4009FF65B /* Preview Assets.xcassets in Resources */,
+				22BFB6742B01968B009FF65B /* recipestub.json in Resources */,
 				22BFB63F2B0192C4009FF65B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +320,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		22BFB6762B0196B7009FF65B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nPATH=/opt/homebrew/bin:$PATH\nif [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		22BFB6332B0192C4009FF65B /* Sources */ = {

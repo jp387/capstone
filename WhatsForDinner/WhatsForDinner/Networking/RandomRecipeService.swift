@@ -29,8 +29,6 @@ struct RandomRecipeService {
   }
 
   func getRandomRecipe() async throws -> Recipes? {
-    var recipes: Recipes?
-
     guard var urlComponents = URLComponents(string: baseURLString + "random") else { return nil }
     urlComponents.queryItems = [
       URLQueryItem(name: "number", value: "25"),
@@ -44,20 +42,6 @@ struct RandomRecipeService {
 
     guard (response as? HTTPURLResponse)?.statusCode == 200 else { return nil }
 
-    do {
-      recipes = try JSONDecoder().decode(Recipes.self, from: data)
-    } catch DecodingError.dataCorrupted(let context) {
-      print("Data corrupted: \(context.debugDescription)")
-    } catch DecodingError.keyNotFound(let key, let context) {
-      print("Key '\(key.stringValue)' not found: \(context.debugDescription)")
-    } catch DecodingError.typeMismatch(let type, let context) {
-      print("Type mismatch for type \(type): \(context.debugDescription)")
-    } catch DecodingError.valueNotFound(let type, let context) {
-      print("Value not found for type \(type): \(context.debugDescription)")
-    } catch {
-      print("Other decoding error: \(error)")
-    }
-
-    return recipes
+    return try JSONDecoder().decode(Recipes.self, from: data)
   }
 }
