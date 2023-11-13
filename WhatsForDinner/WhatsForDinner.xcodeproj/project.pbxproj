@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		227BEABD2B01D33800329887 /* recipestub.json in Resources */ = {isa = PBXBuildFile; fileRef = 227BEABC2B01D33800329887 /* recipestub.json */; };
 		22BFB63B2B0192C4009FF65B /* WhatsForDinnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB63A2B0192C4009FF65B /* WhatsForDinnerApp.swift */; };
 		22BFB63D2B0192C4009FF65B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB63C2B0192C4009FF65B /* ContentView.swift */; };
 		22BFB63F2B0192C4009FF65B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22BFB63E2B0192C4009FF65B /* Assets.xcassets */; };
@@ -14,6 +15,11 @@
 		22BFB64C2B0192C5009FF65B /* WhatsForDinnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB64B2B0192C5009FF65B /* WhatsForDinnerTests.swift */; };
 		22BFB6562B0192C5009FF65B /* WhatsForDinnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB6552B0192C5009FF65B /* WhatsForDinnerUITests.swift */; };
 		22BFB6582B0192C5009FF65B /* WhatsForDinnerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB6572B0192C5009FF65B /* WhatsForDinnerUITestsLaunchTests.swift */; };
+		22BFB66B2B01941E009FF65B /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB66A2B01941E009FF65B /* FileManager.swift */; };
+		22BFB66D2B01942A009FF65B /* RandomRecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB66C2B01942A009FF65B /* RandomRecipeService.swift */; };
+		22BFB66F2B019436009FF65B /* RandomRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB66E2B019436009FF65B /* RandomRecipeViewModel.swift */; };
+		22BFB6712B019440009FF65B /* RandomRecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB6702B019440009FF65B /* RandomRecipeModel.swift */; };
+		22BFB6752B01968B009FF65B /* Spoonacular-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BFB6732B01968B009FF65B /* Spoonacular-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		227BEABC2B01D33800329887 /* recipestub.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = recipestub.json; path = "../../Capstone-Sandbox/LastMinuteMeals/recipestub.json"; sourceTree = "<group>"; };
 		22BFB6372B0192C4009FF65B /* WhatsForDinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsForDinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22BFB63A2B0192C4009FF65B /* WhatsForDinnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsForDinnerApp.swift; sourceTree = "<group>"; };
 		22BFB63C2B0192C4009FF65B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +51,11 @@
 		22BFB6512B0192C5009FF65B /* WhatsForDinnerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatsForDinnerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22BFB6552B0192C5009FF65B /* WhatsForDinnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsForDinnerUITests.swift; sourceTree = "<group>"; };
 		22BFB6572B0192C5009FF65B /* WhatsForDinnerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsForDinnerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		22BFB66A2B01941E009FF65B /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		22BFB66C2B01942A009FF65B /* RandomRecipeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRecipeService.swift; sourceTree = "<group>"; };
+		22BFB66E2B019436009FF65B /* RandomRecipeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRecipeViewModel.swift; sourceTree = "<group>"; };
+		22BFB6702B019440009FF65B /* RandomRecipeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRecipeModel.swift; sourceTree = "<group>"; };
+		22BFB6732B01968B009FF65B /* Spoonacular-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Spoonacular-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +86,8 @@
 		22BFB62E2B0192C4009FF65B = {
 			isa = PBXGroup;
 			children = (
+				227BEABC2B01D33800329887 /* recipestub.json */,
+				22BFB6732B01968B009FF65B /* Spoonacular-Info.plist */,
 				22BFB6392B0192C4009FF65B /* WhatsForDinner */,
 				22BFB64A2B0192C5009FF65B /* WhatsForDinnerTests */,
 				22BFB6542B0192C5009FF65B /* WhatsForDinnerUITests */,
@@ -94,9 +108,12 @@
 		22BFB6392B0192C4009FF65B /* WhatsForDinner */ = {
 			isa = PBXGroup;
 			children = (
-				22BFB63A2B0192C4009FF65B /* WhatsForDinnerApp.swift */,
-				22BFB63C2B0192C4009FF65B /* ContentView.swift */,
-				22BFB63E2B0192C4009FF65B /* Assets.xcassets */,
+				22BFB6642B019385009FF65B /* App */,
+				22BFB6692B0193EF009FF65B /* Extensions */,
+				22BFB6682B0193A4009FF65B /* Networking */,
+				22BFB6662B019392009FF65B /* Models */,
+				22BFB6652B01938B009FF65B /* Views */,
+				22BFB6672B01939E009FF65B /* ViewModels */,
 				22BFB6402B0192C4009FF65B /* Preview Content */,
 			);
 			path = WhatsForDinner;
@@ -127,6 +144,55 @@
 			path = WhatsForDinnerUITests;
 			sourceTree = "<group>";
 		};
+		22BFB6642B019385009FF65B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				22BFB63A2B0192C4009FF65B /* WhatsForDinnerApp.swift */,
+				22BFB63E2B0192C4009FF65B /* Assets.xcassets */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		22BFB6652B01938B009FF65B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22BFB63C2B0192C4009FF65B /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		22BFB6662B019392009FF65B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				22BFB6702B019440009FF65B /* RandomRecipeModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		22BFB6672B01939E009FF65B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				22BFB66E2B019436009FF65B /* RandomRecipeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		22BFB6682B0193A4009FF65B /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				22BFB66C2B01942A009FF65B /* RandomRecipeService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		22BFB6692B0193EF009FF65B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				22BFB66A2B01941E009FF65B /* FileManager.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,6 +200,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22BFB65B2B0192C5009FF65B /* Build configuration list for PBXNativeTarget "WhatsForDinner" */;
 			buildPhases = (
+				22BFB6762B0196B7009FF65B /* ShellScript */,
 				22BFB6332B0192C4009FF65B /* Sources */,
 				22BFB6342B0192C4009FF65B /* Frameworks */,
 				22BFB6352B0192C4009FF65B /* Resources */,
@@ -231,6 +298,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				227BEABD2B01D33800329887 /* recipestub.json in Resources */,
+				22BFB6752B01968B009FF65B /* Spoonacular-Info.plist in Resources */,
 				22BFB6422B0192C4009FF65B /* Preview Assets.xcassets in Resources */,
 				22BFB63F2B0192C4009FF65B /* Assets.xcassets in Resources */,
 			);
@@ -252,12 +321,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		22BFB6762B0196B7009FF65B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nPATH=/opt/homebrew/bin:$PATH\nif [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		22BFB6332B0192C4009FF65B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22BFB66B2B01941E009FF65B /* FileManager.swift in Sources */,
 				22BFB63D2B0192C4009FF65B /* ContentView.swift in Sources */,
+				22BFB6712B019440009FF65B /* RandomRecipeModel.swift in Sources */,
+				22BFB66F2B019436009FF65B /* RandomRecipeViewModel.swift in Sources */,
+				22BFB66D2B01942A009FF65B /* RandomRecipeService.swift in Sources */,
 				22BFB63B2B0192C4009FF65B /* WhatsForDinnerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
