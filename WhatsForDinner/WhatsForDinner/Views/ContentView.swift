@@ -32,6 +32,8 @@ struct ContentView: View {
           }
         }
       }
+      .navigationTitle("What's For Dinner?")
+      .scrollIndicators(.hidden)
       .listStyle(.plain)
     }
 //    .task {

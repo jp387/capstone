@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		227BEABD2B01D33800329887 /* recipestub.json in Resources */ = {isa = PBXBuildFile; fileRef = 227BEABC2B01D33800329887 /* recipestub.json */; };
 		22BFB63B2B0192C4009FF65B /* WhatsForDinnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB63A2B0192C4009FF65B /* WhatsForDinnerApp.swift */; };
 		22BFB63D2B0192C4009FF65B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB63C2B0192C4009FF65B /* ContentView.swift */; };
 		22BFB63F2B0192C4009FF65B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22BFB63E2B0192C4009FF65B /* Assets.xcassets */; };
@@ -18,7 +19,6 @@
 		22BFB66D2B01942A009FF65B /* RandomRecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB66C2B01942A009FF65B /* RandomRecipeService.swift */; };
 		22BFB66F2B019436009FF65B /* RandomRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB66E2B019436009FF65B /* RandomRecipeViewModel.swift */; };
 		22BFB6712B019440009FF65B /* RandomRecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB6702B019440009FF65B /* RandomRecipeModel.swift */; };
-		22BFB6742B01968B009FF65B /* recipestub.json in Resources */ = {isa = PBXBuildFile; fileRef = 22BFB6722B01968B009FF65B /* recipestub.json */; };
 		22BFB6752B01968B009FF65B /* Spoonacular-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BFB6732B01968B009FF65B /* Spoonacular-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		227BEABC2B01D33800329887 /* recipestub.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = recipestub.json; path = "../../Capstone-Sandbox/LastMinuteMeals/recipestub.json"; sourceTree = "<group>"; };
 		22BFB6372B0192C4009FF65B /* WhatsForDinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsForDinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22BFB63A2B0192C4009FF65B /* WhatsForDinnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsForDinnerApp.swift; sourceTree = "<group>"; };
 		22BFB63C2B0192C4009FF65B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,7 +55,6 @@
 		22BFB66C2B01942A009FF65B /* RandomRecipeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRecipeService.swift; sourceTree = "<group>"; };
 		22BFB66E2B019436009FF65B /* RandomRecipeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRecipeViewModel.swift; sourceTree = "<group>"; };
 		22BFB6702B019440009FF65B /* RandomRecipeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRecipeModel.swift; sourceTree = "<group>"; };
-		22BFB6722B01968B009FF65B /* recipestub.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recipestub.json; sourceTree = "<group>"; };
 		22BFB6732B01968B009FF65B /* Spoonacular-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Spoonacular-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,7 +86,7 @@
 		22BFB62E2B0192C4009FF65B = {
 			isa = PBXGroup;
 			children = (
-				22BFB6722B01968B009FF65B /* recipestub.json */,
+				227BEABC2B01D33800329887 /* recipestub.json */,
 				22BFB6732B01968B009FF65B /* Spoonacular-Info.plist */,
 				22BFB6392B0192C4009FF65B /* WhatsForDinner */,
 				22BFB64A2B0192C5009FF65B /* WhatsForDinnerTests */,
@@ -298,9 +298,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				227BEABD2B01D33800329887 /* recipestub.json in Resources */,
 				22BFB6752B01968B009FF65B /* Spoonacular-Info.plist in Resources */,
 				22BFB6422B0192C4009FF65B /* Preview Assets.xcassets in Resources */,
-				22BFB6742B01968B009FF65B /* recipestub.json in Resources */,
 				22BFB63F2B0192C4009FF65B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
