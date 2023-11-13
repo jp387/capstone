@@ -91,15 +91,27 @@ struct DataView: View {
       VStack {
         Image("cheap")
         Text("$\(String(format: "%.2f", pricePerServing)) per serving")
+          .font(.subheadline)
       }
       .padding()
       VStack {
         Image("fast")
         if recipe.readyInMinutes > 60 {
           let hoursText = hours > 1 ? "hours" : "hour"
-          Text("Ready in \(hours) \(hoursText) \(minutes) minutes")
+
+          if minutes == 0 {
+            Text("Ready in \(hours) \(hoursText)")
+              .font(.subheadline)
+          } else if minutes == 1 {
+            Text("Ready in \(hours) \(hoursText) \(minutes) minute")
+              .font(.subheadline)
+          } else {
+            Text("Ready in \(hours) \(hoursText) \(minutes) minutes")
+              .font(.subheadline)
+          }
         } else {
           Text("Ready in \(recipe.readyInMinutes) minutes")
+            .font(.subheadline)
         }
       }
       .padding()
