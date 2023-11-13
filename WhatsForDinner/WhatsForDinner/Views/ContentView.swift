@@ -11,30 +11,11 @@ struct ContentView: View {
   @StateObject private var randomRecipeVM = RandomRecipeViewModel()
 
   var body: some View {
-    NavigationStack {
-      List(randomRecipeVM.recipes) { recipe in
-        NavigationLink(value: recipe) {
-          HStack {
-            AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-90x90.jpg")) { image in
-              image
-            } placeholder: {
-              ProgressView()
-            }
-            .frame(width: 90, height: 90)
-            .background(.gray)
-            VStack(alignment: .leading) {
-              Text(recipe.title)
-              Text("Cooking Time: \(recipe.readyInMinutes) minutes")
-                .font(.caption)
-              Text("Serving: \(recipe.servings)")
-                .font(.caption)
-            }
-          }
+    TabView {
+      RecipeHomeView(randomRecipeVM: randomRecipeVM)
+        .tabItem {
+          Label("Home", systemImage: "house")
         }
-      }
-      .navigationTitle("What's For Dinner?")
-      .scrollIndicators(.hidden)
-      .listStyle(.plain)
     }
 //    .task {
 //      await randomRecipeVM.fetchRandomRecipe()
@@ -45,5 +26,9 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
+    ContentView()
+      .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))
+      .previewInterfaceOrientation(.landscapeLeft)
+      .preferredColorScheme(.dark)
   }
 }
