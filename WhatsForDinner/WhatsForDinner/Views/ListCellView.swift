@@ -38,12 +38,12 @@ struct TitleTextView: View {
   var body: some View {
     VStack(alignment: .leading) {
       Text(recipe.title)
-      if recipe.readyInMinutes > 60 {
+      if recipe.readyInMinutes >= 60 {
         let hours = Int(recipe.readyInMinutes / 60)
         let minutes = Int(recipe.readyInMinutes - (hours * 60))
         let hoursText = hours > 1 ? "hours" : "hour"
 
-        if minutes == 0 {
+        if minutes == 0 || minutes == 60 {
           Text("Cooking Time: \(hours) \(hoursText)")
             .font(.caption)
         } else if minutes == 1 {

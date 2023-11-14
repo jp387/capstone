@@ -96,10 +96,10 @@ struct DataView: View {
       .padding()
       VStack {
         Image("fast")
-        if recipe.readyInMinutes > 60 {
+        if recipe.readyInMinutes >= 60 {
           let hoursText = hours > 1 ? "hours" : "hour"
 
-          if minutes == 0 {
+          if minutes == 0 || minutes == 60 {
             Text("Ready in \(hours) \(hoursText)")
               .font(.subheadline)
           } else if minutes == 1 {
