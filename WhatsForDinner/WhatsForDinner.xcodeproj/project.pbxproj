@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22667E802B0313B9002CFD41 /* RecipeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22667E7F2B0313B9002CFD41 /* RecipeSearchView.swift */; };
 		227BEABD2B01D33800329887 /* recipestub.json in Resources */ = {isa = PBXBuildFile; fileRef = 227BEABC2B01D33800329887 /* recipestub.json */; };
 		227BEABF2B01F68300329887 /* RecipeHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227BEABE2B01F68300329887 /* RecipeHomeView.swift */; };
 		227BEAC12B01F87D00329887 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227BEAC02B01F87D00329887 /* RecipeDetailView.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22667E7F2B0313B9002CFD41 /* RecipeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchView.swift; sourceTree = "<group>"; };
 		227BEABC2B01D33800329887 /* recipestub.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = recipestub.json; path = "../../Capstone-Sandbox/LastMinuteMeals/recipestub.json"; sourceTree = "<group>"; };
 		227BEABE2B01F68300329887 /* RecipeHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeHomeView.swift; sourceTree = "<group>"; };
 		227BEAC02B01F87D00329887 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				22A4BAC22B02DD570046FB13 /* ListCellView.swift */,
 				227BEABE2B01F68300329887 /* RecipeHomeView.swift */,
 				227BEAC02B01F87D00329887 /* RecipeDetailView.swift */,
+				22667E7F2B0313B9002CFD41 /* RecipeSearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				22BFB66B2B01941E009FF65B /* FileManager.swift in Sources */,
 				22BFB63D2B0192C4009FF65B /* ContentView.swift in Sources */,
 				22BFB6712B019440009FF65B /* RandomRecipeModel.swift in Sources */,
+				22667E802B0313B9002CFD41 /* RecipeSearchView.swift in Sources */,
 				22BFB66F2B019436009FF65B /* RandomRecipeViewModel.swift in Sources */,
 				22BFB66D2B01942A009FF65B /* RandomRecipeService.swift in Sources */,
 				22BFB63B2B0192C4009FF65B /* WhatsForDinnerApp.swift in Sources */,
