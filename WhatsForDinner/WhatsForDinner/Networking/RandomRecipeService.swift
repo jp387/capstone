@@ -31,7 +31,7 @@ struct RandomRecipeService {
   func getRandomRecipe() async throws -> Recipes? {
     guard var urlComponents = URLComponents(string: baseURLString + "random") else { return nil }
     urlComponents.queryItems = [
-      URLQueryItem(name: "number", value: "25"),
+      URLQueryItem(name: "number", value: "20"),
       URLQueryItem(name: "apiKey", value: apiKey)
     ]
 

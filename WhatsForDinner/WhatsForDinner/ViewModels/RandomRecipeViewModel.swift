@@ -14,6 +14,9 @@ class RandomRecipeViewModel: ObservableObject {
 
   init() {
     fetchBundleRecipe()
+//    Task {
+//      await fetchRandomRecipe()
+//    }
   }
 
   @MainActor

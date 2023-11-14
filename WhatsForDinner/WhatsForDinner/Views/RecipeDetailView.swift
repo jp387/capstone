@@ -23,50 +23,25 @@ struct RecipeDetailView: View {
         InstructionsView(recipe: recipe)
       }
     }
+    .navigationBarTitleDisplayMode(.inline)
   }
 }
 
-struct InstructionsView: View {
-  var recipe: Recipe
-
-  var body: some View {
-    Text("Cooking Instructions")
-      .padding()
-    VStack(alignment: .leading) {
-      if let instructions = recipe.analyzedInstructions.first {
-        ForEach(instructions.steps, id: \.number) { instruction in
-          Text("\(String(instruction.number)). \(instruction.step)")
-        }
-      }
-    }
-    .frame(width: 350)
-  }
-}
-
-struct IngredientsView: View {
-  var recipe: Recipe
-
-  var body: some View {
-    Text("Ingredients")
-      .padding()
-    VStack(alignment: .leading) {
-      ForEach(recipe.extendedIngredients, id: \.name) { ingredient in
-        Text("* \(ingredient.original)")
-      }
-    }
-    .frame(width: 350)
-  }
-}
-
-struct SummaryView: View {
+struct TitleView: View {
   var recipe: Recipe
 
   var body: some View {
     VStack {
-      Text("Summary")
-        .padding()
-      Text(recipe.summary)
+      Text(recipe.title)
+        .font(.headline)
         .frame(width: 350)
+      AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-480x360.jpg")) { image in
+        image
+      } placeholder: {
+        ProgressView()
+      }
+      .frame(width: 480, height: 360)
+      .background(.gray)
     }
   }
 }
@@ -119,19 +94,48 @@ struct DataView: View {
   }
 }
 
-struct TitleView: View {
+struct SummaryView: View {
   var recipe: Recipe
 
   var body: some View {
-    Text(recipe.title)
-      .font(.subheadline)
-    AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-480x360.jpg")) { image in
-      image
-    } placeholder: {
-      ProgressView()
+    VStack {
+      Text("Summary")
+        .padding()
+      Text(recipe.summary)
+        .frame(width: 350)
     }
-    .frame(width: 480, height: 360)
-    .background(.gray)
+  }
+}
+
+struct IngredientsView: View {
+  var recipe: Recipe
+
+  var body: some View {
+    Text("Ingredients")
+      .padding()
+    VStack(alignment: .leading) {
+      ForEach(recipe.extendedIngredients, id: \.name) { ingredient in
+        Text("* \(ingredient.original)")
+      }
+    }
+    .frame(width: 350)
+  }
+}
+
+struct InstructionsView: View {
+  var recipe: Recipe
+
+  var body: some View {
+    Text("Cooking Instructions")
+      .padding()
+    VStack(alignment: .leading) {
+      if let instructions = recipe.analyzedInstructions.first {
+        ForEach(instructions.steps, id: \.number) { instruction in
+          Text("\(String(instruction.number)). \(instruction.step)")
+        }
+      }
+    }
+    .frame(width: 350)
   }
 }
 

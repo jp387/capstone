@@ -22,9 +22,6 @@ struct ContentView: View {
           Label("Search", systemImage: "magnifyingglass")
         }
     }
-//    .task {
-//      await randomRecipeVM.fetchRandomRecipe()
-//    }
   }
 }
 
