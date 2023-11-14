@@ -9,12 +9,11 @@ import SwiftUI
 
 struct RecipeSearchView: View {
   @Binding var searchResults: String
-
   var body: some View {
     NavigationStack {
       VStack {
       }
-      .searchable(text: $searchResults)
+      .searchable(text: $searchResults, prompt: "Search your dinner here...")
     }
   }
 }
