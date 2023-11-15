@@ -10,7 +10,7 @@ import Foundation
 class RandomRecipeViewModel: ObservableObject {
   @Published var recipes: [Recipe] = []
 
-  let service = RandomRecipeService()
+  let service = RecipeService()
 
   init() {
     fetchBundleRecipe()

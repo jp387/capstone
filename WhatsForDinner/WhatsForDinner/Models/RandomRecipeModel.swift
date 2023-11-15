@@ -28,6 +28,7 @@ struct Recipe: Codable {
   let readyInMinutes, servings: Int
   let sourceURL: String
   let image: String
+  let imageType: String
   let summary: String
   let dishTypes, diets: [String]
   let instructions: String
@@ -40,7 +41,7 @@ struct Recipe: Codable {
       creditsText, license, sourceName, pricePerServing, extendedIngredients, id, title, readyInMinutes,
       servings
     case sourceURL = "sourceUrl"
-    case image, summary, dishTypes, diets, instructions, analyzedInstructions
+    case image, imageType, summary, dishTypes, diets, instructions, analyzedInstructions
     case spoonacularScore
     case spoonacularSourceURL = "spoonacularSourceUrl"
   }

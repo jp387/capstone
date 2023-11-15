@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RandomRecipeService {
+struct RecipeService {
   let baseURLString = "https://api.spoonacular.com/recipes/"
   private var apiKey: String {
     guard let filePath = Bundle.main.path(forResource: "Spoonacular-Info", ofType: ".plist") else {
@@ -31,7 +31,7 @@ struct RandomRecipeService {
   func getRandomRecipe() async throws -> Recipes? {
     guard var urlComponents = URLComponents(string: baseURLString + "random") else { return nil }
     urlComponents.queryItems = [
-      URLQueryItem(name: "number", value: "20"),
+      URLQueryItem(name: "number", value: "10"),
       URLQueryItem(name: "apiKey", value: apiKey)
     ]
 
@@ -43,5 +43,27 @@ struct RandomRecipeService {
     guard (response as? HTTPURLResponse)?.statusCode == 200 else { return nil }
 
     return try JSONDecoder().decode(Recipes.self, from: data)
+  }
+
+  func getSearchResults(for query: String) async throws -> Search? {
+    guard var urlComponents = URLComponents(string: baseURLString + "complexSearch") else { return nil }
+    urlComponents.queryItems = [
+      URLQueryItem(name: "query", value: query),
+      URLQueryItem(name: "fillIngredients", value: "true"),
+      URLQueryItem(name: "type", value: "main course"),
+      URLQueryItem(name: "instructionsRequired", value: "true"),
+      URLQueryItem(name: "addRecipeNutrition", value: "true"),
+      URLQueryItem(name: "number", value: "10"),
+      URLQueryItem(name: "apiKey", value: apiKey)
+    ]
+
+    guard let queryURL = urlComponents.url else { return nil }
+    let request = URLRequest(url: queryURL)
+
+    let (data, response) = try await session.data(for: request)
+
+    guard (response as? HTTPURLResponse)?.statusCode == 200 else { return nil }
+
+    return try JSONDecoder().decode(Search.self, from: data)
   }
 }

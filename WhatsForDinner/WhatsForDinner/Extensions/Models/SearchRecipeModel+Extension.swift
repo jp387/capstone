@@ -1,18 +1,18 @@
 //
-//  RandomRecipeModel+Extension.swift
+//  SearchRecipeModel+Extension.swift
 //  WhatsForDinner
 //
-//  Created by John Phung on 11/13/23.
+//  Created by John Phung on 11/14/23.
 //
 
 import Foundation
 
-extension Recipe: Identifiable, Hashable {
+extension Result: Identifiable, Hashable {
   var identifier: String {
     return UUID().uuidString
   }
 
-  static func == (lhs: Recipe, rhs: Recipe) -> Bool {
+  static func == (lhs: Result, rhs: Result) -> Bool {
     return lhs.identifier == rhs.identifier
   }
 
@@ -21,7 +21,7 @@ extension Recipe: Identifiable, Hashable {
   }
 }
 
-extension Recipe {
+extension Result {
   init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     vegetarian = try values.decode(Bool.self, forKey: .vegetarian)
@@ -40,10 +40,9 @@ extension Recipe {
     aggregateLikes = try values.decode(Int.self, forKey: .aggregateLikes)
     healthScore = try values.decode(Int.self, forKey: .healthScore)
     creditsText = try values.decodeIfPresent(String.self, forKey: .creditsText) ?? ""
-    license = try values.decodeIfPresent(String.self, forKey: .license) ?? ""
     sourceName = try values.decodeIfPresent(String.self, forKey: .sourceName) ?? ""
     pricePerServing = try values.decode(Double.self, forKey: .pricePerServing)
-    extendedIngredients = try values.decode([ExtendedIngredient].self, forKey: .extendedIngredients)
+    extendedIngredients = try values.decode([ResultEdIngredient].self, forKey: .extendedIngredients)
     id = try values.decode(Int.self, forKey: .id)
     title = try values.decodeIfPresent(String.self, forKey: .title) ?? ""
     readyInMinutes = try values.decode(Int.self, forKey: .readyInMinutes)
@@ -51,46 +50,50 @@ extension Recipe {
     sourceURL = try values.decodeIfPresent(String.self, forKey: .sourceURL) ?? ""
     image = try values.decodeIfPresent(String.self, forKey: .image) ?? ""
     imageType = try values.decodeIfPresent(String.self, forKey: .imageType) ?? ""
+    nutrition = try values.decode(Nutrition.self, forKey: .nutrition)
     summary = try values.decodeIfPresent(String.self, forKey: .summary) ?? ""
     dishTypes = try values.decodeIfPresent([String].self, forKey: .dishTypes) ?? []
     diets = try values.decodeIfPresent([String].self, forKey: .diets) ?? []
-    instructions = try values.decodeIfPresent(String.self, forKey: .instructions) ?? ""
-    analyzedInstructions = try values.decode([AnalyzedInstruction].self, forKey: .analyzedInstructions)
+    analyzedInstructions = try values.decode([ResultAnalyzedInstruction].self, forKey: .analyzedInstructions)
     spoonacularScore = try values.decode(Double.self, forKey: .spoonacularScore)
     spoonacularSourceURL = try values.decodeIfPresent(String.self, forKey: .spoonacularSourceURL) ?? ""
+    usedIngredientCount = try values.decode(Int.self, forKey: .usedIngredientCount)
+    missedIngredientCount = try values.decode(Int.self, forKey: .missedIngredientCount)
+    missedIngredients = try values.decode([ResultEdIngredient].self, forKey: .missedIngredients)
   }
 }
 
-extension AnalyzedInstruction {
+extension ResultAnalyzedInstruction {
   init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
-    steps = try values.decode([Step].self, forKey: .steps)
+    steps = try values.decode([ResultStep].self, forKey: .steps)
   }
 }
 
-extension Step {
+extension ResultStep {
   init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     number = try values.decode(Int.self, forKey: .number)
     step = try values.decodeIfPresent(String.self, forKey: .step) ?? ""
-    ingredients = try values.decode([Ent].self, forKey: .ingredients)
-    equipment = try values.decode([Ent].self, forKey: .equipment)
+    ingredients = try values.decode([ResultEnt].self, forKey: .ingredients)
+    equipment = try values.decode([ResultEnt].self, forKey: .equipment)
     length = try values.decodeIfPresent(Length.self, forKey: .length) ?? Length(number: 0, unit: "")
   }
 }
 
-extension Ent {
+extension ResultEnt {
   init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     id = try values.decode(Int.self, forKey: .id)
     name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
     localizedName = try values.decodeIfPresent(String.self, forKey: .localizedName) ?? ""
     image = try values.decodeIfPresent(String.self, forKey: .image) ?? ""
+    temperature = try values.decodeIfPresent(Length.self, forKey: .temperature) ?? Length(number: 0, unit: "")
   }
 }
 
-extension Length {
+extension ResultLength {
   init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     number = try values.decode(Int.self, forKey: .number)
@@ -98,29 +101,52 @@ extension Length {
   }
 }
 
-extension ExtendedIngredient {
+extension ResultEdIngredient {
   init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     id = try values.decode(Int.self, forKey: .id)
     aisle = try values.decodeIfPresent(String.self, forKey: .aisle) ?? ""
-    consistency = try values.decode(Consistency.self, forKey: .consistency)
+    image = try values.decodeIfPresent(String.self, forKey: .image) ?? ""
+    consistency = try values.decodeIfPresent(String.self, forKey: .consistency) ?? ""
     name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
+    nameClean = try values.decodeIfPresent(String.self, forKey: .nameClean) ?? ""
     original = try values.decodeIfPresent(String.self, forKey: .original) ?? ""
-    originalName = try values.decodeIfPresent(String.self, forKey: .orignalName) ?? ""
+    originalName = try values.decodeIfPresent(String.self, forKey: .originalName) ?? ""
     amount = try values.decode(Double.self, forKey: .amount)
     unit = try values.decodeIfPresent(String.self, forKey: .unit) ?? ""
     meta = try values.decodeIfPresent([String].self, forKey: .meta) ?? []
-    measures = try values.decode(Measures.self, forKey: .measures)
+    measures = try values.decodeIfPresent(ResultMeasures.self, forKey: .measures)
+    unitLong = try values.decodeIfPresent(String.self, forKey: .unitLong) ?? ""
+    unitShort = try values.decodeIfPresent(String.self, forKey: .unitShort) ?? ""
   }
-
-  func encode(to encoder: Encoder) throws { }
 }
 
-extension Metric {
+extension ResultMetric {
   init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     amount = try values.decode(Double.self, forKey: .amount)
     unitShort = try values.decodeIfPresent(String.self, forKey: .unitShort) ?? ""
     unitLong = try values.decodeIfPresent(String.self, forKey: .unitLong) ?? ""
+  }
+}
+
+extension Flavonoid {
+  init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
+    amount = try values.decode(Double.self, forKey: .amount)
+    unit = try values.decode(Unit.self, forKey: .unit)
+    percentOfDailyNeeds = try values.decodeIfPresent(Double.self, forKey: .percentOfDailyNeeds) ?? 0.0
+  }
+}
+
+extension Ingredient {
+  init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    id = try values.decode(Int.self, forKey: .id)
+    name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
+    amount = try values.decode(Double.self, forKey: .amount)
+    unit = try values.decodeIfPresent(String.self, forKey: .unit) ?? ""
+    nutrients = try values.decode([Flavonoid].self, forKey: .nutrients)
   }
 }
