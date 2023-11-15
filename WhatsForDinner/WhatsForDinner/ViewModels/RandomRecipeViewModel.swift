@@ -10,10 +10,13 @@ import Foundation
 class RandomRecipeViewModel: ObservableObject {
   @Published var recipes: [Recipe] = []
 
-  let service = RandomRecipeService()
+  let service = RecipeService()
 
   init() {
     fetchBundleRecipe()
+//    Task {
+//      await fetchRandomRecipe()
+//    }
   }
 
   @MainActor
@@ -47,8 +50,7 @@ class RandomRecipeViewModel: ObservableObject {
 
     do {
       let recipeData = try Data(contentsOf: recipeURL)
-      let results = try decoder.decode(Recipes.self, from: recipeData)
-      recipes = results.recipes
+      recipes = try decoder.decode(Recipes.self, from: recipeData).recipes
     } catch DecodingError.dataCorrupted(let context) {
       print("Data corrupted: \(context.debugDescription)")
     } catch DecodingError.keyNotFound(let key, let context) {

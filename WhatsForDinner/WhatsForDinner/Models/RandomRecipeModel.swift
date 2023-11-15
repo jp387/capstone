@@ -19,7 +19,7 @@ struct Recipe: Codable {
   let gaps: String
   let preparationMinutes, cookingMinutes, aggregateLikes, healthScore: Int
   let creditsText: String
-  let license: String?
+  let license: String
   let sourceName: String
   let pricePerServing: Double
   let extendedIngredients: [ExtendedIngredient]
@@ -27,7 +27,8 @@ struct Recipe: Codable {
   let title: String
   let readyInMinutes, servings: Int
   let sourceURL: String
-  let image: String?
+  let image: String
+  let imageType: String
   let summary: String
   let dishTypes, diets: [String]
   let instructions: String
@@ -40,7 +41,7 @@ struct Recipe: Codable {
       creditsText, license, sourceName, pricePerServing, extendedIngredients, id, title, readyInMinutes,
       servings
     case sourceURL = "sourceUrl"
-    case image, summary, dishTypes, diets, instructions, analyzedInstructions
+    case image, imageType, summary, dishTypes, diets, instructions, analyzedInstructions
     case spoonacularScore
     case spoonacularSourceURL = "spoonacularSourceUrl"
   }
@@ -49,23 +50,35 @@ struct Recipe: Codable {
 struct AnalyzedInstruction: Codable {
   let name: String
   let steps: [Step]
+  enum CodingKeys: CodingKey {
+    case name, steps
+  }
 }
 
 struct Step: Codable {
   let number: Int
   let step: String
   let ingredients, equipment: [Ent]
-  let length: Length?
+  let length: Length
+  enum CodingKeys: CodingKey {
+    case number, step, ingredients, equipment, length
+  }
 }
 
 struct Ent: Codable {
   let id: Int
   let name, localizedName, image: String
+  enum CodingKeys: CodingKey {
+    case id, name, localizedName, image
+  }
 }
 
 struct Length: Codable {
   let number: Int
   let unit: String
+  enum CodingKeys: CodingKey {
+    case number, unit
+  }
 }
 
 struct ExtendedIngredient: Codable {
@@ -77,6 +90,9 @@ struct ExtendedIngredient: Codable {
   let unit: String
   let meta: [String]
   let measures: Measures
+  enum CodingKeys: CodingKey {
+    case id, aisle, consistency, name, original, orignalName, amount, unit, meta, measures
+  }
 }
 
 enum Consistency: String, Codable {
@@ -95,18 +111,7 @@ struct Measures: Codable {
 struct Metric: Codable {
   let amount: Double
   let unitShort, unitLong: String
-}
-
-extension Recipe: Identifiable, Hashable {
-  var identifier: String {
-    return UUID().uuidString
-  }
-
-  static func == (lhs: Recipe, rhs: Recipe) -> Bool {
-    return lhs.identifier == rhs.identifier
-  }
-
-  func hash(into hasher: inout Hasher) {
-    hasher.combine(identifier)
+  enum CodingKeys: CodingKey {
+    case amount, unitShort, unitLong
   }
 }

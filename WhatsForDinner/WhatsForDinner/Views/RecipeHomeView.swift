@@ -16,10 +16,11 @@ struct RecipeHomeView: View {
         NavigationLink(value: recipe) {
           ListCellView(recipe: recipe)
         }
+        .listRowSeparator(.hidden)
       }
-      .navigationDestination(for: Recipe.self, destination: { recipe in
+      .navigationDestination(for: Recipe.self) { recipe in
         RecipeDetailView(recipe: recipe)
-      })
+      }
       .navigationTitle("What's For Dinner?")
       .scrollIndicators(.hidden)
       .listStyle(.plain)

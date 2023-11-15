@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+  @State private var searchResults = ""
   @StateObject private var randomRecipeVM = RandomRecipeViewModel()
+  @StateObject private var searchRecipeVM = SearchRecipeViewModel()
 
   var body: some View {
     TabView {
@@ -16,10 +18,11 @@ struct ContentView: View {
         .tabItem {
           Label("Home", systemImage: "house")
         }
+      RecipeSearchView(searchResults: $searchResults, searchRecipeVM: searchRecipeVM)
+        .tabItem {
+          Label("Search", systemImage: "magnifyingglass")
+        }
     }
-//    .task {
-//      await randomRecipeVM.fetchRandomRecipe()
-//    }
   }
 }
 

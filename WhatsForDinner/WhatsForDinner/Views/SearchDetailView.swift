@@ -1,41 +1,41 @@
 //
-//  RecipeDetailView.swift
+//  SearchDetailView.swift
 //  WhatsForDinner
 //
-//  Created by John Phung on 11/12/23.
+//  Created by John Phung on 11/14/23.
 //
 
 import SwiftUI
 
-struct RecipeDetailView: View {
-  var recipe: Recipe
+struct SearchDetailView: View {
+  var result: Result
 
   var body: some View {
     ScrollView(showsIndicators: false) {
       VStack {
-        TitleView(recipe: recipe)
-        DataView(recipe: recipe)
+        ResultTitleView(result: result)
+        ResultDataView(result: result)
         Divider()
-        SummaryView(recipe: recipe)
+        ResultSummaryView(result: result)
         Divider()
-        IngredientsView(recipe: recipe)
+        ResultIngredientsView(result: result)
         Divider()
-        InstructionsView(recipe: recipe)
+        ResultInstructionsView(result: result)
       }
     }
     .navigationBarTitleDisplayMode(.inline)
   }
 }
 
-struct TitleView: View {
-  var recipe: Recipe
+struct ResultTitleView: View {
+  var result: Result
 
   var body: some View {
     VStack {
-      Text(recipe.title)
+      Text(result.title)
         .font(.headline)
         .frame(width: 350)
-      AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-480x360.jpg")) { image in
+      AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(result.id)-480x360.jpg")) { image in
         image
       } placeholder: {
         ProgressView()
@@ -46,19 +46,19 @@ struct TitleView: View {
   }
 }
 
-struct DataView: View {
-  var recipe: Recipe
+struct ResultDataView: View {
+  var result: Result
 
   var pricePerServing: Double {
-    return Double(recipe.pricePerServing / 100.0)
+    return Double(result.pricePerServing / 100.0)
   }
 
   var hours: Int {
-    return Int(recipe.readyInMinutes / 60)
+    return Int(result.readyInMinutes / 60)
   }
 
   var minutes: Int {
-    return Int(recipe.readyInMinutes - (hours * 60))
+    return Int(result.readyInMinutes - (hours * 60))
   }
 
   var body: some View {
@@ -71,7 +71,7 @@ struct DataView: View {
       .padding()
       VStack {
         Image("fast")
-        if recipe.readyInMinutes >= 60 {
+        if result.readyInMinutes >= 60 {
           let hoursText = hours > 1 ? "hours" : "hour"
 
           if minutes == 0 || minutes == 60 {
@@ -85,7 +85,7 @@ struct DataView: View {
               .font(.subheadline)
           }
         } else {
-          Text("Ready in \(recipe.readyInMinutes) minutes")
+          Text("Ready in \(result.readyInMinutes) minutes")
             .font(.subheadline)
         }
       }
@@ -94,27 +94,27 @@ struct DataView: View {
   }
 }
 
-struct SummaryView: View {
-  var recipe: Recipe
+struct ResultSummaryView: View {
+  var result: Result
 
   var body: some View {
     VStack {
       Text("Summary")
         .padding()
-      Text(recipe.summary)
+      Text(result.summary)
         .frame(width: 350)
     }
   }
 }
 
-struct IngredientsView: View {
-  var recipe: Recipe
+struct ResultIngredientsView: View {
+  var result: Result
 
   var body: some View {
     Text("Ingredients")
       .padding()
     VStack(alignment: .leading) {
-      ForEach(recipe.extendedIngredients, id: \.name) { ingredient in
+      ForEach(result.extendedIngredients, id: \.name) { ingredient in
         Text("* \(ingredient.original)")
       }
     }
@@ -122,14 +122,14 @@ struct IngredientsView: View {
   }
 }
 
-struct InstructionsView: View {
-  var recipe: Recipe
+struct ResultInstructionsView: View {
+  var result: Result
 
   var body: some View {
     Text("Cooking Instructions")
       .padding()
     VStack(alignment: .leading) {
-      if let instructions = recipe.analyzedInstructions.first {
+      if let instructions = result.analyzedInstructions.first {
         ForEach(instructions.steps, id: \.number) { instruction in
           Text("\(String(instruction.number)). \(instruction.step)")
         }
@@ -139,8 +139,8 @@ struct InstructionsView: View {
   }
 }
 
-// struct RecipeDetailView_Previews: PreviewProvider {
+// struct SearchDetailView_Previews: PreviewProvider {
 //   static var previews: some View {
-//       RecipeDetailView(recipe: )
+//     SearchDetailView()
 //   }
 // }
