@@ -11,6 +11,11 @@ struct Recipes: Codable {
   let recipes: [Recipe]
 }
 
+struct Search: Codable {
+  let results: [Recipe]
+  let offset, number, totalResults: Int
+}
+
 struct Recipe: Codable {
   let vegetarian, vegan, glutenFree, dairyFree: Bool
   let veryHealthy, cheap, veryPopular, sustainable: Bool

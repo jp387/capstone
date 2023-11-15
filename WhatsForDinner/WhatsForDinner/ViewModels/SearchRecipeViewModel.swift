@@ -8,7 +8,7 @@
 import Foundation
 
 class SearchRecipeViewModel: ObservableObject {
-  @Published var results: [Result] = []
+  @Published var results: [Recipe] = []
 
   let service = RecipeService()
 
