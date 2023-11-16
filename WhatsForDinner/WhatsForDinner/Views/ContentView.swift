@@ -11,21 +11,17 @@ struct ContentView: View {
   @State private var searchResults = ""
   @StateObject private var randomRecipeVM = RandomRecipeViewModel()
   @StateObject private var searchRecipeVM = SearchRecipeViewModel()
-  @StateObject private var reviewRecipeVM = ReviewRecipeViewModel()
+  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var body: some View {
     TabView {
-      RecipeHomeView(
-        randomRecipeVM: randomRecipeVM,
-        reviewRecipeVM: reviewRecipeVM
-      )
-      .tabItem {
-        Label("Home", systemImage: "house")
-      }
+      RecipeHomeView(randomRecipeVM: randomRecipeVM)
+        .tabItem {
+          Label("Home", systemImage: "house")
+        }
       RecipeSearchView(
         searchResults: $searchResults,
-        searchRecipeVM: searchRecipeVM,
-        reviewRecipeVM: reviewRecipeVM
+        searchRecipeVM: searchRecipeVM
       )
       .tabItem {
         Label("Search", systemImage: "magnifyingglass")
@@ -37,7 +33,9 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
+      .environmentObject(ReviewRecipeViewModel())
     ContentView()
+      .environmentObject(ReviewRecipeViewModel())
       .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))
       .previewInterfaceOrientation(.landscapeLeft)
       .preferredColorScheme(.dark)

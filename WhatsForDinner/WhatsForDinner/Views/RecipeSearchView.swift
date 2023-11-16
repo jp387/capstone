@@ -10,7 +10,7 @@ import SwiftUI
 struct RecipeSearchView: View {
   @Binding var searchResults: String
   @ObservedObject var searchRecipeVM: SearchRecipeViewModel
-  @ObservedObject var reviewRecipeVM: ReviewRecipeViewModel
+  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
   @State private var taskSearch: Task<Void, Error>?
 
   var body: some View {
@@ -22,10 +22,7 @@ struct RecipeSearchView: View {
         .listRowSeparator(.hidden)
       }
       .navigationDestination(for: Recipe.self) { result in
-        RecipeDetailView(
-          recipe: result,
-          reviewRecipeVM: reviewRecipeVM
-        )
+        RecipeDetailView(recipe: result)
       }
       .listStyle(.plain)
       .searchable(text: $searchResults, prompt: "Search your dinner here...")
@@ -47,13 +44,13 @@ struct RecipeSearchView_Previews: PreviewProvider {
     var body: some View {
       RecipeSearchView(
         searchResults: $searchTerm,
-        searchRecipeVM: SearchRecipeViewModel(),
-        reviewRecipeVM: ReviewRecipeViewModel()
+        searchRecipeVM: SearchRecipeViewModel()
       )
     }
   }
 
   static var previews: some View {
     RecipeSearchContainer()
+      .environmentObject(ReviewRecipeViewModel())
   }
 }

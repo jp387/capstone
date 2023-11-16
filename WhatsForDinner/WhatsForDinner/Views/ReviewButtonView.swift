@@ -10,7 +10,7 @@ import SwiftUI
 struct ReviewButtonView: View {
   var recipeId: Int
   @State private var isPresented = false
-  @ObservedObject var reviewRecipeVM: ReviewRecipeViewModel
+  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var body: some View {
     Button {
@@ -19,8 +19,11 @@ struct ReviewButtonView: View {
       ButtonView()
     }
     .sheet(isPresented: $isPresented) {
-      NewReviewFormView(displayModal: $isPresented, reviewRecipeVM: reviewRecipeVM, recipeId: recipeId)
-        .presentationDetents([.medium])
+      NewReviewFormView(
+        displayModal: $isPresented,
+        recipeId: recipeId
+      )
+      .presentationDetents([.medium])
     }
   }
 }
@@ -44,6 +47,7 @@ struct ButtonView: View {
 
 struct ReviewButtonView_Previews: PreviewProvider {
   static var previews: some View {
-    ReviewButtonView(recipeId: 10, reviewRecipeVM: ReviewRecipeViewModel())
+    ReviewButtonView(recipeId: 10)
+      .environmentObject(ReviewRecipeViewModel())
   }
 }

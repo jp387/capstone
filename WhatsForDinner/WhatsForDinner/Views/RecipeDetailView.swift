@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecipeDetailView: View {
   var recipe: Recipe
-  @ObservedObject var reviewRecipeVM: ReviewRecipeViewModel
+  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var body: some View {
     ScrollView(showsIndicators: false) {
@@ -17,13 +17,13 @@ struct RecipeDetailView: View {
         TitleView(recipe: recipe)
         DataView(recipe: recipe)
         Divider()
-        SummaryView(recipe: recipe, reviewRecipeVM: reviewRecipeVM)
+        SummaryView(recipe: recipe)
         Divider()
         IngredientsView(recipe: recipe)
         Divider()
         InstructionsView(recipe: recipe)
         Divider()
-        ReviewsView(recipe: recipe, reviewRecipeVM: reviewRecipeVM)
+        ReviewsView(recipe: recipe)
       }
     }
     .navigationBarTitleDisplayMode(.inline)
@@ -99,7 +99,7 @@ struct DataView: View {
 
 struct SummaryView: View {
   var recipe: Recipe
-  @ObservedObject var reviewRecipeVM: ReviewRecipeViewModel
+  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var body: some View {
     VStack {
@@ -107,7 +107,7 @@ struct SummaryView: View {
         .padding()
       Text(recipe.summary.stripHTML)
         .frame(width: 350)
-      ReviewButtonView(recipeId: recipe.id, reviewRecipeVM: reviewRecipeVM)
+      ReviewButtonView(recipeId: recipe.id)
     }
   }
 }
@@ -146,7 +146,7 @@ struct InstructionsView: View {
 
 struct ReviewsView: View {
   var recipe: Recipe
-  @ObservedObject var reviewRecipeVM: ReviewRecipeViewModel
+  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var filteredReviews: [Review] {
     return reviewRecipeVM.review.filter { $0.recipeId == recipe.id }
