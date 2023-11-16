@@ -11,7 +11,7 @@ struct NewReviewFormView: View {
   @Binding var displayModal: Bool
   @State private var selectedRating = 1
   @State private var comments = ""
-  @StateObject var reviewRecipeVM = ReviewRecipeViewModel()
+  var reviewRecipeVM: ReviewRecipeViewModel
   @Environment (
     \.dismiss
   )
@@ -96,6 +96,6 @@ struct RatingView: View {
 
 struct NewReviewFormView_Previews: PreviewProvider {
   static var previews: some View {
-    NewReviewFormView(displayModal: .constant(true), recipeId: 10)
+    NewReviewFormView(displayModal: .constant(true), reviewRecipeVM: ReviewRecipeViewModel(), recipeId: 10)
   }
 }

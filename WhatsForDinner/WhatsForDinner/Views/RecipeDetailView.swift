@@ -17,7 +17,7 @@ struct RecipeDetailView: View {
         TitleView(recipe: recipe)
         DataView(recipe: recipe)
         Divider()
-        SummaryView(recipe: recipe)
+        SummaryView(recipe: recipe, reviewRecipeVM: reviewRecipeVM)
         Divider()
         IngredientsView(recipe: recipe)
         Divider()
@@ -99,6 +99,7 @@ struct DataView: View {
 
 struct SummaryView: View {
   var recipe: Recipe
+  @ObservedObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var body: some View {
     VStack {
@@ -106,7 +107,7 @@ struct SummaryView: View {
         .padding()
       Text(recipe.summary.stripHTML)
         .frame(width: 350)
-      ReviewButtonView(recipeId: recipe.id)
+      ReviewButtonView(recipeId: recipe.id, reviewRecipeVM: reviewRecipeVM)
     }
   }
 }
@@ -145,7 +146,7 @@ struct InstructionsView: View {
 
 struct ReviewsView: View {
   var recipe: Recipe
-  var reviewRecipeVM: ReviewRecipeViewModel
+  @ObservedObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var filteredReviews: [Review] {
     return reviewRecipeVM.review.filter { $0.recipeId == recipe.id }
