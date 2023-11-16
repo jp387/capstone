@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeHomeView: View {
   @ObservedObject var randomRecipeVM: RandomRecipeViewModel
+  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var body: some View {
     NavigationStack {
@@ -31,5 +32,6 @@ struct RecipeHomeView: View {
 struct RecipeHomeView_Previews: PreviewProvider {
   static var previews: some View {
     RecipeHomeView(randomRecipeVM: RandomRecipeViewModel())
+      .environmentObject(ReviewRecipeViewModel())
   }
 }

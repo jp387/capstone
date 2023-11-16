@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeDetailView: View {
   var recipe: Recipe
+  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var body: some View {
     ScrollView(showsIndicators: false) {
@@ -21,6 +22,8 @@ struct RecipeDetailView: View {
         IngredientsView(recipe: recipe)
         Divider()
         InstructionsView(recipe: recipe)
+        Divider()
+        ReviewsView(recipe: recipe)
       }
     }
     .navigationBarTitleDisplayMode(.inline)
@@ -96,13 +99,15 @@ struct DataView: View {
 
 struct SummaryView: View {
   var recipe: Recipe
+  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var body: some View {
     VStack {
       Text("Summary")
         .padding()
-      Text(recipe.summary)
+      Text(recipe.summary.stripHTML)
         .frame(width: 350)
+      ReviewButtonView(recipeId: recipe.id)
     }
   }
 }
@@ -133,6 +138,30 @@ struct InstructionsView: View {
         ForEach(instructions.steps, id: \.number) { instruction in
           Text("\(String(instruction.number)). \(instruction.step)")
         }
+      }
+    }
+    .frame(width: 350)
+  }
+}
+
+struct ReviewsView: View {
+  var recipe: Recipe
+  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
+
+  var filteredReviews: [Review] {
+    return reviewRecipeVM.review.filter { $0.recipeId == recipe.id }
+  }
+
+  var body: some View {
+    Text("Reviews")
+      .padding()
+    VStack(alignment: .leading) {
+      ForEach(filteredReviews) { review in
+        Text("Posted on \(review.date)")
+        Text("Rating: \(String(review.rating))")
+          .padding(.bottom, 5)
+        Text("Comment: \(review.comment)")
+        Divider()
       }
     }
     .frame(width: 350)

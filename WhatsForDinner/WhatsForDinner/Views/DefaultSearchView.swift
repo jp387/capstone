@@ -1,5 +1,5 @@
 //
-//  NoResultsView.swift
+//  DefaultView.swift
 //  Homework09
 //
 //  Created by John Phung on 10/26/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NoResultsView: View {
+struct DefaultSearchView: View {
   var body: some View {
     VStack {
       Image(systemName: "magnifyingglass")
@@ -16,18 +16,18 @@ struct NoResultsView: View {
         .font(.system(size: 30))
         .padding(.bottom, 10)
         .frame(width: 10, height: 10)
-      Text("No Results")
+      Text("Unsure What to Cook?")
         .font(.title2)
         .bold()
-      Text("Check the spelling or try a new search.")
-        .font(.caption)
+      Text("Find your dinner here!")
+        .font(.subheadline)
         .foregroundColor(.gray)
     }
   }
 }
 
-struct NoResultsView_Previews: PreviewProvider {
+struct DefaultSearchView_Previews: PreviewProvider {
   static var previews: some View {
-    NoResultsView()
+    DefaultSearchView()
   }
 }
