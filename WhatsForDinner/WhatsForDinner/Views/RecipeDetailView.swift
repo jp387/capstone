@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeDetailView: View {
   var recipe: Recipe
+  @ObservedObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var body: some View {
     ScrollView(showsIndicators: false) {
@@ -21,6 +22,8 @@ struct RecipeDetailView: View {
         IngredientsView(recipe: recipe)
         Divider()
         InstructionsView(recipe: recipe)
+        Divider()
+        ReviewsView(recipe: recipe, reviewRecipeVM: reviewRecipeVM)
       }
     }
     .navigationBarTitleDisplayMode(.inline)
@@ -134,6 +137,30 @@ struct InstructionsView: View {
         ForEach(instructions.steps, id: \.number) { instruction in
           Text("\(String(instruction.number)). \(instruction.step)")
         }
+      }
+    }
+    .frame(width: 350)
+  }
+}
+
+struct ReviewsView: View {
+  var recipe: Recipe
+  var reviewRecipeVM: ReviewRecipeViewModel
+
+  var filteredReviews: [Review] {
+    return reviewRecipeVM.review.filter { $0.recipeId == recipe.id }
+  }
+
+  var body: some View {
+    Text("Reviews")
+      .padding()
+    VStack(alignment: .leading) {
+      ForEach(filteredReviews) { review in
+        Text("Posted on \(review.date)")
+        Text("Rating: \(String(review.rating))")
+          .padding(.bottom, 5)
+        Text("Comment: \(review.comment)")
+        Divider()
       }
     }
     .frame(width: 350)

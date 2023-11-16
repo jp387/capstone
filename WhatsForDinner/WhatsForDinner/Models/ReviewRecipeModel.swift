@@ -17,8 +17,4 @@ struct Review: Codable, Hashable, Identifiable {
   let rating: Int
   let comment: String
   let date: String
-
-  enum CodingKeys: CodingKey {
-    case id, recipeId, rating, comment, date
-  }
 }

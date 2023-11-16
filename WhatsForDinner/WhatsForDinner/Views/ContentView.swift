@@ -11,17 +11,25 @@ struct ContentView: View {
   @State private var searchResults = ""
   @StateObject private var randomRecipeVM = RandomRecipeViewModel()
   @StateObject private var searchRecipeVM = SearchRecipeViewModel()
+  @StateObject private var reviewRecipeVM = ReviewRecipeViewModel()
 
   var body: some View {
     TabView {
-      RecipeHomeView(randomRecipeVM: randomRecipeVM)
-        .tabItem {
-          Label("Home", systemImage: "house")
-        }
-      RecipeSearchView(searchResults: $searchResults, searchRecipeVM: searchRecipeVM)
-        .tabItem {
-          Label("Search", systemImage: "magnifyingglass")
-        }
+      RecipeHomeView(
+        randomRecipeVM: randomRecipeVM,
+        reviewRecipeVM: reviewRecipeVM
+      )
+      .tabItem {
+        Label("Home", systemImage: "house")
+      }
+      RecipeSearchView(
+        searchResults: $searchResults,
+        searchRecipeVM: searchRecipeVM,
+        reviewRecipeVM: reviewRecipeVM
+      )
+      .tabItem {
+        Label("Search", systemImage: "magnifyingglass")
+      }
     }
   }
 }

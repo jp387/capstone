@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeHomeView: View {
   @ObservedObject var randomRecipeVM: RandomRecipeViewModel
+  @ObservedObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var body: some View {
     NavigationStack {
@@ -19,7 +20,10 @@ struct RecipeHomeView: View {
         .listRowSeparator(.hidden)
       }
       .navigationDestination(for: Recipe.self) { recipe in
-        RecipeDetailView(recipe: recipe)
+        RecipeDetailView(
+          recipe: recipe,
+          reviewRecipeVM: reviewRecipeVM
+        )
       }
       .navigationTitle("What's For Dinner?")
       .scrollIndicators(.hidden)
@@ -30,6 +34,9 @@ struct RecipeHomeView: View {
 
 struct RecipeHomeView_Previews: PreviewProvider {
   static var previews: some View {
-    RecipeHomeView(randomRecipeVM: RandomRecipeViewModel())
+    RecipeHomeView(
+      randomRecipeVM: RandomRecipeViewModel(),
+      reviewRecipeVM: ReviewRecipeViewModel()
+    )
   }
 }
