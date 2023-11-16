@@ -103,6 +103,7 @@ struct SummaryView: View {
         .padding()
       Text(recipe.summary.stripHTML)
         .frame(width: 350)
+      ReviewButtonView(recipeId: recipe.id)
     }
   }
 }
