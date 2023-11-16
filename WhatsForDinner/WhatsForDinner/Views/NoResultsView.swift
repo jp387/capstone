@@ -1,5 +1,5 @@
 //
-//  DefaultView.swift
+//  NoResultsView.swift
 //  Homework09
 //
 //  Created by John Phung on 10/26/23.
