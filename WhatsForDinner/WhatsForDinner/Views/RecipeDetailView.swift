@@ -101,7 +101,7 @@ struct SummaryView: View {
     VStack {
       Text("Summary")
         .padding()
-      Text(recipe.summary)
+      Text(recipe.summary.stripHTML)
         .frame(width: 350)
     }
   }
