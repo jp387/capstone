@@ -10,6 +10,7 @@ import Foundation
 class RandomRecipeViewModel: ObservableObject {
   @Published var recipes: [Recipe] = []
   @Published var showAlert = false
+  @Published var showError = false
   @Published var error: Error?
 
   let service = RecipeService()
@@ -18,14 +19,19 @@ class RandomRecipeViewModel: ObservableObject {
   func fetchRandomRecipe() async {
     do {
       if let results = try await service.getRandomRecipe() {
-        for item in results.recipes {
-          recipes.append(item)
+        if results.recipes.isEmpty {
+          showAlert = true
+        } else {
+          for item in results.recipes {
+            recipes.append(item)
+          }
         }
       } else {
         showAlert = true
       }
     } catch {
       self.error = error
+      showError = true
     }
   }
 

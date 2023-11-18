@@ -1,5 +1,5 @@
 //
-//  RecipeDetailView.swift
+//  RecipeHomeView.swift
 //  WhatsForDinner
 //
 //  Created by John Phung on 11/12/23.
@@ -10,6 +10,13 @@ import SwiftUI
 struct RecipeHomeView: View {
   @ObservedObject var randomRecipeVM: RandomRecipeViewModel
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
+
+  var errorMessage: String {
+    if let error = randomRecipeVM.error {
+      return error.localizedDescription
+    }
+    return ""
+  }
 
   var body: some View {
     NavigationStack {
@@ -23,13 +30,14 @@ struct RecipeHomeView: View {
         RecipeDetailView(recipe: recipe)
       }
       .alert("Unable to fetch your dinner list. Try again later!", isPresented: $randomRecipeVM.showAlert) { }
+      .alert(errorMessage, isPresented: $randomRecipeVM.showError) { }
       .navigationTitle("What's For Dinner?")
       .scrollIndicators(.hidden)
       .listStyle(.plain)
       .task {
         if randomRecipeVM.recipes.isEmpty {
-//          await randomRecipeVM.fetchRandomRecipe()
           randomRecipeVM.fetchBundleRecipe()
+          //  await randomRecipeVM.fetchRandomRecipe()
         }
       }
     }
