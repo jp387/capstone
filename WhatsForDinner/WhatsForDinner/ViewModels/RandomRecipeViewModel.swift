@@ -12,13 +12,6 @@ class RandomRecipeViewModel: ObservableObject {
 
   let service = RecipeService()
 
-  init() {
-    fetchBundleRecipe()
-//    Task {
-//      await fetchRandomRecipe()
-//    }
-  }
-
   @MainActor
   func fetchRandomRecipe() async {
     do {

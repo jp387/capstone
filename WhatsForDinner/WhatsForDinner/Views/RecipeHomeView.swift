@@ -25,6 +25,12 @@ struct RecipeHomeView: View {
       .navigationTitle("What's For Dinner?")
       .scrollIndicators(.hidden)
       .listStyle(.plain)
+      .task {
+        if randomRecipeVM.recipes.isEmpty {
+//          await randomRecipeVM.fetchRandomRecipe()
+          randomRecipeVM.fetchBundleRecipe()
+        }
+      }
     }
   }
 }
