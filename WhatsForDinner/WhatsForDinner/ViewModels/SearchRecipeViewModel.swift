@@ -10,6 +10,8 @@ import Foundation
 class SearchRecipeViewModel: ObservableObject {
   @Published var results: [Recipe] = []
   @Published var showAlert = false
+  @Published var showNoResults = false
+  @Published var isLoading = false
   @Published var showError = false
   @Published var error: Error?
 
@@ -17,10 +19,11 @@ class SearchRecipeViewModel: ObservableObject {
 
   @MainActor
   func fetchSearchResults(for query: String) async {
+    isLoading = true
     do {
       if let searchResults = try await service.getSearchResults(for: query) {
         if searchResults.results.isEmpty {
-          showAlert = true
+          showNoResults = true
         } else {
           for result in searchResults.results {
             results.append(result)
@@ -33,5 +36,6 @@ class SearchRecipeViewModel: ObservableObject {
       self.error = error
       showError = true
     }
+    isLoading = false
   }
 }

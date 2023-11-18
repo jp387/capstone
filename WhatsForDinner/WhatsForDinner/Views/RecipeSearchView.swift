@@ -12,6 +12,7 @@ struct RecipeSearchView: View {
   @ObservedObject var searchRecipeVM: SearchRecipeViewModel
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
   @State private var taskSearch: Task<Void, Error>?
+  @State private var showDefault = true
 
   var errorMessage: String {
     if let error = searchRecipeVM.error {
@@ -31,17 +32,26 @@ struct RecipeSearchView: View {
       .navigationDestination(for: Recipe.self) { result in
         RecipeDetailView(recipe: result)
       }
+      .navigationTitle("Find Your Dinner")
       .alert("Unable to fetch your dinner list. Try again later!", isPresented: $searchRecipeVM.showAlert) { }
       .alert(errorMessage, isPresented: $searchRecipeVM.showError) { }
       .searchable(text: $searchResults, prompt: "Search your dinner here...")
       .listStyle(.plain)
+      .scrollIndicators(.hidden)
       .onSubmit(of: .search) {
         taskSearch?.cancel()
         taskSearch = Task {
+          showDefault = false
+          if searchRecipeVM.showNoResults { searchRecipeVM.showNoResults = false }
           searchRecipeVM.results.removeAll()
           await searchRecipeVM.fetchSearchResults(for: searchResults)
         }
       }
+    }
+    .overlay {
+      if showDefault { DefaultSearchView() }
+      if searchRecipeVM.isLoading { ProgressView() }
+      if searchRecipeVM.showNoResults { NoResultsView() }
     }
   }
 }
