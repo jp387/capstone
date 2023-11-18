@@ -41,6 +41,9 @@ struct RecipeHomeView: View {
         }
       }
     }
+    .overlay {
+      if randomRecipeVM.isLoading { ProgressView() }
+    }
   }
 }
 

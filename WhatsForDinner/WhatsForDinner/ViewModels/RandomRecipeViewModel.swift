@@ -11,12 +11,14 @@ class RandomRecipeViewModel: ObservableObject {
   @Published var recipes: [Recipe] = []
   @Published var showAlert = false
   @Published var showError = false
+  @Published var isLoading = false
   @Published var error: Error?
 
   let service = RecipeService()
 
   @MainActor
   func fetchRandomRecipe() async {
+    isLoading = true
     do {
       if let results = try await service.getRandomRecipe() {
         if results.recipes.isEmpty {
@@ -33,9 +35,11 @@ class RandomRecipeViewModel: ObservableObject {
       self.error = error
       showError = true
     }
+    isLoading = false
   }
 
   func fetchBundleRecipe() {
+    isLoading = true
     let decoder = JSONDecoder()
 
     if let recipeURL =
@@ -53,5 +57,6 @@ class RandomRecipeViewModel: ObservableObject {
     } else {
       showAlert = true
     }
+    isLoading = false
   }
 }
