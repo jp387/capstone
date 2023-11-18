@@ -9,6 +9,9 @@ import Foundation
 
 class SearchRecipeViewModel: ObservableObject {
   @Published var results: [Recipe] = []
+  @Published var showAlert = false
+  @Published var showError = false
+  @Published var error: Error?
 
   let service = RecipeService()
 
@@ -16,20 +19,19 @@ class SearchRecipeViewModel: ObservableObject {
   func fetchSearchResults(for query: String) async {
     do {
       if let searchResults = try await service.getSearchResults(for: query) {
-        for result in searchResults.results {
-          results.append(result)
+        if searchResults.results.isEmpty {
+          showAlert = true
+        } else {
+          for result in searchResults.results {
+            results.append(result)
+          }
         }
+      } else {
+        showAlert = true
       }
-    } catch DecodingError.dataCorrupted(let context) {
-      print("Data corrupted: \(context.debugDescription)")
-    } catch DecodingError.keyNotFound(let key, let context) {
-      print("Key '\(key.stringValue)' not found: \(context.debugDescription)")
-    } catch DecodingError.typeMismatch(let type, let context) {
-      print("Type mismatch for type \(type): \(context.debugDescription)")
-    } catch DecodingError.valueNotFound(let type, let context) {
-      print("Value not found for type \(type): \(context.debugDescription)")
     } catch {
-      print("Other decoding error: \(error)")
+      self.error = error
+      showError = true
     }
   }
 }

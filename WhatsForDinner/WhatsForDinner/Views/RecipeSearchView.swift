@@ -13,6 +13,13 @@ struct RecipeSearchView: View {
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
   @State private var taskSearch: Task<Void, Error>?
 
+  var errorMessage: String {
+    if let error = searchRecipeVM.error {
+      return error.localizedDescription
+    }
+    return ""
+  }
+
   var body: some View {
     NavigationStack {
       List(searchRecipeVM.results) { result in
@@ -24,8 +31,10 @@ struct RecipeSearchView: View {
       .navigationDestination(for: Recipe.self) { result in
         RecipeDetailView(recipe: result)
       }
-      .listStyle(.plain)
+      .alert("Unable to fetch your dinner list. Try again later!", isPresented: $searchRecipeVM.showAlert) { }
+      .alert(errorMessage, isPresented: $searchRecipeVM.showError) { }
       .searchable(text: $searchResults, prompt: "Search your dinner here...")
+      .listStyle(.plain)
       .onSubmit(of: .search) {
         taskSearch?.cancel()
         taskSearch = Task {
