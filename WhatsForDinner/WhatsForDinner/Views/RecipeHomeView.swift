@@ -10,6 +10,7 @@ import SwiftUI
 struct RecipeHomeView: View {
   @ObservedObject var randomRecipeVM: RandomRecipeViewModel
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
+  @State private var showFailure = false
 
   var errorMessage: String {
     if let error = randomRecipeVM.error {
@@ -29,8 +30,16 @@ struct RecipeHomeView: View {
       .navigationDestination(for: Recipe.self) { recipe in
         RecipeDetailView(recipe: recipe)
       }
-      .alert("Unable to fetch your dinner list. Try again later!", isPresented: $randomRecipeVM.showAlert) { }
-      .alert(errorMessage, isPresented: $randomRecipeVM.showError) { }
+      .alert("Unable to fetch your dinner list. Try again later!", isPresented: $randomRecipeVM.showAlert) {
+        Button("OK") {
+          showFailure = true
+        }
+      }
+      .alert(errorMessage, isPresented: $randomRecipeVM.showError) {
+        Button("OK") {
+          showFailure = true
+        }
+      }
       .navigationTitle("What's For Dinner?")
       .scrollIndicators(.hidden)
       .listStyle(.plain)
@@ -38,10 +47,12 @@ struct RecipeHomeView: View {
         if randomRecipeVM.recipes.isEmpty {
           randomRecipeVM.fetchBundleRecipe()
           //  await randomRecipeVM.fetchRandomRecipe()
+          //  showFailure = false
         }
       }
     }
     .overlay {
+      if showFailure { NoRecipesView() }
       if randomRecipeVM.isLoading { ProgressView() }
     }
   }
