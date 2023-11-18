@@ -10,7 +10,7 @@ import Foundation
 class SearchRecipeViewModel: ObservableObject {
   @Published var results: [Recipe] = []
   @Published var showAlert = false
-  @Published var showNoResults = false
+  @Published var noResults = false
   @Published var isLoading = false
   @Published var showError = false
   @Published var error: Error?
@@ -23,7 +23,7 @@ class SearchRecipeViewModel: ObservableObject {
     do {
       if let searchResults = try await service.getSearchResults(for: query) {
         if searchResults.results.isEmpty {
-          showNoResults = true
+          noResults = true
         } else {
           for result in searchResults.results {
             results.append(result)

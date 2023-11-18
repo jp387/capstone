@@ -21,6 +21,7 @@
 		22A56BBE2B0694D9006FE082 /* ReviewRecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A56BBD2B0694D9006FE082 /* ReviewRecipeModel.swift */; };
 		22A56BC02B0695CA006FE082 /* NewReviewFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A56BBF2B0695CA006FE082 /* NewReviewFormView.swift */; };
 		22A56BC22B06961F006FE082 /* ReviewButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A56BC12B06961F006FE082 /* ReviewButtonView.swift */; };
+		22A5D16E2B0942ED002129CA /* NoRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D16D2B0942ED002129CA /* NoRecipesView.swift */; };
 		22B637342B05F2DF0041CF4F /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B637332B05F2DF0041CF4F /* Utility.swift */; };
 		22BFB63B2B0192C4009FF65B /* WhatsForDinnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB63A2B0192C4009FF65B /* WhatsForDinnerApp.swift */; };
 		22BFB63D2B0192C4009FF65B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB63C2B0192C4009FF65B /* ContentView.swift */; };
@@ -67,6 +68,7 @@
 		22A56BBD2B0694D9006FE082 /* ReviewRecipeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewRecipeModel.swift; sourceTree = "<group>"; };
 		22A56BBF2B0695CA006FE082 /* NewReviewFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewReviewFormView.swift; sourceTree = "<group>"; };
 		22A56BC12B06961F006FE082 /* ReviewButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewButtonView.swift; sourceTree = "<group>"; };
+		22A5D16D2B0942ED002129CA /* NoRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRecipesView.swift; sourceTree = "<group>"; };
 		22B637332B05F2DF0041CF4F /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		22BFB6372B0192C4009FF65B /* WhatsForDinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsForDinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22BFB63A2B0192C4009FF65B /* WhatsForDinnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsForDinnerApp.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				22BFB63C2B0192C4009FF65B /* ContentView.swift */,
 				22A4BAC22B02DD570046FB13 /* ListCellView.swift */,
 				2238D1C92B032AC20053994A /* NoResultsView.swift */,
+				22A5D16D2B0942ED002129CA /* NoRecipesView.swift */,
 				223EEC4E2B06B8D4003E24E4 /* DefaultSearchView.swift */,
 				227BEABE2B01F68300329887 /* RecipeHomeView.swift */,
 				227BEAC02B01F87D00329887 /* RecipeDetailView.swift */,
@@ -399,6 +402,7 @@
 				227BEABF2B01F68300329887 /* RecipeHomeView.swift in Sources */,
 				22A56BC02B0695CA006FE082 /* NewReviewFormView.swift in Sources */,
 				22BFB63D2B0192C4009FF65B /* ContentView.swift in Sources */,
+				22A5D16E2B0942ED002129CA /* NoRecipesView.swift in Sources */,
 				22BFB6712B019440009FF65B /* RecipeModel.swift in Sources */,
 				22B637342B05F2DF0041CF4F /* Utility.swift in Sources */,
 				223EEC4F2B06B8D4003E24E4 /* DefaultSearchView.swift in Sources */,
