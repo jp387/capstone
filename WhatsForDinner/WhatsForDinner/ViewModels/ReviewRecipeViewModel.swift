@@ -48,7 +48,7 @@ class ReviewRecipeViewModel: ObservableObject {
     do {
       let data = try encoder.encode(reviewsData)
       try data.write(to: reviewsURL, options: .atomicWrite)
-    } catch let error {
+    } catch {
       print(error.localizedDescription)
     }
   }

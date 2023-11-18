@@ -22,6 +22,7 @@ struct RecipeService {
 
   let configuration: URLSessionConfiguration
   let session: URLSession
+  let decoder = JSONDecoder()
 
   init() {
     self.configuration = URLSessionConfiguration.default
@@ -30,8 +31,9 @@ struct RecipeService {
 
   func getRandomRecipe() async throws -> Recipes? {
     guard var urlComponents = URLComponents(string: baseURLString + "random") else { return nil }
+
     urlComponents.queryItems = [
-      URLQueryItem(name: "number", value: "10"),
+      URLQueryItem(name: "number", value: "1"),
       URLQueryItem(name: "apiKey", value: apiKey)
     ]
 
@@ -47,6 +49,7 @@ struct RecipeService {
 
   func getSearchResults(for query: String) async throws -> Search? {
     guard var urlComponents = URLComponents(string: baseURLString + "complexSearch") else { return nil }
+
     urlComponents.queryItems = [
       URLQueryItem(name: "query", value: query),
       URLQueryItem(name: "fillIngredients", value: "true"),
@@ -64,6 +67,6 @@ struct RecipeService {
 
     guard (response as? HTTPURLResponse)?.statusCode == 200 else { return nil }
 
-    return try JSONDecoder().decode(Search.self, from: data)
+    return try decoder.decode(Search.self, from: data)
   }
 }
