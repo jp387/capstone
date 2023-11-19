@@ -10,7 +10,7 @@ import SwiftUI
 struct RecipeHomeView: View {
   @ObservedObject var randomRecipeVM: RandomRecipeViewModel
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
-  @State private var showFailure = false
+  @State private var networkFailure = false
 
   var errorMessage: String {
     if let error = randomRecipeVM.error {
@@ -32,29 +32,48 @@ struct RecipeHomeView: View {
       }
       .alert("Unable to fetch your dinner list. Try again later!", isPresented: $randomRecipeVM.showAlert) {
         Button("OK") {
-          showFailure = true
+          networkFailure = true
         }
       }
       .alert(errorMessage, isPresented: $randomRecipeVM.showError) {
         Button("OK") {
-          showFailure = true
+          networkFailure = true
         }
       }
       .navigationTitle("What's For Dinner?")
+      .navigationBarItems(
+        trailing:
+          RefreshButtonView(randomRecipeVM: randomRecipeVM)
+      )
       .scrollIndicators(.hidden)
       .listStyle(.plain)
       .task {
         if randomRecipeVM.recipes.isEmpty {
           randomRecipeVM.fetchBundleRecipe()
           //  await randomRecipeVM.fetchRandomRecipe()
-          //  showFailure = false
+          //  networkFailure = false
         }
       }
     }
     .overlay {
-      if showFailure { NoRecipesView() }
+      if networkFailure { NoRecipesView() }
       if randomRecipeVM.isLoading { ProgressView() }
     }
+  }
+}
+
+struct RefreshButtonView: View {
+  @ObservedObject var randomRecipeVM: RandomRecipeViewModel
+
+  var body: some View {
+    Button {
+      Task {
+        await randomRecipeVM.refreshRandomRecipe()
+      }
+    } label: {
+      Image(systemName: "arrow.clockwise")
+    }
+    .disabled(randomRecipeVM.isBundle)
   }
 }
 
