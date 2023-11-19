@@ -12,8 +12,8 @@ struct RecipeSearchView: View {
   @ObservedObject var searchRecipeVM: SearchRecipeViewModel
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
   @State private var taskSearch: Task<Void, Error>?
-  @State private var showDefault = true
-  @State private var showFailure = false
+  @State private var showDefaultScreen = true
+  @State private var networkFailure = false
 
   var errorMessage: String {
     if let error = searchRecipeVM.error {
@@ -36,12 +36,12 @@ struct RecipeSearchView: View {
       .navigationTitle("Find Your Dinner")
       .alert("Unable to fetch your dinner list. Try again later!", isPresented: $searchRecipeVM.showAlert) {
         Button("OK") {
-          showFailure = true
+          networkFailure = true
         }
       }
       .alert(errorMessage, isPresented: $searchRecipeVM.showError) {
         Button("OK") {
-          showFailure = true
+          networkFailure = true
         }
       }
       .searchable(text: $searchResults, prompt: "Search your dinner here...")
@@ -50,8 +50,8 @@ struct RecipeSearchView: View {
       .onSubmit(of: .search) {
         taskSearch?.cancel()
         taskSearch = Task {
-          showDefault = false
-          showFailure = false
+          showDefaultScreen = false
+          networkFailure = false
           if searchRecipeVM.noResults { searchRecipeVM.noResults = false }
           searchRecipeVM.results.removeAll()
           await searchRecipeVM.fetchSearchResults(for: searchResults)
@@ -59,8 +59,8 @@ struct RecipeSearchView: View {
       }
     }
     .overlay {
-      if showDefault { DefaultSearchView() }
-      if showFailure { NoRecipesView() }
+      if showDefaultScreen { DefaultSearchView() }
+      if networkFailure { NoRecipesView() }
       if searchRecipeVM.isLoading { ProgressView() }
       if searchRecipeVM.noResults { NoResultsView() }
     }

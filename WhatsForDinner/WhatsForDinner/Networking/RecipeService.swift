@@ -29,11 +29,19 @@ struct RecipeService {
     self.session = URLSession(configuration: configuration)
   }
 
-  func getRandomRecipe() async throws -> Recipes? {
+  func getRandomRecipe(numberOfRecipes: Int) async throws -> Recipes? {
     guard var urlComponents = URLComponents(string: baseURLString + "random") else { return nil }
 
+    var numOfRecipes: Int {
+      if numberOfRecipes > 100 {
+        return 100
+      } else {
+        return numberOfRecipes
+      }
+    }
+
     urlComponents.queryItems = [
-      URLQueryItem(name: "number", value: "1"),
+      URLQueryItem(name: "number", value: "\(numOfRecipes)"),
       URLQueryItem(name: "apiKey", value: apiKey)
     ]
 
