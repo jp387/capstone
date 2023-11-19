@@ -19,6 +19,10 @@ struct ContentView: View {
         .tabItem {
           Label("Home", systemImage: "house")
         }
+      RecipeFavoritesView()
+        .tabItem {
+          Label("Favorites", systemImage: "heart")
+        }
       RecipeSearchView(
         searchResults: $searchResults,
         searchRecipeVM: searchRecipeVM

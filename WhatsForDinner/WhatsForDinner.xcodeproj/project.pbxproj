@@ -24,6 +24,8 @@
 		22A5D16E2B0942ED002129CA /* NoRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D16D2B0942ED002129CA /* NoRecipesView.swift */; };
 		22A5D1762B09BDB8002129CA /* FavoriteRecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D1752B09BDB8002129CA /* FavoriteRecipeModel.swift */; };
 		22A5D1782B09D085002129CA /* FavoriteRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D1772B09D085002129CA /* FavoriteRecipeViewModel.swift */; };
+		22A5D17A2B09E825002129CA /* RecipeFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D1792B09E825002129CA /* RecipeFavoritesView.swift */; };
+		22A5D17C2B09EB80002129CA /* DefaultFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D17B2B09EB80002129CA /* DefaultFavoritesView.swift */; };
 		22B637342B05F2DF0041CF4F /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B637332B05F2DF0041CF4F /* Utility.swift */; };
 		22BFB63B2B0192C4009FF65B /* WhatsForDinnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB63A2B0192C4009FF65B /* WhatsForDinnerApp.swift */; };
 		22BFB63D2B0192C4009FF65B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB63C2B0192C4009FF65B /* ContentView.swift */; };
@@ -73,6 +75,8 @@
 		22A5D16D2B0942ED002129CA /* NoRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRecipesView.swift; sourceTree = "<group>"; };
 		22A5D1752B09BDB8002129CA /* FavoriteRecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeModel.swift; sourceTree = "<group>"; };
 		22A5D1772B09D085002129CA /* FavoriteRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeViewModel.swift; sourceTree = "<group>"; };
+		22A5D1792B09E825002129CA /* RecipeFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFavoritesView.swift; sourceTree = "<group>"; };
+		22A5D17B2B09EB80002129CA /* DefaultFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFavoritesView.swift; sourceTree = "<group>"; };
 		22B637332B05F2DF0041CF4F /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		22BFB6372B0192C4009FF65B /* WhatsForDinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsForDinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22BFB63A2B0192C4009FF65B /* WhatsForDinnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsForDinnerApp.swift; sourceTree = "<group>"; };
@@ -211,8 +215,10 @@
 				2238D1C92B032AC20053994A /* NoResultsView.swift */,
 				22A5D16D2B0942ED002129CA /* NoRecipesView.swift */,
 				223EEC4E2B06B8D4003E24E4 /* DefaultSearchView.swift */,
+				22A5D17B2B09EB80002129CA /* DefaultFavoritesView.swift */,
 				227BEABE2B01F68300329887 /* RecipeHomeView.swift */,
 				227BEAC02B01F87D00329887 /* RecipeDetailView.swift */,
+				22A5D1792B09E825002129CA /* RecipeFavoritesView.swift */,
 				22667E7F2B0313B9002CFD41 /* RecipeSearchView.swift */,
 				22A56BC12B06961F006FE082 /* ReviewButtonView.swift */,
 				22A56BBF2B0695CA006FE082 /* NewReviewFormView.swift */,
@@ -411,6 +417,7 @@
 				22BFB63D2B0192C4009FF65B /* ContentView.swift in Sources */,
 				22A5D16E2B0942ED002129CA /* NoRecipesView.swift in Sources */,
 				22BFB6712B019440009FF65B /* RecipeModel.swift in Sources */,
+				22A5D17C2B09EB80002129CA /* DefaultFavoritesView.swift in Sources */,
 				22B637342B05F2DF0041CF4F /* Utility.swift in Sources */,
 				223EEC4F2B06B8D4003E24E4 /* DefaultSearchView.swift in Sources */,
 				22667E802B0313B9002CFD41 /* RecipeSearchView.swift in Sources */,
@@ -421,6 +428,7 @@
 				22A56BBC2B0694A6006FE082 /* ReviewRecipeViewModel.swift in Sources */,
 				2238D1C82B03194B0053994A /* FileManager.swift in Sources */,
 				22BFB66D2B01942A009FF65B /* RecipeService.swift in Sources */,
+				22A5D17A2B09E825002129CA /* RecipeFavoritesView.swift in Sources */,
 				2238D1CA2B032AC20053994A /* NoResultsView.swift in Sources */,
 				22BFB63B2B0192C4009FF65B /* WhatsForDinnerApp.swift in Sources */,
 				227BEAC12B01F87D00329887 /* RecipeDetailView.swift in Sources */,
