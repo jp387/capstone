@@ -8,7 +8,6 @@
 import Foundation
 
 class FavoriteRecipeViewModel: ObservableObject {
-  @Published var isFavorited = false
   @Published var favorite: [Favorite] = [] {
     didSet {
       saveFavorites()
@@ -25,6 +24,7 @@ class FavoriteRecipeViewModel: ObservableObject {
   }
 
   private func loadFavorites() {
+    print(FileManager.documentDirectoryURL)
     let decoder = JSONDecoder()
 
     do {
@@ -53,9 +53,10 @@ class FavoriteRecipeViewModel: ObservableObject {
     id: UUID = UUID(),
     recipeId: Int,
     favorited: Bool = true,
-    date: String = Date().description
+    date: String = Date().description,
+    recipe: Recipe
   ) {
-    let newFavorite = Favorite(id: id, recipeId: recipeId, favorited: favorited, date: date)
+    let newFavorite = Favorite(id: id, recipeId: recipeId, favorited: favorited, date: date, recipe: recipe)
     favorite.append(newFavorite)
   }
 

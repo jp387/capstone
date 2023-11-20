@@ -1,13 +1,13 @@
 //
-//  RecipeDetailView.swift
+//  FavoriteDetailView.swift
 //  WhatsForDinner
 //
-//  Created by John Phung on 11/12/23.
+//  Created by John Phung on 11/19/23.
 //
 
 import SwiftUI
 
-struct RecipeDetailView: View {
+struct FavoriteDetailView: View {
   var recipe: Recipe
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
   @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
@@ -15,23 +15,23 @@ struct RecipeDetailView: View {
   var body: some View {
     ScrollView(showsIndicators: false) {
       VStack {
-        TitleView(recipe: recipe)
-        DataView(recipe: recipe)
+        FavoriteTitleView(recipe: recipe)
+        FavoriteDataView(recipe: recipe)
         Divider()
-        SummaryView(recipe: recipe)
+        FavoriteSummaryView(recipe: recipe)
         Divider()
-        IngredientsView(recipe: recipe)
+        FavoriteIngredientsView(recipe: recipe)
         Divider()
-        InstructionsView(recipe: recipe)
+        FavoriteInstructionsView(recipe: recipe)
         Divider()
-        ReviewsView(recipe: recipe)
+        FavoriteReviewsView(recipe: recipe)
       }
     }
     .navigationBarTitleDisplayMode(.inline)
   }
 }
 
-struct TitleView: View {
+struct FavoriteTitleView: View {
   var recipe: Recipe
 
   var body: some View {
@@ -39,23 +39,18 @@ struct TitleView: View {
       Text(recipe.title)
         .font(.headline)
         .frame(width: 350)
-      ZStack {
-        AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-480x360.jpg")) { image in
-          image
-        } placeholder: {
-          ProgressView()
-        }
-        .frame(width: 480, height: 360)
-        .background(.gray)
-        FavoriteButtonView(recipe: recipe)
-          .padding()
-          .offset(x: 180, y: -160)
+      AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-480x360.jpg")) { image in
+        image
+      } placeholder: {
+        ProgressView()
       }
+      .frame(width: 480, height: 360)
+      .background(.gray)
     }
   }
 }
 
-struct DataView: View {
+struct FavoriteDataView: View {
   var recipe: Recipe
 
   var pricePerServing: Double {
@@ -103,7 +98,7 @@ struct DataView: View {
   }
 }
 
-struct SummaryView: View {
+struct FavoriteSummaryView: View {
   var recipe: Recipe
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
@@ -118,7 +113,7 @@ struct SummaryView: View {
   }
 }
 
-struct IngredientsView: View {
+struct FavoriteIngredientsView: View {
   var recipe: Recipe
 
   var body: some View {
@@ -133,7 +128,7 @@ struct IngredientsView: View {
   }
 }
 
-struct InstructionsView: View {
+struct FavoriteInstructionsView: View {
   var recipe: Recipe
 
   var body: some View {
@@ -150,7 +145,7 @@ struct InstructionsView: View {
   }
 }
 
-struct ReviewsView: View {
+struct FavoriteReviewsView: View {
   var recipe: Recipe
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
@@ -174,39 +169,8 @@ struct ReviewsView: View {
   }
 }
 
-struct FavoriteButtonView: View {
-  var recipe: Recipe
-  @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
-
-  var favoriteRecipeExist: Bool {
-    return favoriteRecipeVM.containsFavorite(for: recipe.id)
-  }
-
-  var body: some View {
-    Button {
-      if !favoriteRecipeExist {
-        addFavorites()
-      } else {
-        deleteFavorites()
-      }
-    } label: {
-      Image(systemName: favoriteRecipeExist ? "heart.fill" : "heart")
-        .font(.largeTitle)
-        .foregroundColor(favoriteRecipeExist ? .red : .gray)
-    }
-  }
-
-  private func addFavorites() {
-    favoriteRecipeVM.addFavorite(recipeId: recipe.id, recipe: recipe)
-  }
-
-  private func deleteFavorites() {
-    favoriteRecipeVM.removeFavorite(by: recipe.id)
-  }
-}
-
-// struct RecipeDetailView_Previews: PreviewProvider {
-//   static var previews: some View {
-//       RecipeDetailView(recipe: )
-//   }
-// }
+//  struct FavoriteDetailView_Previews: PreviewProvider {
+//      static var previews: some View {
+//          FavoriteDetailView()
+//      }
+//  }
