@@ -64,14 +64,18 @@ struct RecipeHomeView: View {
 
 struct RefreshButtonView: View {
   @ObservedObject var randomRecipeVM: RandomRecipeViewModel
+  @State private var isSpinning = false
 
   var body: some View {
     Button {
       Task {
         await randomRecipeVM.refreshRandomRecipe()
       }
+      isSpinning.toggle()
     } label: {
       Image(systemName: "arrow.clockwise")
+        .rotationEffect(.degrees(isSpinning ? 0 : 360))
+        .animation(.easeInOut(duration: 1), value: isSpinning)
     }
     .disabled(randomRecipeVM.isBundle)
   }

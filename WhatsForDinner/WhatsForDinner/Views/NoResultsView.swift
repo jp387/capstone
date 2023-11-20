@@ -11,11 +11,9 @@ struct NoResultsView: View {
   var body: some View {
     VStack {
       Image(systemName: "magnifyingglass")
+        .font(.system(size: 30))
         .foregroundColor(.gray)
         .bold()
-        .font(.system(size: 30))
-        .padding(.bottom, 10)
-        .frame(width: 10, height: 10)
       Text("No Results")
         .font(.title2)
         .bold()

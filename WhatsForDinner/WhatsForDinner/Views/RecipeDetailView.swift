@@ -125,8 +125,8 @@ struct IngredientsView: View {
     Text("Ingredients")
       .padding()
     VStack(alignment: .leading) {
-      ForEach(recipe.extendedIngredients, id: \.name) { ingredient in
-        Text("* \(ingredient.original)")
+      ForEach(recipe.extendedIngredients, id: \.id) { ingredient in
+        Text("* \(ingredient.original ?? "")")
       }
     }
     .frame(width: 350)
@@ -192,7 +192,7 @@ struct FavoriteButtonView: View {
     } label: {
       Image(systemName: favoriteRecipeExist ? "heart.fill" : "heart")
         .font(.largeTitle)
-        .foregroundColor(favoriteRecipeExist ? .red : .gray)
+        .foregroundColor(.red)
     }
   }
 

@@ -24,7 +24,6 @@ class FavoriteRecipeViewModel: ObservableObject {
   }
 
   private func loadFavorites() {
-    print(FileManager.documentDirectoryURL)
     let decoder = JSONDecoder()
 
     do {
