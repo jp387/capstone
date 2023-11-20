@@ -48,8 +48,6 @@ struct TitleView: View {
         .frame(width: 480, height: 360)
         .background(.gray)
         FavoriteButtonView(recipe: recipe)
-          .padding()
-          .offset(x: 180, y: -160)
       }
     }
   }
