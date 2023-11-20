@@ -19,7 +19,7 @@ struct RecipeFavoritesView: View {
               Button(role: .destructive) {
                 deleteFavorites(for: recipe.recipeId)
               } label: {
-                Label("Unfavorite", systemImage: "heart")
+                Label("Remove", systemImage: "heart")
               }
             }
         }
