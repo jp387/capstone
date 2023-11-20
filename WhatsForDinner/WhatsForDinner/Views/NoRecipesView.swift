@@ -10,12 +10,10 @@ import SwiftUI
 struct NoRecipesView: View {
   var body: some View {
     VStack {
-      Image(systemName: "exclamationmark.arrow.triangle.2.circlepath")
+      Image(systemName: "exclamationmark.arrow.circlepath")
+        .font(.system(size: 30))
         .foregroundColor(.blue)
         .bold()
-        .font(.system(size: 30))
-        .padding(.bottom, 10)
-        .frame(width: 10, height: 10)
       Text("No recipes to see here!")
         .font(.title2)
         .bold()

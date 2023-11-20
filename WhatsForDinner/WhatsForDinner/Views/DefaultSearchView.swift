@@ -11,15 +11,13 @@ struct DefaultSearchView: View {
   var body: some View {
     VStack {
       Image(systemName: "magnifyingglass")
+        .font(.system(size: 30))
         .foregroundColor(.gray)
         .bold()
-        .font(.system(size: 30))
-        .padding(.bottom, 10)
-        .frame(width: 10, height: 10)
       Text("Unsure What to Cook?")
         .font(.title2)
         .bold()
-      Text("Find your dinner here!")
+      Text("Find your dinner recipes here!")
         .font(.subheadline)
         .foregroundColor(.gray)
     }

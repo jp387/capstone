@@ -10,11 +10,13 @@ import SwiftUI
 @main
 struct WhatsForDinnerApp: App {
   @StateObject private var reviewRecipeVM = ReviewRecipeViewModel()
+  @StateObject private var favoriteRecipeVM = FavoriteRecipeViewModel()
 
   var body: some Scene {
     WindowGroup {
       ContentView()
         .environmentObject(reviewRecipeVM)
+        .environmentObject(favoriteRecipeVM)
     }
   }
 }
