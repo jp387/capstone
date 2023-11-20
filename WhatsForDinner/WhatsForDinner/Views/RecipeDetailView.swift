@@ -197,7 +197,7 @@ struct FavoriteButtonView: View {
   }
 
   func addFavorites() {
-    favoriteRecipeVM.addFavorite(recipeId: recipe.id, recipe: recipe)
+    favoriteRecipeVM.addFavorite(recipeId: recipe.id)
   }
 
   func deleteFavorites() {

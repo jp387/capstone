@@ -16,5 +16,4 @@ struct Favorite: Codable, Hashable, Identifiable {
   let recipeId: Int
   let favorited: Bool
   let date: String
-  let recipe: Recipe
 }

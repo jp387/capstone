@@ -30,8 +30,16 @@ class FavoriteRecipeViewModel: ObservableObject {
     do {
       let data = try Data(contentsOf: favoriteURL)
       favorite = try decoder.decode(Favorites.self, from: data).favorites
+    } catch DecodingError.dataCorrupted(let context) {
+      print("Data corrupted: \(context.debugDescription)")
+    } catch DecodingError.keyNotFound(let key, let context) {
+      print("Key '\(key.stringValue)' not found: \(context.debugDescription)")
+    } catch DecodingError.typeMismatch(let type, let context) {
+      print("Type mismatch for type \(type): \(context.debugDescription)")
+    } catch DecodingError.valueNotFound(let type, let context) {
+      print("Value not found for type \(type): \(context.debugDescription)")
     } catch {
-      print("Unable to decode favorites due to the following error: \(error.localizedDescription)")
+      print("Other decoding error: \(error)")
     }
   }
 
@@ -45,10 +53,9 @@ class FavoriteRecipeViewModel: ObservableObject {
     id: UUID = UUID(),
     recipeId: Int,
     favorited: Bool = true,
-    date: String = Date().description,
-    recipe: Recipe
+    date: String = Date().description
   ) {
-    let newFavorite = Favorite(id: id, recipeId: recipeId, favorited: favorited, date: date, recipe: recipe)
+    let newFavorite = Favorite(id: id, recipeId: recipeId, favorited: favorited, date: date)
     favorite.append(newFavorite)
   }
 
