@@ -46,5 +46,9 @@ struct ContentView_Previews: PreviewProvider {
       .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))
       .previewInterfaceOrientation(.landscapeLeft)
       .preferredColorScheme(.dark)
+    ContentView()
+      .environmentObject(ReviewRecipeViewModel())
+      .environmentObject(FavoriteRecipeViewModel())
+      .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))
   }
 }
