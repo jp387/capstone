@@ -12,6 +12,7 @@ struct ContentView: View {
   @StateObject private var randomRecipeVM = RandomRecipeViewModel()
   @StateObject private var searchRecipeVM = SearchRecipeViewModel()
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
+  @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
 
   var body: some View {
     TabView {
@@ -38,8 +39,10 @@ struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
       .environmentObject(ReviewRecipeViewModel())
+      .environmentObject(FavoriteRecipeViewModel())
     ContentView()
       .environmentObject(ReviewRecipeViewModel())
+      .environmentObject(FavoriteRecipeViewModel())
       .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))
       .previewInterfaceOrientation(.landscapeLeft)
       .preferredColorScheme(.dark)

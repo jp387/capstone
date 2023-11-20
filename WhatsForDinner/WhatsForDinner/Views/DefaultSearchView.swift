@@ -19,7 +19,7 @@ struct DefaultSearchView: View {
       Text("Unsure What to Cook?")
         .font(.title2)
         .bold()
-      Text("Find your dinner here!")
+      Text("Find your dinner recipes here!")
         .font(.subheadline)
         .foregroundColor(.gray)
     }

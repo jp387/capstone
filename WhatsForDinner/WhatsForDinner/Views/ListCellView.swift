@@ -14,8 +14,6 @@ struct ListCellView: View {
     HStack {
       ImageView(recipe: recipe)
       TitleTextView(recipe: recipe)
-      Spacer()
-      FavoriteButtonView()
     }
   }
 }
@@ -62,16 +60,6 @@ struct TitleTextView: View {
       Text("Serving: \(recipe.servings)")
         .font(.caption)
     }
-  }
-}
-
-struct FavoriteButtonView: View {
-  var body: some View {
-    Image(systemName: "heart")
-      .foregroundStyle(.red)
-      .padding(.vertical)
-      .onTapGesture {
-      }
   }
 }
 

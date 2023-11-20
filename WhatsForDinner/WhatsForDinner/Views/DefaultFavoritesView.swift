@@ -16,10 +16,10 @@ struct DefaultFavoritesView: View {
         .font(.system(size: 30))
         .padding(.bottom, 10)
         .frame(width: 10, height: 10)
-      Text("Have a favorite dinner recipe?")
-        .font(.title2)
+      Text("You don't have any favorite recipes.")
+        .font(.title3)
         .bold()
-      Text("Add it right here!")
+      Text("Tap the \(Image(systemName: "heart")) to add a recipe!")
         .font(.subheadline)
         .foregroundColor(.gray)
     }

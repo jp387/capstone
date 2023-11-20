@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipeFavoritesView: View {
-  @State private var showDefaultScreen = true
+  @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
 
   var body: some View {
     NavigationStack {
@@ -17,7 +17,7 @@ struct RecipeFavoritesView: View {
       .navigationTitle("Favorite Recipes")
     }
     .overlay {
-      if showDefaultScreen { DefaultFavoritesView() }
+      if favoriteRecipeVM.favorite.isEmpty { DefaultFavoritesView() }
     }
   }
 }
@@ -25,5 +25,7 @@ struct RecipeFavoritesView: View {
 struct RecipeFavoritesView_Previews: PreviewProvider {
   static var previews: some View {
     RecipeFavoritesView()
+      .environmentObject(ReviewRecipeViewModel())
+      .environmentObject(FavoriteRecipeViewModel())
   }
 }

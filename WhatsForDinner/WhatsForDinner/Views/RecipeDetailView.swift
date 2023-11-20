@@ -10,6 +10,7 @@ import SwiftUI
 struct RecipeDetailView: View {
   var recipe: Recipe
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
+  @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
 
   var body: some View {
     ScrollView(showsIndicators: false) {
@@ -38,13 +39,18 @@ struct TitleView: View {
       Text(recipe.title)
         .font(.headline)
         .frame(width: 350)
-      AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-480x360.jpg")) { image in
-        image
-      } placeholder: {
-        ProgressView()
+      ZStack {
+        AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-480x360.jpg")) { image in
+          image
+        } placeholder: {
+          ProgressView()
+        }
+        .frame(width: 480, height: 360)
+        .background(.gray)
+        FavoriteButtonView(recipe: recipe)
+          .padding()
+          .offset(x: 180, y: -160)
       }
-      .frame(width: 480, height: 360)
-      .background(.gray)
     }
   }
 }
@@ -165,6 +171,37 @@ struct ReviewsView: View {
       }
     }
     .frame(width: 350)
+  }
+}
+
+struct FavoriteButtonView: View {
+  var recipe: Recipe
+  @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
+
+  var favoriteRecipeExist: Bool {
+    return favoriteRecipeVM.containsFavorite(for: recipe.id)
+  }
+
+  var body: some View {
+    Button {
+      if !favoriteRecipeExist {
+        addFavorites()
+      } else {
+        deleteFavorites()
+      }
+    } label: {
+      Image(systemName: favoriteRecipeExist ? "heart.fill" : "heart")
+        .font(.largeTitle)
+        .foregroundColor(favoriteRecipeExist ? .red : .white)
+    }
+  }
+
+  func addFavorites() {
+    favoriteRecipeVM.addFavorite(recipeId: recipe.id, recipe: recipe)
+  }
+
+  func deleteFavorites() {
+    favoriteRecipeVM.removeFavorite(by: recipe.id)
   }
 }
 
