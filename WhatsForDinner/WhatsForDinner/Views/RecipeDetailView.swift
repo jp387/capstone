@@ -169,6 +169,10 @@ struct ReviewsView: View {
       }
     }
     .frame(width: 350)
+    .overlay {
+      if reviewRecipeVM.review.isEmpty { Text("No reviews for this recipe.") }
+    }
+    .padding(5)
   }
 }
 
