@@ -61,7 +61,7 @@ struct RecipeSearchView: View {
     .overlay {
       if showDefaultScreen { DefaultSearchView() }
       if networkFailure { NoRecipesView() }
-      if searchRecipeVM.isLoading { ProgressView() }
+      if searchRecipeVM.isLoading { LoadingProgressView() }
       if searchRecipeVM.noResults { NoResultsView() }
     }
   }
