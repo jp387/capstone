@@ -53,9 +53,16 @@ class FavoriteRecipeViewModel: ObservableObject {
     recipeId: Int,
     favorited: Bool = true,
     date: String = Date().description,
+    title: String,
     recipe: Recipe
   ) {
-    let newFavorite = Favorite(id: id, recipeId: recipeId, favorited: favorited, date: date, recipe: recipe)
+    let newFavorite = Favorite(
+      id: id,
+      recipeId: recipeId,
+      favorited: favorited,
+      date: date,
+      title: title,
+      recipe: recipe)
     favorite.append(newFavorite)
   }
 

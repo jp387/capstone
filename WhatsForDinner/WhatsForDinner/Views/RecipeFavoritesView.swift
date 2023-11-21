@@ -9,17 +9,28 @@ import SwiftUI
 
 struct RecipeFavoritesView: View {
   @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
+  @State private var showDefaultScreen = true
+  @State private var noResults = false
+  @State private var favoriteSearch = ""
+
+  var filteredSearch: [Favorite] {
+    if favoriteSearch.isEmpty {
+      return favoriteRecipeVM.favorite
+    } else {
+      return favoriteRecipeVM.favorite.filter { $0.title.lowercased().contains(favoriteSearch.lowercased()) }
+    }
+  }
 
   var body: some View {
     NavigationStack {
-      List(favoriteRecipeVM.favorite, id: \.recipeId) { recipe in
+      List(filteredSearch, id: \.recipeId) { recipe in
         NavigationLink(value: recipe.recipe) {
           ListCellView(recipe: recipe.recipe)
             .swipeActions(allowsFullSwipe: false) {
               Button(role: .destructive) {
                 deleteFavorites(for: recipe.recipeId)
               } label: {
-                Label("Remove", systemImage: "heart")
+                Label("Remove", systemImage: "trash")
               }
             }
         }
@@ -29,11 +40,12 @@ struct RecipeFavoritesView: View {
         FavoriteDetailView(recipe: recipe)
       }
       .navigationTitle("Favorite Recipes")
+      .searchable(text: $favoriteSearch, prompt: "Search your favorite recipe")
       .scrollIndicators(.hidden)
       .listStyle(.plain)
     }
     .overlay {
-      if favoriteRecipeVM.favorite.isEmpty { DefaultFavoritesView() }
+      if showDefaultScreen { DefaultFavoritesView() }
     }
   }
 
