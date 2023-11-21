@@ -9,11 +9,10 @@ import SwiftUI
 
 struct RecipeFavoritesView: View {
   @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
-  @State private var showDefaultScreen = true
-  @State private var noResults = false
+  @State private var searchFailed = false
   @State private var favoriteSearch = ""
 
-  var filteredSearch: [Favorite] {
+  var filteredFavorites: [Favorite] {
     if favoriteSearch.isEmpty {
       return favoriteRecipeVM.favorite
     } else {
@@ -23,7 +22,7 @@ struct RecipeFavoritesView: View {
 
   var body: some View {
     NavigationStack {
-      List(filteredSearch, id: \.recipeId) { recipe in
+      List(filteredFavorites, id: \.recipeId) { recipe in
         NavigationLink(value: recipe.recipe) {
           ListCellView(recipe: recipe.recipe)
             .swipeActions(allowsFullSwipe: false) {
@@ -39,13 +38,14 @@ struct RecipeFavoritesView: View {
       .navigationDestination(for: Recipe.self) { recipe in
         FavoriteDetailView(recipe: recipe)
       }
-      .navigationTitle("Favorite Recipes")
-      .searchable(text: $favoriteSearch, prompt: "Search your favorite recipe")
+      .navigationTitle("Favorited Recipes")
+      .searchable(text: $favoriteSearch, prompt: "Search for your favorited recipes")
       .scrollIndicators(.hidden)
       .listStyle(.plain)
     }
     .overlay {
-      if showDefaultScreen { DefaultFavoritesView() }
+      if favoriteRecipeVM.favorite.isEmpty, favoriteSearch.isEmpty { DefaultFavoritesView() }
+      if filteredFavorites.isEmpty, !favoriteSearch.isEmpty { NoResultsView() }
     }
   }
 

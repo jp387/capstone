@@ -18,7 +18,7 @@ struct NoResultsView: View {
         .font(.title2)
         .bold()
       Text("Check the spelling or try a new search.")
-        .font(.caption)
+        .font(.subheadline)
         .foregroundColor(.gray)
     }
   }
