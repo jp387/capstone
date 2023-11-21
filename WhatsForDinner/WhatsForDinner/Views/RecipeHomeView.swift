@@ -57,7 +57,7 @@ struct RecipeHomeView: View {
     }
     .overlay {
       if networkFailure { NoRecipesView() }
-      if randomRecipeVM.isLoading { ProgressView() }
+      if randomRecipeVM.isLoading { LoadingProgressView() }
     }
   }
 }
