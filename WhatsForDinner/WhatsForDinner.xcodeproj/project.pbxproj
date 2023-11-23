@@ -141,6 +141,69 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		224E519A2B0FCDF400203EA9 /* TabViews */ = {
+			isa = PBXGroup;
+			children = (
+				227BEABE2B01F68300329887 /* RecipeHomeView.swift */,
+				22A5D1792B09E825002129CA /* RecipeFavoritesView.swift */,
+				22667E7F2B0313B9002CFD41 /* RecipeSearchView.swift */,
+			);
+			path = TabViews;
+			sourceTree = "<group>";
+		};
+		224E519B2B0FCE0200203EA9 /* DetailViews */ = {
+			isa = PBXGroup;
+			children = (
+				22A2CB852B0B3E2B001745B5 /* FavoriteDetailView.swift */,
+				227BEAC02B01F87D00329887 /* RecipeDetailView.swift */,
+			);
+			path = DetailViews;
+			sourceTree = "<group>";
+		};
+		224E519C2B0FCE1100203EA9 /* ReviewViews */ = {
+			isa = PBXGroup;
+			children = (
+				22A56BC12B06961F006FE082 /* ReviewButtonView.swift */,
+				22A56BBF2B0695CA006FE082 /* NewReviewFormView.swift */,
+			);
+			path = ReviewViews;
+			sourceTree = "<group>";
+		};
+		224E519D2B0FCE2500203EA9 /* DefaultViews */ = {
+			isa = PBXGroup;
+			children = (
+				223EEC4E2B06B8D4003E24E4 /* DefaultSearchView.swift */,
+				22A5D17B2B09EB80002129CA /* DefaultFavoritesView.swift */,
+			);
+			path = DefaultViews;
+			sourceTree = "<group>";
+		};
+		224E519E2B0FCE2C00203EA9 /* NegativeViews */ = {
+			isa = PBXGroup;
+			children = (
+				2238D1C92B032AC20053994A /* NoResultsView.swift */,
+				22A5D16D2B0942ED002129CA /* NoRecipesView.swift */,
+			);
+			path = NegativeViews;
+			sourceTree = "<group>";
+		};
+		224E519F2B0FCE3B00203EA9 /* ReuseableViews */ = {
+			isa = PBXGroup;
+			children = (
+				22A4BAC22B02DD570046FB13 /* ListCellView.swift */,
+				2254A9442B0C88FA006A32B6 /* LoadingProgressView.swift */,
+			);
+			path = ReuseableViews;
+			sourceTree = "<group>";
+		};
+		224E51A02B0FCE4800203EA9 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				22BFB63C2B0192C4009FF65B /* ContentView.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
 		22BFB62E2B0192C4009FF65B = {
 			isa = PBXGroup;
 			children = (
@@ -214,20 +277,13 @@
 		22BFB6652B01938B009FF65B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				22BFB63C2B0192C4009FF65B /* ContentView.swift */,
-				22A4BAC22B02DD570046FB13 /* ListCellView.swift */,
-				2238D1C92B032AC20053994A /* NoResultsView.swift */,
-				22A5D16D2B0942ED002129CA /* NoRecipesView.swift */,
-				223EEC4E2B06B8D4003E24E4 /* DefaultSearchView.swift */,
-				22A5D17B2B09EB80002129CA /* DefaultFavoritesView.swift */,
-				22A2CB852B0B3E2B001745B5 /* FavoriteDetailView.swift */,
-				227BEABE2B01F68300329887 /* RecipeHomeView.swift */,
-				227BEAC02B01F87D00329887 /* RecipeDetailView.swift */,
-				22A5D1792B09E825002129CA /* RecipeFavoritesView.swift */,
-				22667E7F2B0313B9002CFD41 /* RecipeSearchView.swift */,
-				22A56BC12B06961F006FE082 /* ReviewButtonView.swift */,
-				22A56BBF2B0695CA006FE082 /* NewReviewFormView.swift */,
-				2254A9442B0C88FA006A32B6 /* LoadingProgressView.swift */,
+				224E51A02B0FCE4800203EA9 /* MainView */,
+				224E519F2B0FCE3B00203EA9 /* ReuseableViews */,
+				224E519E2B0FCE2C00203EA9 /* NegativeViews */,
+				224E519D2B0FCE2500203EA9 /* DefaultViews */,
+				224E519B2B0FCE0200203EA9 /* DetailViews */,
+				224E519A2B0FCDF400203EA9 /* TabViews */,
+				224E519C2B0FCE1100203EA9 /* ReviewViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
