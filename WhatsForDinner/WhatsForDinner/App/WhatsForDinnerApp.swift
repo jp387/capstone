@@ -14,7 +14,7 @@ struct WhatsForDinnerApp: App {
 
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      ViewCoordinator()
         .environmentObject(reviewRecipeVM)
         .environmentObject(favoriteRecipeVM)
     }
