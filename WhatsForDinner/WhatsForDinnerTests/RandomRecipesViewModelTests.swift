@@ -9,7 +9,9 @@ import XCTest
 @testable import WhatsForDinner
 
 final class RandomRecipesViewModelTests: XCTestCase {
+  // swiftlint:disable implicitly_unwrapped_optional
   var randomRecipeVM: RandomRecipeViewModel!
+  // swiftlint:enable implicitly_unwrapped_optional
 
   override func setUpWithError() throws {
     randomRecipeVM = RandomRecipeViewModel()

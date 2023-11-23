@@ -9,7 +9,9 @@ import XCTest
 @testable import WhatsForDinner
 
 final class SearchRecipeViewModelTests: XCTestCase {
+  // swiftlint:disable implicitly_unwrapped_optional
   var searchRecipeVM: SearchRecipeViewModel!
+  // swiftlint:enable implicitly_unwrapped_optional
 
   override func setUpWithError() throws {
     searchRecipeVM = SearchRecipeViewModel()
