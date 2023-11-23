@@ -1,6 +1,6 @@
 //
 //  RandomRecipeViewModel.swift
-//  LastMinuteMeals
+//  WhatsForDinner
 //
 //  Created by John Phung on 11/12/23.
 //

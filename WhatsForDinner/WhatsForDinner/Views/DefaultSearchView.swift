@@ -1,6 +1,6 @@
 //
-//  DefaultView.swift
-//  Homework09
+//  DefaultSearchView.swift
+//  WhatsForDinner
 //
 //  Created by John Phung on 10/26/23.
 //

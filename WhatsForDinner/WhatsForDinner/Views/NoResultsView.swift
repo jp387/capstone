@@ -1,6 +1,6 @@
 //
 //  NoResultsView.swift
-//  Homework09
+//  WhatsForDinner
 //
 //  Created by John Phung on 10/26/23.
 //
