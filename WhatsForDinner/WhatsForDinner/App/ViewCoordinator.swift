@@ -15,7 +15,7 @@ struct ViewCoordinator: View {
       if isActive {
         ContentView()
       } else {
-        SplashScreenView()
+        SplashScreenView(isActive: $isActive)
       }
     }
   }

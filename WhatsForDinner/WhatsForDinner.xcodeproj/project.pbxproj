@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2207C7352B0FF3C3000C63EC /* ViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207C7342B0FF3C3000C63EC /* ViewCoordinator.swift */; };
 		2238D1C82B03194B0053994A /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238D1C72B03194B0053994A /* FileManager.swift */; };
 		2238D1CA2B032AC20053994A /* NoResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238D1C92B032AC20053994A /* NoResultsView.swift */; };
 		2238D1CE2B034AC90053994A /* RecipeModel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238D1CD2B034AC90053994A /* RecipeModel+Extension.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2207C7342B0FF3C3000C63EC /* ViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewCoordinator.swift; path = WhatsForDinner/App/ViewCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		2238D1C72B03194B0053994A /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		2238D1C92B032AC20053994A /* NoResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoResultsView.swift; sourceTree = "<group>"; };
 		2238D1CD2B034AC90053994A /* RecipeModel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeModel+Extension.swift"; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			children = (
 				224E51A52B0FD9AA00203EA9 /* Fonts */,
 				22BFB63A2B0192C4009FF65B /* WhatsForDinnerApp.swift */,
+				2207C7342B0FF3C3000C63EC /* ViewCoordinator.swift */,
 				22BFB63E2B0192C4009FF65B /* Assets.xcassets */,
 			);
 			path = App;
@@ -523,6 +526,7 @@
 				22BFB63B2B0192C4009FF65B /* WhatsForDinnerApp.swift in Sources */,
 				227BEAC12B01F87D00329887 /* RecipeDetailView.swift in Sources */,
 				22A4BAC32B02DD570046FB13 /* ListCellView.swift in Sources */,
+				2207C7352B0FF3C3000C63EC /* ViewCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +694,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -720,6 +725,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

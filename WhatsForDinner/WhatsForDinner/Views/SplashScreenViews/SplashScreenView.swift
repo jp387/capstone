@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SplashScreenView: View {
   @State private var fadeInOut = false
+  @Binding var isActive: Bool
 
   var body: some View {
     ZStack {
@@ -33,12 +34,16 @@ struct SplashScreenView: View {
       .onAppear {
         self.fadeInOut.toggle()
       }
+      .task {
+        try? await Task.sleep(for: Duration.seconds(5))
+        self.isActive.toggle()
+      }
     }
   }
 }
 
 struct SplashScreenView_Previews: PreviewProvider {
   static var previews: some View {
-    SplashScreenView()
+    SplashScreenView(isActive: .constant(true))
   }
 }
