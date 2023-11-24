@@ -12,6 +12,7 @@ struct OnboardingDetails: Identifiable {
   let emoji: String
   let title: String
   let content: String
+  let last: Bool
 }
 
 extension OnboardingDetails: Equatable { }

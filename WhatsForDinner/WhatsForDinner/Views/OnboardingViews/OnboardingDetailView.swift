@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct OnboardingDetailView: View {
+  @AppStorage(
+    "isOnboarding"
+  )
+  var isOnboarding: Bool?
+  @Binding var isActive: Bool
   let detail: OnboardingDetails
 
   var body: some View {
@@ -22,6 +27,21 @@ struct OnboardingDetailView: View {
       Text(detail.content)
         .font(.system(size: 18, weight: .light, design: .rounded))
         .foregroundColor(.yellow)
+
+      if detail.last {
+        Button {
+          isActive = true
+          isOnboarding = false
+        } label: {
+          Text("Let's Go!")
+            .bold()
+            .foregroundColor(.red)
+            .frame(width: 200, height: 50)
+            .background(.yellow)
+            .cornerRadius(6)
+        }
+        .padding()
+      }
     }
     .multilineTextAlignment(.center)
     .foregroundColor(.white)
@@ -31,10 +51,10 @@ struct OnboardingDetailView: View {
 
 struct OnboardingDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    OnboardingDetailView(detail: OnboardingDetails(
+    OnboardingDetailView(isActive: .constant(true), detail: OnboardingDetails(
       emoji: "🎉",
       title: "Get those recipes",
-      content: "Making dinner tonight? Use our app!"))
+      content: "Making dinner tonight? Use our app!", last: true))
       .previewLayout(.sizeThatFits)
       .background(.red)
   }

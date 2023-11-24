@@ -12,13 +12,17 @@ struct ViewCoordinator: View {
   @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
 
   @State private var isActive = false
+  @AppStorage(
+    "isOnboarding"
+  )
+  var isOnboarding = true
 
   var body: some View {
     ZStack {
-      if isActive {
-        ContentView()
+      if isOnboarding {
+        OnboardingView(isActive: $isActive)
       } else {
-        SplashScreenView(isActive: $isActive)
+        ContentView()
       }
     }
   }
