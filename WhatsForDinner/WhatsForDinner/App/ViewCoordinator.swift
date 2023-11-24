@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ViewCoordinator: View {
+  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
+  @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
+
   @State private var isActive = false
 
   var body: some View {
@@ -24,5 +27,7 @@ struct ViewCoordinator: View {
 struct ViewCoordinator_Previews: PreviewProvider {
   static var previews: some View {
     ViewCoordinator()
+      .environmentObject(ReviewRecipeViewModel())
+      .environmentObject(FavoriteRecipeViewModel())
   }
 }
