@@ -10,7 +10,6 @@ import SwiftUI
 struct OnboardingView: View {
   @StateObject private var onboardingVM = OnboardingViewModel()
   @State private var showButton = false
-  @Binding var isActive: Bool
 
   var body: some View {
     ZStack {
@@ -19,7 +18,7 @@ struct OnboardingView: View {
       if !onboardingVM.details.isEmpty {
         TabView {
           ForEach(onboardingVM.details) { detail in
-            OnboardingDetailView(isActive: $isActive, detail: detail)
+            OnboardingDetailView(detail: detail)
           }
         }
         .tabViewStyle(.page)
@@ -32,6 +31,6 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
   static var previews: some View {
-    OnboardingView(isActive: .constant(true))
+    OnboardingView()
   }
 }

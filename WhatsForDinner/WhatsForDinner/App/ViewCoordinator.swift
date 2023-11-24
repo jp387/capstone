@@ -20,7 +20,7 @@ struct ViewCoordinator: View {
   var body: some View {
     ZStack {
       if isOnboarding {
-        OnboardingView(isActive: $isActive)
+        OnboardingView()
       } else {
         ContentView()
       }

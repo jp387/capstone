@@ -12,7 +12,7 @@ struct OnboardingDetailView: View {
     "isOnboarding"
   )
   var isOnboarding: Bool?
-  @Binding var isActive: Bool
+
   let detail: OnboardingDetails
 
   var body: some View {
@@ -30,7 +30,6 @@ struct OnboardingDetailView: View {
 
       if detail.last {
         Button {
-          isActive = true
           isOnboarding = false
         } label: {
           Text("Let's Go!")
@@ -51,7 +50,7 @@ struct OnboardingDetailView: View {
 
 struct OnboardingDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    OnboardingDetailView(isActive: .constant(true), detail: OnboardingDetails(
+    OnboardingDetailView(detail: OnboardingDetails(
       emoji: "🎉",
       title: "Get those recipes",
       content: "Making dinner tonight? Use our app!", last: true))
