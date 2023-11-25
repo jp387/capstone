@@ -18,6 +18,8 @@ struct ReviewButtonView: View {
     } label: {
       ButtonView(systemName: "star.fill", title: "Rate This Recipe")
     }
+    .buttonStyle(.borderedProminent)
+    .tint(.red)
     .sheet(isPresented: $isPresented) {
       NewReviewFormView(
         displayModal: $isPresented,
@@ -38,13 +40,10 @@ struct ButtonView: View {
         .foregroundColor(.yellow)
         .padding(.bottom, 5)
       Text(title)
+        .bold()
         .font(.subheadline)
+        .foregroundColor(.yellow)
     }
-    .padding(5)
-    .overlay(
-      RoundedRectangle(cornerRadius: 10)
-        .stroke(lineWidth: 2)
-    )
   }
 }
 
