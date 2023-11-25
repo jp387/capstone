@@ -53,7 +53,8 @@ struct OnboardingDetailView_Previews: PreviewProvider {
     OnboardingDetailView(detail: OnboardingDetails(
       emoji: "🎉",
       title: "Get those recipes",
-      content: "Making dinner tonight? Use our app!", last: true))
+      content: "Making dinner tonight? Use our app!",
+      last: true))
       .previewLayout(.sizeThatFits)
       .background(.red)
   }

@@ -24,7 +24,7 @@ struct RecipeFavoritesView: View {
     NavigationStack {
       List(filteredFavorites, id: \.recipeId) { recipe in
         NavigationLink(value: recipe.recipe) {
-          ListCellView(recipe: recipe.recipe)
+          RecipeCardView(recipe: recipe.recipe)
             .swipeActions(allowsFullSwipe: false) {
               Button(role: .destructive) {
                 deleteFavorites(for: recipe.recipeId)

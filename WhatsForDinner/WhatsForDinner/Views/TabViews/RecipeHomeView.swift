@@ -23,7 +23,7 @@ struct RecipeHomeView: View {
     NavigationStack {
       List(randomRecipeVM.recipes) { recipe in
         NavigationLink(value: recipe) {
-          ListCellView(recipe: recipe)
+          RecipeCardView(recipe: recipe)
         }
         .listRowSeparator(.hidden)
       }
@@ -40,7 +40,7 @@ struct RecipeHomeView: View {
           networkFailure = true
         }
       }
-      .navigationTitle("Popular Dinner Recipes")
+      .navigationTitle("Dinner Recipes")
       .navigationBarItems(
         trailing:
           RefreshButtonView(randomRecipeVM: randomRecipeVM)
@@ -85,5 +85,6 @@ struct RecipeHomeView_Previews: PreviewProvider {
   static var previews: some View {
     RecipeHomeView(randomRecipeVM: RandomRecipeViewModel())
       .environmentObject(ReviewRecipeViewModel())
+      .environmentObject(FavoriteRecipeViewModel())
   }
 }

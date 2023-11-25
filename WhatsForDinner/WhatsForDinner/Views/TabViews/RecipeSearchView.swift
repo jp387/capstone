@@ -26,7 +26,7 @@ struct RecipeSearchView: View {
     NavigationStack {
       List(searchRecipeVM.results) { result in
         NavigationLink(value: result) {
-          ListCellView(recipe: result)
+          RecipeCardView(recipe: result)
         }
         .listRowSeparator(.hidden)
       }
@@ -82,5 +82,6 @@ struct RecipeSearchView_Previews: PreviewProvider {
   static var previews: some View {
     RecipeSearchContainer()
       .environmentObject(ReviewRecipeViewModel())
+      .environmentObject(FavoriteRecipeViewModel())
   }
 }
