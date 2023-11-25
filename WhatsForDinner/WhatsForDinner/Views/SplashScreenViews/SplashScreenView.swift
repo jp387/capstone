@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SplashScreenView: View {
   @State private var fadeInOut = false
-  @State private var isOnboarding = false
   @Binding var isActive: Bool
 
   var body: some View {
@@ -37,8 +36,7 @@ struct SplashScreenView: View {
       }
       .task {
         try? await Task.sleep(for: Duration.seconds(5))
-//        self.isActive.toggle()
-//        self.isOnboarding.toggle()
+        self.isActive.toggle()
       }
     }
   }

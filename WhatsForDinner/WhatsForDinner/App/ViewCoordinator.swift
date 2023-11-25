@@ -19,10 +19,12 @@ struct ViewCoordinator: View {
 
   var body: some View {
     ZStack {
-      if isOnboarding {
+      if isOnboarding && isActive {
         OnboardingView()
-      } else {
+      } else if !isOnboarding && isActive {
         ContentView()
+      } else {
+        SplashScreenView(isActive: $isActive)
       }
     }
   }
