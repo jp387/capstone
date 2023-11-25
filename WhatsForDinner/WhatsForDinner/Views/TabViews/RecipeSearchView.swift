@@ -30,6 +30,8 @@ struct RecipeSearchView: View {
         }
         .listRowSeparator(.hidden)
       }
+      .toolbarBackground(.yellow, for: .navigationBar)
+      .toolbarBackground(.visible, for: .navigationBar)
       .navigationDestination(for: Recipe.self) { result in
         RecipeDetailView(recipe: result)
       }

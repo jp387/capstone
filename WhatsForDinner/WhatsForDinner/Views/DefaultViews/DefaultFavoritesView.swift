@@ -10,12 +10,14 @@ import SwiftUI
 struct DefaultFavoritesView: View {
   var body: some View {
     VStack {
-      Image(systemName: "heart.slash.fill")
-        .font(.system(size: 30))
+      HStack {
+        Image(systemName: "heart.slash.fill")
+          .font(.system(size: 25))
         .foregroundColor(.red)
-      Text("You don't have any favorite recipes.")
-        .font(.title3)
-        .bold()
+        Text("You don't have any favorite recipes.")
+          .font(.custom("MeowScript-regular", size: 30))
+          .bold()
+      }
       Text("Tap the \(Image(systemName: "heart")) to favorite a recipe.")
         .font(.subheadline)
         .foregroundColor(.gray)

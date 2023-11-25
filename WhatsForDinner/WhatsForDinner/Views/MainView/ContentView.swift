@@ -14,6 +14,11 @@ struct ContentView: View {
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
   @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
 
+  init() {
+    UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .lightGray
+    UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .black
+  }
+
   var body: some View {
     TabView {
       RecipeHomeView(randomRecipeVM: randomRecipeVM)
