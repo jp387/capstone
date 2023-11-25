@@ -20,7 +20,7 @@ struct SplashScreenView: View {
         Text("What's For")
           .font(Font.custom("MeowScript-regular", size: 60))
           .rotationEffect(.degrees(-8.37))
-          .foregroundColor(.white)
+          .foregroundColor(.yellow)
         if fadeInOut {
           Image("dinner")
             .transition(.opacity)
@@ -28,7 +28,7 @@ struct SplashScreenView: View {
         Text("Dinner?!")
           .font(Font.custom("MeowScript-regular", size: 60))
           .rotationEffect(.degrees(-8.37))
-          .foregroundColor(.white)
+          .foregroundColor(.yellow)
       }
       .animation(.easeInOut(duration: 1).delay(0.5), value: fadeInOut)
       .onAppear {

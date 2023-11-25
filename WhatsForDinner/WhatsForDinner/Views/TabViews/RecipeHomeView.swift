@@ -40,7 +40,7 @@ struct RecipeHomeView: View {
           networkFailure = true
         }
       }
-      .navigationTitle("What's For Dinner?")
+      .navigationTitle("Popular Dinner Recipes")
       .navigationBarItems(
         trailing:
           RefreshButtonView(randomRecipeVM: randomRecipeVM)
