@@ -10,13 +10,15 @@ import SwiftUI
 struct DefaultSearchView: View {
   var body: some View {
     VStack {
-      Image(systemName: "magnifyingglass")
-        .font(.system(size: 30))
-        .foregroundColor(.gray)
+      HStack {
+        Image(systemName: "magnifyingglass")
+          .font(.system(size: 30))
+          .foregroundColor(.yellow)
         .bold()
-      Text("Unsure What to Cook?")
-        .font(.title2)
-        .bold()
+        Text("Not sure what to cook?!")
+          .font(.custom("MeowScript-regular", size: 35))
+          .bold()
+      }
       Text("Find your dinner recipes here!")
         .font(.subheadline)
         .foregroundColor(.gray)

@@ -41,10 +41,11 @@ struct RecipeHomeView: View {
         }
       }
       .navigationTitle("Dinner Recipes")
-      .navigationBarItems(
-        trailing:
-          RefreshButtonView(randomRecipeVM: randomRecipeVM)
-      )
+      .toolbar {
+        RefreshButtonView(randomRecipeVM: randomRecipeVM)
+      }
+      .toolbarBackground(.red, for: .navigationBar)
+      .toolbarBackground(.visible, for: .navigationBar)
       .scrollIndicators(.hidden)
       .listStyle(.plain)
       .task {
@@ -77,6 +78,7 @@ struct RefreshButtonView: View {
         .rotationEffect(.degrees(isSpinning ? 0 : 360))
         .animation(.easeInOut(duration: 1), value: isSpinning)
     }
+    .foregroundColor(.yellow)
     .disabled(randomRecipeVM.isBundle)
   }
 }

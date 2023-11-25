@@ -35,6 +35,8 @@ struct RecipeFavoritesView: View {
         }
         .listRowSeparator(.hidden)
       }
+      .toolbarBackground(.yellow, for: .navigationBar)
+      .toolbarBackground(.visible, for: .navigationBar)
       .navigationDestination(for: Recipe.self) { recipe in
         FavoriteDetailView(recipe: recipe)
       }

@@ -12,10 +12,10 @@ struct NoResultsView: View {
     VStack {
       Image(systemName: "magnifyingglass")
         .font(.system(size: 30))
-        .foregroundColor(.gray)
+        .foregroundColor(.yellow)
         .bold()
       Text("No Results")
-        .font(.title2)
+        .font(.custom("MeowScript-regular", size: 35))
         .bold()
       Text("Check the spelling or try a new search.")
         .font(.subheadline)

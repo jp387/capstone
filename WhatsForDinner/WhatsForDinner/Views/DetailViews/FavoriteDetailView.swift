@@ -43,6 +43,8 @@ struct FavoriteTitleView: View {
         image
       } placeholder: {
         ProgressView()
+          .tint(.red)
+          .controlSize(.large)
       }
       .frame(width: 480, height: 360)
       .background(.gray)
@@ -172,9 +174,3 @@ struct FavoriteReviewsView: View {
     .padding(5)
   }
 }
-
-//  struct FavoriteDetailView_Previews: PreviewProvider {
-//      static var previews: some View {
-//          FavoriteDetailView()
-//      }
-//  }

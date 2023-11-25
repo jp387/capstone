@@ -16,7 +16,7 @@ struct LoadingProgressView: View {
         .opacity(0.1)
       VStack {
         ProgressView()
-          .tint(.blue)
+          .tint(.yellow)
           .controlSize(.large)
           .padding(5)
         Text("Please wait...")

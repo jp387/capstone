@@ -29,11 +29,14 @@ struct RecipeCardView: View {
           .padding(.all, 10)
       } placeholder: {
         ProgressView()
+          .tint(.red)
+          .controlSize(.large)
       }
       .frame(width: 90, height: 90)
 
       VStack(alignment: .leading) {
         Text(recipe.title)
+          .bold()
           .foregroundColor(.white)
           .multilineTextAlignment(.leading)
           .padding(.bottom, 5)
@@ -63,7 +66,8 @@ struct RecipeCardView: View {
         Text("Serving: \(recipe.servings)")
           .foregroundColor(.white)
           .font(.caption)
-      }.padding(.trailing, 20)
+      }
+      .padding(.trailing, 20)
       Spacer()
     }
     .frame(maxWidth: .infinity, alignment: .center)
