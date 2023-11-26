@@ -1,5 +1,5 @@
 //
-//  DefaultSearchView.swift
+//  NoResultsView.swift
 //  WhatsForDinner
 //
 //  Created by John Phung on 10/26/23.
@@ -7,25 +7,25 @@
 
 import SwiftUI
 
-struct DefaultSearchView: View {
+struct NoResultsView: View {
   var body: some View {
     VStack {
       Image(systemName: "magnifyingglass")
         .font(.system(size: 30))
-        .foregroundColor(.gray)
+        .foregroundColor(.yellow)
         .bold()
-      Text("Unsure What to Cook?")
-        .font(.title2)
+      Text("No Results")
+        .font(.custom("MeowScript-regular", size: 35))
         .bold()
-      Text("Find your dinner recipes here!")
+      Text("Check the spelling or try a new search.")
         .font(.subheadline)
         .foregroundColor(.gray)
     }
   }
 }
 
-struct DefaultSearchView_Previews: PreviewProvider {
+struct NoResultsView_Previews: PreviewProvider {
   static var previews: some View {
-    DefaultSearchView()
+    NoResultsView()
   }
 }

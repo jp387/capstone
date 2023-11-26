@@ -26,10 +26,12 @@ struct RecipeSearchView: View {
     NavigationStack {
       List(searchRecipeVM.results) { result in
         NavigationLink(value: result) {
-          ListCellView(recipe: result)
+          RecipeCardView(recipe: result)
         }
         .listRowSeparator(.hidden)
       }
+      .toolbarBackground(.yellow, for: .navigationBar)
+      .toolbarBackground(.visible, for: .navigationBar)
       .navigationDestination(for: Recipe.self) { result in
         RecipeDetailView(recipe: result)
       }
@@ -82,5 +84,6 @@ struct RecipeSearchView_Previews: PreviewProvider {
   static var previews: some View {
     RecipeSearchContainer()
       .environmentObject(ReviewRecipeViewModel())
+      .environmentObject(FavoriteRecipeViewModel())
   }
 }

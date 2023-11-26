@@ -10,12 +10,12 @@ import SwiftUI
 struct NoRecipesView: View {
   var body: some View {
     VStack {
-      Image(systemName: "exclamationmark.arrow.circlepath")
+      Image(systemName: "exclamationmark.circle.fill")
         .font(.system(size: 30))
-        .foregroundColor(.blue)
+        .foregroundColor(.red)
         .bold()
       Text("No recipes to see here!")
-        .font(.title2)
+        .font(.custom("MeowScript-regular", size: 35))
         .bold()
       Text("Please try again later.")
         .font(.body)

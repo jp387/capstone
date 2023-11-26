@@ -42,7 +42,7 @@ class ReviewRecipeViewModel: ObservableObject {
     }
   }
 
-  func addReview(id: UUID = UUID(), recipeId: Int, rating: Int, comment: String, date: String = Date().description) {
+  func addReview(id: UUID = UUID(), recipeId: Int, rating: Int, comment: String, date: String = Date().formatted()) {
     let newReview = Review(id: id, recipeId: recipeId, rating: rating, comment: comment, date: date)
     review.append(newReview)
   }

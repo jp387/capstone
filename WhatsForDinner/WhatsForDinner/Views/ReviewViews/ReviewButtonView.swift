@@ -16,9 +16,11 @@ struct ReviewButtonView: View {
     Button {
       isPresented.toggle()
     } label: {
-      ButtonView()
+      ButtonView(systemName: "star.fill", title: "Rate This Recipe")
         .accessibilityIdentifier("review-button")
     }
+    .buttonStyle(.borderedProminent)
+    .tint(.red)
     .sheet(isPresented: $isPresented) {
       NewReviewFormView(
         displayModal: $isPresented,
@@ -31,19 +33,19 @@ struct ReviewButtonView: View {
 }
 
 struct ButtonView: View {
+  var systemName: String
+  var title: String
+
   var body: some View {
     HStack {
-      Image(systemName: "star.fill")
+      Image(systemName: systemName)
         .foregroundColor(.yellow)
         .padding(.bottom, 5)
-      Text("Rate This Recipe")
+      Text(title)
+        .bold()
         .font(.subheadline)
+        .foregroundColor(.yellow)
     }
-    .padding(5)
-    .overlay(
-      RoundedRectangle(cornerRadius: 10)
-        .stroke(lineWidth: 2)
-    )
   }
 }
 

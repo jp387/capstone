@@ -45,6 +45,8 @@ struct TitleView: View {
           image
         } placeholder: {
           ProgressView()
+            .tint(.red)
+            .controlSize(.large)
         }
         .frame(width: 480, height: 360)
         .background(.gray)
@@ -215,9 +217,3 @@ struct FavoriteButtonView: View {
     favoriteRecipeVM.removeFavorite(by: recipe.id)
   }
 }
-
-// struct RecipeDetailView_Previews: PreviewProvider {
-//   static var previews: some View {
-//       RecipeDetailView(recipe: )
-//   }
-// }

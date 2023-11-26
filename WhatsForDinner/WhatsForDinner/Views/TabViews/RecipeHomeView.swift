@@ -23,7 +23,7 @@ struct RecipeHomeView: View {
     NavigationStack {
       List(randomRecipeVM.recipes) { recipe in
         NavigationLink(value: recipe) {
-          ListCellView(recipe: recipe)
+          RecipeCardView(recipe: recipe)
         }
         .listRowSeparator(.hidden)
       }
@@ -41,11 +41,12 @@ struct RecipeHomeView: View {
           networkFailure = true
         }
       }
-      .navigationTitle("What's For Dinner?")
-      .navigationBarItems(
-        trailing:
-          RefreshButtonView(randomRecipeVM: randomRecipeVM)
-      )
+      .navigationTitle("Dinner Recipes")
+      .toolbar {
+        RefreshButtonView(randomRecipeVM: randomRecipeVM)
+      }
+      .toolbarBackground(.red, for: .navigationBar)
+      .toolbarBackground(.visible, for: .navigationBar)
       .scrollIndicators(.hidden)
       .listStyle(.plain)
       .task {
@@ -78,6 +79,7 @@ struct RefreshButtonView: View {
         .rotationEffect(.degrees(isSpinning ? 0 : 360))
         .animation(.easeInOut(duration: 1), value: isSpinning)
     }
+    .foregroundColor(.yellow)
     .disabled(randomRecipeVM.isBundle)
   }
 }
@@ -86,5 +88,6 @@ struct RecipeHomeView_Previews: PreviewProvider {
   static var previews: some View {
     RecipeHomeView(randomRecipeVM: RandomRecipeViewModel())
       .environmentObject(ReviewRecipeViewModel())
+      .environmentObject(FavoriteRecipeViewModel())
   }
 }
