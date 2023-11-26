@@ -17,6 +17,7 @@ struct ReviewButtonView: View {
       isPresented.toggle()
     } label: {
       ButtonView()
+        .accessibilityIdentifier("review-button")
     }
     .sheet(isPresented: $isPresented) {
       NewReviewFormView(
@@ -24,6 +25,7 @@ struct ReviewButtonView: View {
         recipeId: recipeId
       )
       .presentationDetents([.medium])
+      .accessibilityIdentifier("review-sheet")
     }
   }
 }

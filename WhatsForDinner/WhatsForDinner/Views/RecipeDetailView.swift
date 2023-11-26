@@ -28,6 +28,7 @@ struct RecipeDetailView: View {
       }
     }
     .navigationBarTitleDisplayMode(.inline)
+    .accessibilityIdentifier("recipe-details")
   }
 }
 
@@ -50,6 +51,7 @@ struct TitleView: View {
         FavoriteButtonView(recipe: recipe)
       }
     }
+    .accessibilityIdentifier("recipe-title")
   }
 }
 
@@ -98,6 +100,7 @@ struct DataView: View {
       }
       .padding()
     }
+    .accessibilityIdentifier("recipe-data")
   }
 }
 
@@ -112,7 +115,9 @@ struct SummaryView: View {
       Text(recipe.summary.stripHTML)
         .frame(width: 350)
       ReviewButtonView(recipeId: recipe.id)
+        .accessibilityIdentifier("recipe-detail-review-button")
     }
+    .accessibilityIdentifier("recipe-summary")
   }
 }
 
@@ -128,6 +133,7 @@ struct IngredientsView: View {
       }
     }
     .frame(width: 350)
+    .accessibilityIdentifier("recipe-ingredients")
   }
 }
 
@@ -145,6 +151,7 @@ struct InstructionsView: View {
       }
     }
     .frame(width: 350)
+    .accessibilityIdentifier("recipe-instructions")
   }
 }
 
@@ -173,6 +180,7 @@ struct ReviewsView: View {
       if filteredReviews.isEmpty { Text("No reviews for this recipe.") }
     }
     .padding(5)
+    .accessibilityIdentifier("recipe-reviews")
   }
 }
 
@@ -196,6 +204,7 @@ struct FavoriteButtonView: View {
         .font(.largeTitle)
         .foregroundColor(.red)
     }
+    .accessibilityIdentifier("recipe-detail-favorite-button")
   }
 
   private func addFavorites() {

@@ -37,7 +37,7 @@
 		22BFB63F2B0192C4009FF65B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22BFB63E2B0192C4009FF65B /* Assets.xcassets */; };
 		22BFB6422B0192C4009FF65B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22BFB6412B0192C4009FF65B /* Preview Assets.xcassets */; };
 		22BFB64C2B0192C5009FF65B /* RandomRecipesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB64B2B0192C5009FF65B /* RandomRecipesViewModelTests.swift */; };
-		22BFB6562B0192C5009FF65B /* WhatsForDinnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB6552B0192C5009FF65B /* WhatsForDinnerUITests.swift */; };
+		22BFB6562B0192C5009FF65B /* RecipeHomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB6552B0192C5009FF65B /* RecipeHomeViewUITests.swift */; };
 		22BFB6582B0192C5009FF65B /* WhatsForDinnerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB6572B0192C5009FF65B /* WhatsForDinnerUITestsLaunchTests.swift */; };
 		22BFB66D2B01942A009FF65B /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB66C2B01942A009FF65B /* RecipeService.swift */; };
 		22BFB66F2B019436009FF65B /* RandomRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFB66E2B019436009FF65B /* RandomRecipeViewModel.swift */; };
@@ -97,7 +97,7 @@
 		22BFB6472B0192C5009FF65B /* WhatsForDinnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatsForDinnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22BFB64B2B0192C5009FF65B /* RandomRecipesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipesViewModelTests.swift; sourceTree = "<group>"; };
 		22BFB6512B0192C5009FF65B /* WhatsForDinnerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatsForDinnerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		22BFB6552B0192C5009FF65B /* WhatsForDinnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsForDinnerUITests.swift; sourceTree = "<group>"; };
+		22BFB6552B0192C5009FF65B /* RecipeHomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeHomeViewUITests.swift; sourceTree = "<group>"; };
 		22BFB6572B0192C5009FF65B /* WhatsForDinnerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsForDinnerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		22BFB66C2B01942A009FF65B /* RecipeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		22BFB66E2B019436009FF65B /* RandomRecipeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRecipeViewModel.swift; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 		22BFB6542B0192C5009FF65B /* WhatsForDinnerUITests */ = {
 			isa = PBXGroup;
 			children = (
-				22BFB6552B0192C5009FF65B /* WhatsForDinnerUITests.swift */,
+				22BFB6552B0192C5009FF65B /* RecipeHomeViewUITests.swift */,
 				22BFB6572B0192C5009FF65B /* WhatsForDinnerUITestsLaunchTests.swift */,
 			);
 			path = WhatsForDinnerUITests;
@@ -471,7 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22BFB6582B0192C5009FF65B /* WhatsForDinnerUITestsLaunchTests.swift in Sources */,
-				22BFB6562B0192C5009FF65B /* WhatsForDinnerUITests.swift in Sources */,
+				22BFB6562B0192C5009FF65B /* RecipeHomeViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

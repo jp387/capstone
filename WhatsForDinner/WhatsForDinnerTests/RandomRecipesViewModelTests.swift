@@ -30,6 +30,11 @@ final class RandomRecipesViewModelTests: XCTestCase {
   }
 
   @MainActor
+  func test_randomRecipeIsEmpty() async {
+    XCTAssert(randomRecipeVM.showAlert)
+  }
+
+  @MainActor
   func test_randomRecipeRefreshFetchNewRecipes() async {
     await randomRecipeVM.refreshRandomRecipe()
     XCTAssertGreaterThanOrEqual(randomRecipeVM.recipes.count, 1)

@@ -30,6 +30,7 @@ struct NewReviewFormView: View {
             .lineLimit(5...)
         }
       }
+      .accessibilityIdentifier("review-form")
       .navigationBarTitle(Text("Write a Review"), displayMode: .inline)
       .navigationBarItems(
         leading:
@@ -37,7 +38,9 @@ struct NewReviewFormView: View {
             dismiss()
           }, label: {
             Text("Cancel")
-          }),
+          })
+          .accessibilityIdentifier("form-cancel")
+        ,
         trailing:
           Button(action: {
             addReview()
@@ -45,6 +48,7 @@ struct NewReviewFormView: View {
             Text("Add")
           })
           .disabled(comments.isEmpty)
+          .accessibilityIdentifier("form-submit")
       )
     }
   }

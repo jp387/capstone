@@ -11,21 +11,13 @@
   "defaultOptions" : {
     "targetForVariableExpansion" : {
       "containerPath" : "container:WhatsForDinner.xcodeproj",
-      "identifier" : "22BFB6362B0192C4009FF65B",
-      "name" : "WhatsForDinner"
+      "identifier" : "22BFB6502B0192C5009FF65B",
+      "name" : "WhatsForDinnerUITests"
     }
   },
   "testTargets" : [
     {
       "parallelizable" : true,
-      "skippedTests" : [
-        "RandomRecipesViewModelTests",
-        "ReviewRecipeViewModelTests",
-        "SearchRecipeViewModelTests",
-        "WhatsForDinnerTests\/test_randomRecipeIsNotEmpty()",
-        "WhatsForDinnerTests\/test_randomRecipeIsNotNil()",
-        "WhatsForDinnerTests\/test_randomRecipeRefreshFetchNewRecipes()"
-      ],
       "target" : {
         "containerPath" : "container:WhatsForDinner.xcodeproj",
         "identifier" : "22BFB6462B0192C5009FF65B",
@@ -33,8 +25,10 @@
       }
     },
     {
-      "enabled" : false,
       "parallelizable" : true,
+      "skippedTests" : [
+        "WhatsForDinnerUITestsLaunchTests"
+      ],
       "target" : {
         "containerPath" : "container:WhatsForDinner.xcodeproj",
         "identifier" : "22BFB6502B0192C5009FF65B",

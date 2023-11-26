@@ -27,6 +27,7 @@ struct RecipeHomeView: View {
         }
         .listRowSeparator(.hidden)
       }
+      .accessibilityIdentifier("recipe-list")
       .navigationDestination(for: Recipe.self) { recipe in
         RecipeDetailView(recipe: recipe)
       }
