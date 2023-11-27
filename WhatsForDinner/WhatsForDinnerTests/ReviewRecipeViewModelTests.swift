@@ -16,7 +16,7 @@ final class ReviewRecipeViewModelTests: XCTestCase {
 
   override func setUpWithError() throws {
     reviewRecipeVM = ReviewRecipeViewModel()
-    randomRecipeVM = RandomRecipeViewModel()
+    randomRecipeVM = RandomRecipeViewModel(service: RecipeService())
     try super.setUpWithError()
   }
 

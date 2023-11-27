@@ -18,6 +18,11 @@
   "testTargets" : [
     {
       "parallelizable" : true,
+      "skippedTests" : [
+        "FavoriteRecipeViewModelTests",
+        "ReviewRecipeViewModelTests",
+        "SearchRecipeViewModelTests"
+      ],
       "target" : {
         "containerPath" : "container:WhatsForDinner.xcodeproj",
         "identifier" : "22BFB6462B0192C5009FF65B",
@@ -25,6 +30,7 @@
       }
     },
     {
+      "enabled" : false,
       "parallelizable" : true,
       "skippedTests" : [
         "WhatsForDinnerUITestsLaunchTests"

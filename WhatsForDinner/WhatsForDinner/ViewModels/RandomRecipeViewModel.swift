@@ -56,6 +56,7 @@ class RandomRecipeViewModel: ObservableObject {
       do {
         let recipeData = try Data(contentsOf: recipeURL)
         recipes = try decoder.decode(Recipes.self, from: recipeData).recipes
+        print(recipes)
         if recipes.isEmpty {
           showAlert = true
         }

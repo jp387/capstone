@@ -16,7 +16,7 @@ final class FavoriteRecipeViewModelTests: XCTestCase {
 
   override func setUpWithError() throws {
     favoriteRecipeVM = FavoriteRecipeViewModel()
-    randomRecipeVM = RandomRecipeViewModel()
+    randomRecipeVM = RandomRecipeViewModel(service: RecipeService())
     try super.setUpWithError()
   }
 
