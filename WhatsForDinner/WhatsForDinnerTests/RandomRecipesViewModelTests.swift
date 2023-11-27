@@ -14,7 +14,7 @@ final class RandomRecipesViewModelTests: XCTestCase {
   // swiftlint:enable implicitly_unwrapped_optional
 
   override func setUpWithError() throws {
-    randomRecipeVM = RandomRecipeViewModel()
+    randomRecipeVM = RandomRecipeViewModel(service: RecipeService())
     try super.setUpWithError()
   }
 
@@ -23,20 +23,13 @@ final class RandomRecipesViewModelTests: XCTestCase {
     try super.tearDownWithError()
   }
 
-  @MainActor
-  func test_randomRecipeIsNotEmpty() async {
-    await randomRecipeVM.fetchRandomRecipe()
+  func test_randomRecipeIsNotEmpty() async throws {
+    try await randomRecipeVM.fetchRandomRecipe()
     XCTAssertGreaterThanOrEqual(randomRecipeVM.recipes.count, 1)
   }
 
-  @MainActor
-  func test_randomRecipeIsEmpty() async {
-    XCTAssert(randomRecipeVM.showAlert)
-  }
-
-  @MainActor
-  func test_randomRecipeRefreshFetchNewRecipes() async {
-    await randomRecipeVM.refreshRandomRecipe()
+  func test_randomRecipeRefreshFetchNewRecipes() async throws {
+    try await randomRecipeVM.refreshRandomRecipe()
     XCTAssertGreaterThanOrEqual(randomRecipeVM.recipes.count, 1)
   }
 

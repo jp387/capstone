@@ -36,7 +36,7 @@ struct RecipeSearchView: View {
         RecipeDetailView(recipe: result)
       }
       .navigationTitle("Find Your Dinner")
-      .alert("Unable to fetch your dinner list. Try again later!", isPresented: $searchRecipeVM.showAlert) {
+      .alert("Unable to search your dinner list. Try again later!", isPresented: $searchRecipeVM.showAlert) {
         Button("OK") {
           networkFailure = true
         }

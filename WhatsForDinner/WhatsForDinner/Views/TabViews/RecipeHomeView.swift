@@ -52,8 +52,10 @@ struct RecipeHomeView: View {
       .task {
         if randomRecipeVM.recipes.isEmpty {
           randomRecipeVM.fetchBundleRecipe()
-          //  await randomRecipeVM.fetchRandomRecipe()
-          //  networkFailure = false
+          //          do {
+          //            try await randomRecipeVM.fetchRandomRecipe()
+          //            networkFailure = false
+          //          } catch { }
         }
       }
     }
@@ -71,7 +73,7 @@ struct RefreshButtonView: View {
   var body: some View {
     Button {
       Task {
-        await randomRecipeVM.refreshRandomRecipe()
+        try await randomRecipeVM.refreshRandomRecipe()
       }
       isSpinning.toggle()
     } label: {
@@ -86,7 +88,7 @@ struct RefreshButtonView: View {
 
 struct RecipeHomeView_Previews: PreviewProvider {
   static var previews: some View {
-    RecipeHomeView(randomRecipeVM: RandomRecipeViewModel())
+    RecipeHomeView(randomRecipeVM: RandomRecipeViewModel(service: RecipeService()))
       .environmentObject(ReviewRecipeViewModel())
       .environmentObject(FavoriteRecipeViewModel())
   }

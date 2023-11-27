@@ -15,22 +15,23 @@ class RandomRecipeViewModel: ObservableObject {
   @Published var isBundle = false
   @Published var error: Error?
 
-  let service = RecipeService()
+  let service: RecipeServiceProtocol
+
+  init(service: RecipeServiceProtocol) {
+    self.service = service
+  }
 
   @MainActor
-  func fetchRandomRecipe() async {
+  func fetchRandomRecipe() async throws {
     isLoading = true
     do {
-      if let results = try await service.getRandomRecipe(numberOfRecipes: 1) {
-        if results.recipes.isEmpty {
-          showAlert = true
-        } else {
-          for item in results.recipes {
-            recipes.append(item)
-          }
-        }
-      } else {
+      let results = try await service.getRandomRecipe()
+      if results.isEmpty {
         showAlert = true
+      } else {
+        for item in results {
+          recipes.append(item)
+        }
       }
     } catch {
       self.error = error
@@ -40,9 +41,9 @@ class RandomRecipeViewModel: ObservableObject {
   }
 
   @MainActor
-  func refreshRandomRecipe() async {
+  func refreshRandomRecipe() async throws {
     recipes.removeAll()
-    await fetchRandomRecipe()
+    try await fetchRandomRecipe()
   }
 
   func fetchBundleRecipe() {

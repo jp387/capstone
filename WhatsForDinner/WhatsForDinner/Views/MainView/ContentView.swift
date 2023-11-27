@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   @State private var searchResults = ""
-  @StateObject private var randomRecipeVM = RandomRecipeViewModel()
+  @StateObject private var randomRecipeVM = RandomRecipeViewModel(service: RecipeService())
   @StateObject private var searchRecipeVM = SearchRecipeViewModel()
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
   @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel

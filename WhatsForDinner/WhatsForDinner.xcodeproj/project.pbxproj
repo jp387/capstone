@@ -26,6 +26,7 @@
 		22917F3B2B0E844D0021A6E7 /* SearchRecipeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917F3A2B0E844D0021A6E7 /* SearchRecipeViewModelTests.swift */; };
 		22917F3D2B0E8B530021A6E7 /* ReviewRecipeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917F3C2B0E8B530021A6E7 /* ReviewRecipeViewModelTests.swift */; };
 		22917F3F2B0EA35B0021A6E7 /* FavoriteRecipeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917F3E2B0EA35B0021A6E7 /* FavoriteRecipeViewModelTests.swift */; };
+		229C53C62B141CCA00422351 /* RecipeServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C53C52B141CCA00422351 /* RecipeServiceProtocol.swift */; };
 		22A1C1C42B11BCC600CFEEA7 /* RecipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1C1C32B11BCC600CFEEA7 /* RecipeCardView.swift */; };
 		22A1D89D2B0457BC007FD90C /* SearchRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1D89C2B0457BC007FD90C /* SearchRecipeViewModel.swift */; };
 		22A2CB862B0B3E2B001745B5 /* FavoriteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2CB852B0B3E2B001745B5 /* FavoriteDetailView.swift */; };
@@ -91,6 +92,7 @@
 		22917F3A2B0E844D0021A6E7 /* SearchRecipeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeViewModelTests.swift; sourceTree = "<group>"; };
 		22917F3C2B0E8B530021A6E7 /* ReviewRecipeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecipeViewModelTests.swift; sourceTree = "<group>"; };
 		22917F3E2B0EA35B0021A6E7 /* FavoriteRecipeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeViewModelTests.swift; sourceTree = "<group>"; };
+		229C53C52B141CCA00422351 /* RecipeServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceProtocol.swift; sourceTree = "<group>"; };
 		22A1C1C32B11BCC600CFEEA7 /* RecipeCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCardView.swift; sourceTree = "<group>"; };
 		22A1D89C2B0457BC007FD90C /* SearchRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeViewModel.swift; sourceTree = "<group>"; };
 		22A2CB852B0B3E2B001745B5 /* FavoriteDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteDetailView.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				22BFB66C2B01942A009FF65B /* RecipeService.swift */,
+				229C53C52B141CCA00422351 /* RecipeServiceProtocol.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				229C53C62B141CCA00422351 /* RecipeServiceProtocol.swift in Sources */,
 				2207C7402B103059000C63EC /* OnboardingView.swift in Sources */,
 				22A5D1782B09D085002129CA /* FavoriteRecipeViewModel.swift in Sources */,
 				22A56BC22B06961F006FE082 /* ReviewButtonView.swift in Sources */,
