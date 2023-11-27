@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct Recipes: Codable {
+struct Recipes: Codable, Hashable, Equatable {
   let recipes: [Recipe]
 }
 
-struct Search: Codable {
+struct Search: Codable, Hashable, Equatable {
   let results: [Recipe]
   let offset, number, totalResults: Int
 }
 
-struct Recipe: Codable {
+struct Recipe: Codable, Hashable, Equatable, Identifiable {
   let pricePerServing: Double
   let extendedIngredients: [ExtendedIngredient]
   let id: Int
@@ -27,29 +27,29 @@ struct Recipe: Codable {
   let analyzedInstructions: [AnalyzedInstruction]
 }
 
-struct AnalyzedInstruction: Codable {
+struct AnalyzedInstruction: Codable, Hashable, Equatable {
   let name: String
   let steps: [Step]
 }
 
-struct Step: Codable {
+struct Step: Codable, Hashable, Equatable {
   let number: Int
   let step: String
   let ingredients, equipment: [Ent]
   let length: Length?
 }
 
-struct Ent: Codable {
+struct Ent: Codable, Hashable, Equatable {
   let id: Int
   let name, localizedName, image: String
 }
 
-struct Length: Codable {
+struct Length: Codable, Hashable, Equatable {
   let number: Int
   let unit: String
 }
 
-struct ExtendedIngredient: Codable {
+struct ExtendedIngredient: Codable, Hashable, Equatable {
   let id: Int?
   let aisle: String?
   let consistency: Consistency?
@@ -60,12 +60,12 @@ struct ExtendedIngredient: Codable {
   let measures: Measures?
 }
 
-enum Consistency: String, Codable {
+enum Consistency: String, Codable, Hashable, Equatable {
   case liquid = "LIQUID"
   case solid = "SOLID"
 }
 
-struct Measures: Codable {
+struct Measures: Codable, Hashable, Equatable {
   let usa, metric: Metric
   enum CodingKeys: String, CodingKey {
     case usa = "us"
@@ -73,7 +73,7 @@ struct Measures: Codable {
   }
 }
 
-struct Metric: Codable {
+struct Metric: Codable, Hashable, Equatable {
   let amount: Double
   let unitShort, unitLong: String
 }

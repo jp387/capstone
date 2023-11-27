@@ -17,8 +17,8 @@ struct RecipeMockService: RecipeServiceProtocol {
           aisle: "Milk, Eggs, Other Dairy",
           consistency: Consistency(rawValue: "SOLID"),
           name: "butter",
-          original: "2 tablespoons unsalted butter, melted",
-          originalName: "unsalted butter, melted",
+          original: "2 tablespoons butter",
+          originalName: "unsalted butter",
           amount: Double(2),
           unit: "tablespoons",
           meta: [
@@ -41,8 +41,8 @@ struct RecipeMockService: RecipeServiceProtocol {
       title: "Bacon & Egg Toast Cups",
       readyInMinutes: 45,
       servings: 2,
-      summary: "Bacon & Egg Toast Cups takes about <b>45 minutes</b> from beginning to end.",
-      instructions: "Preheat oven to 375.\nLightly butter six standard muffin cups.",
+      summary: "Bacon & Egg Toast Cups takes 45 minutes.",
+      instructions: "Preheat oven to 375.",
       analyzedInstructions: [
         AnalyzedInstruction(
           name: "",
@@ -92,15 +92,15 @@ struct RecipeMockService: RecipeServiceProtocol {
       title: "Savory Cheese Dill Scones",
       readyInMinutes: 45,
       servings: 12,
-      summary: "Savory Cheese Dill Scones is a breakfast that serves 12.",
-      instructions: "<ol><li>Preheat oven to 375F with the rack in middle position.</li><li>Make the Scone Mix.",
+      summary: "Savory Cheese Dill Scones serves 12.",
+      instructions: "Preheat oven to 375F.",
       analyzedInstructions: [
         AnalyzedInstruction(
           name: "",
           steps: [
             Step(
               number: 1,
-              step: "Preheat oven to 375F with the rack in middle position.Make the Scone",
+              step: "Preheat oven to 375F.",
               ingredients: [],
               equipment: [
                 Ent(
@@ -118,20 +118,5 @@ struct RecipeMockService: RecipeServiceProtocol {
 
   func getRandomRecipe() async throws -> [Recipe] {
     return recipes
-  }
-}
-
-extension RecipeServiceProtocol {
-  func getMockRecipe() -> [RecipeMock] {
-    var recipe: [RecipeMock] = [
-      RecipeMock(
-        pricePerServing: 141.03,
-        id: 633265,
-        title: "Bacon & Egg Toast Cups",
-        readyInMinutes: 45,
-        servings: 2,
-        summary: "Bacon & Egg Toast Cups takes about <b>45 minutes</b> from beginning to end.")
-    ]
-    return recipe
   }
 }

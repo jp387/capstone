@@ -15,7 +15,7 @@ struct DefaultFavoritesView: View {
           .font(.system(size: 25))
         .foregroundColor(.red)
         Text("You don't have any favorite recipes.")
-          .font(.custom("MeowScript-regular", size: 30))
+          .font(.system(size: 19, weight: .bold, design: .rounded))
           .bold()
       }
       Text("Tap the \(Image(systemName: "heart")) to favorite a recipe.")

@@ -16,7 +16,7 @@ struct DefaultSearchView: View {
           .foregroundColor(.yellow)
         .bold()
         Text("Not sure what to cook?!")
-          .font(.custom("MeowScript-regular", size: 35))
+          .font(.system(size: 25, weight: .bold, design: .rounded))
           .bold()
       }
       Text("Find your dinner recipes here!")

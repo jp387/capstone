@@ -37,7 +37,7 @@ struct RecipeCardView: View {
       VStack(alignment: .leading) {
         Text(recipe.title)
           .bold()
-          .foregroundColor(.white)
+          .foregroundColor(Color("CardTextColor"))
           .multilineTextAlignment(.leading)
           .padding(.bottom, 5)
         if recipe.readyInMinutes >= 60 {
@@ -47,24 +47,24 @@ struct RecipeCardView: View {
 
           if minutes == 0 || minutes == 60 {
             Text("Cooking Time: \(hours) \(hoursText)")
-              .foregroundColor(.white)
+              .foregroundColor(Color("CardTextColor"))
               .font(.caption)
           } else if minutes == 1 {
             Text("Cooking Time: \(hours) \(hoursText) \(minutes) minute")
-              .foregroundColor(.white)
+              .foregroundColor(Color("CardTextColor"))
               .font(.caption)
           } else {
             Text("Cooking Time: \(hours) \(hoursText) \(minutes) minutes")
-              .foregroundColor(.white)
+              .foregroundColor(Color("CardTextColor"))
               .font(.caption)
           }
         } else {
           Text("Cooking Time: \(recipe.readyInMinutes) minutes")
-            .foregroundColor(.white)
+            .foregroundColor(Color("CardTextColor"))
             .font(.caption)
         }
         Text("Serving: \(recipe.servings)")
-          .foregroundColor(.white)
+          .foregroundColor(Color("CardTextColor"))
           .font(.caption)
       }
       .padding(.trailing, 20)
@@ -72,10 +72,28 @@ struct RecipeCardView: View {
     }
     .frame(maxWidth: .infinity, alignment: .center)
     .background(Color(
-      red: 32 / 255,
-      green: 36 / 255,
-      blue: 38 / 255))
+      red: 250 / 255,
+      green: 250 / 255,
+      blue: 250 / 255))
     .modifier(CardModifier())
     .padding(.all, 10)
+  }
+}
+
+struct RecipeCardView_Previews: PreviewProvider {
+  static var previews: some View {
+    RecipeCardView(
+      recipe: Recipe(
+        pricePerServing: 2.0,
+        extendedIngredients: [],
+        id: 10,
+        title: "Recipe",
+        readyInMinutes: 45,
+        servings: 2,
+        summary: "",
+        instructions: "",
+        analyzedInstructions: [])
+    )
+    .previewLayout(.sizeThatFits)
   }
 }

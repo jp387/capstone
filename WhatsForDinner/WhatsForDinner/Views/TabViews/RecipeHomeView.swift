@@ -45,7 +45,7 @@ struct RecipeHomeView: View {
       .toolbar {
         RefreshButtonView(randomRecipeVM: randomRecipeVM)
       }
-      .toolbarBackground(.red, for: .navigationBar)
+      .toolbarBackground(.yellow, for: .navigationBar)
       .toolbarBackground(.visible, for: .navigationBar)
       .scrollIndicators(.hidden)
       .listStyle(.plain)
@@ -81,7 +81,7 @@ struct RefreshButtonView: View {
         .rotationEffect(.degrees(isSpinning ? 0 : 360))
         .animation(.easeInOut(duration: 1), value: isSpinning)
     }
-    .foregroundColor(.yellow)
+    .foregroundColor(.red)
     .disabled(randomRecipeVM.isBundle)
   }
 }

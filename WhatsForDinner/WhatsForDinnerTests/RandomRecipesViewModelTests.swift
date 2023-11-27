@@ -34,8 +34,8 @@ final class RandomRecipesViewModelTests: XCTestCase {
             aisle: Optional("Milk, Eggs, Other Dairy"),
             consistency: Optional(Consistency.solid),
             name: Optional("butter"),
-            original: Optional("2 tablespoons unsalted butter, melted"),
-            originalName: Optional("unsalted butter, melted"),
+            original: Optional("2 tablespoons butter"),
+            originalName: Optional("unsalted butter"),
             amount: Optional(Double(2)),
             unit: Optional("tablespoons"),
             meta: Optional([
@@ -58,8 +58,8 @@ final class RandomRecipesViewModelTests: XCTestCase {
         title: "Bacon & Egg Toast Cups",
         readyInMinutes: 45,
         servings: 2,
-        summary: "Bacon & Egg Toast Cups takes about <b>45 minutes</b> from beginning to end.",
-        instructions: Optional("Preheat oven to 375.\nLightly butter six standard muffin cups."),
+        summary: "Bacon & Egg Toast Cups takes 45 minutes.",
+        instructions: Optional("Preheat oven to 375."),
         analyzedInstructions: [
           AnalyzedInstruction(
             name: "",
@@ -109,15 +109,15 @@ final class RandomRecipesViewModelTests: XCTestCase {
         title: "Savory Cheese Dill Scones",
         readyInMinutes: 45,
         servings: 12,
-        summary: "Savory Cheese Dill Scones is a breakfast that serves 12.",
-        instructions: "<ol><li>Preheat oven to 375F with the rack in middle position.</li><li>Make the Scone Mix.",
+        summary: "Savory Cheese Dill Scones serves 12.",
+        instructions: "Preheat oven to 375F.",
         analyzedInstructions: [
           AnalyzedInstruction(
             name: "",
             steps: [
               Step(
                 number: 1,
-                step: "Preheat oven to 375F with the rack in middle position.Make the Scone",
+                step: "Preheat oven to 375F.",
                 ingredients: [],
                 equipment: [
                   Ent(
@@ -134,19 +134,4 @@ final class RandomRecipesViewModelTests: XCTestCase {
     ])
     XCTAssertNil(randomRecipeVM.error)
   }
-
-//  func test_randomRecipeIsNotEmpty() async throws {
-//    try await randomRecipeVM.fetchRandomRecipe()
-//    XCTAssertLessThan(randomRecipeVM.recipes.count, 1)
-//  }
-//
-//  func test_randomRecipeRefreshFetchNewRecipes() async throws {
-//    try await randomRecipeVM.refreshRandomRecipe()
-//    XCTAssertLessThan(randomRecipeVM.recipes.count, 1)
-//  }
-//
-//  func test_randomRecipeLoadFromBundle() {
-//    randomRecipeVM.fetchBundleRecipe()
-//    XCTAssertGreaterThanOrEqual(randomRecipeVM.recipes.count, 1)
-//  }
 }
