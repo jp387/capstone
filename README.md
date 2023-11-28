@@ -50,8 +50,8 @@ Since search results are unpredictable and due to the low API request provided b
 # Additional Information
 
 - The What's For Dinner project saves data in the following ways:
-  - The Document Directory is used to store the favorite and reviews on the device.
-  - The AppStorage is used to store the status of the Onboarding view when tapping on the Let's Go button on the last screen.
+  - The Document Directory is used to persist the favorite and reviews data on the device.
+  - The AppStorage is used to persist the status of the Onboarding view when tapping the Let's Go button on the last screen. Persisting the Onboarding screen status with AppStorage will allow the application to bypass the Onboarding screen during launch.
 - The unit test files has disabled SwiftLint rules for setting up the view models by implicitly unwrapping optionals, which will be initialized in the setUp method. Comments have been posted above the disable SwiftLint rules.
 
 # Future Implementations and Considerations
