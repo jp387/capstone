@@ -38,7 +38,7 @@ Folder: WhatsForDinnerUITests
 # Testing Notes
 
 > [!IMPORTANT]
-> The Spoonacular API key is required in order for the application to function correctly. Please contact me through my Discord account **jp0348** so that I can provide the plist file to you.
+> The Spoonacular API key is required in order for the What's For Dinner application to function correctly. Create an account at https://spoonacular.com/food-api/console#Dashboard and once an API key is provided, create a file called **Spoonacular-Info.plist** and add a key called **API_KEY** with the value of the API key. Afterwards, add the **Spoonacular-Info.plist** file into the project.
 
 The API chosen for the What's For Dinner project is the Spoonacular API and since the project itself is using the free account, there is an API request limit of 150 points per day. Once the API request has reached 150 points, a 402 error code response is called and prevents any new request from being execute until it gets reset at midnight UTC time. The Spoonacular API is used in the following way on the project:
 
