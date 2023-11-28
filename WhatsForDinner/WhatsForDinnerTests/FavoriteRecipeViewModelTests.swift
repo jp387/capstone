@@ -9,6 +9,7 @@ import XCTest
 @testable import WhatsForDinner
 
 final class FavoriteRecipeViewModelTests: XCTestCase {
+  // The SwiftLint rule is disabled since the variable will be initialized in the setUp() method
   // swiftlint:disable implicitly_unwrapped_optional
   var favoriteRecipeVM: FavoriteRecipeViewModel!
   var randomRecipeVM: RandomRecipeViewModel!
@@ -35,7 +36,7 @@ final class FavoriteRecipeViewModelTests: XCTestCase {
   }
 
   func test_addFavoriteRecipeSuccess() {
-    randomRecipeVM.fetchBundleRecipe()
+    randomRecipeVM.fetchBundleRecipe(for: "recipestub")
     if let firstRecipe = randomRecipeVM.recipes.first {
       favoriteRecipeVM.addFavorite(recipeId: 1, title: "Maccaroni with Cheese", recipe: firstRecipe)
     }

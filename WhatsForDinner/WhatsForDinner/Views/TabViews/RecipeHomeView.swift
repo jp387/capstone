@@ -51,11 +51,11 @@ struct RecipeHomeView: View {
       .listStyle(.plain)
       .task {
         if randomRecipeVM.recipes.isEmpty {
-          randomRecipeVM.fetchBundleRecipe()
-          //          do {
-          //            try await randomRecipeVM.fetchRandomRecipe()
-          //            networkFailure = false
-          //          } catch { }
+          randomRecipeVM.fetchBundleRecipe(for: "recipestub")
+          //  do {
+          //    try await randomRecipeVM.fetchRandomRecipe()
+          //    networkFailure = false
+          //  } catch { }
         }
       }
     }

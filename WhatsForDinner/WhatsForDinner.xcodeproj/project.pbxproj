@@ -27,6 +27,9 @@
 		22917F3F2B0EA35B0021A6E7 /* FavoriteRecipeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917F3E2B0EA35B0021A6E7 /* FavoriteRecipeViewModelTests.swift */; };
 		229C53C62B141CCA00422351 /* RecipeServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C53C52B141CCA00422351 /* RecipeServiceProtocol.swift */; };
 		229C53C82B146A2200422351 /* RecipeMockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C53C72B146A2200422351 /* RecipeMockService.swift */; };
+		229CF1482B1645D500076B16 /* mockrecipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 229CF1472B1645D500076B16 /* mockrecipes.json */; };
+		229CF14A2B16523700076B16 /* emptyrecipe.json in Resources */ = {isa = PBXBuildFile; fileRef = 229CF1492B16523700076B16 /* emptyrecipe.json */; };
+		229CF14C2B16698900076B16 /* titlenullrecipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 229CF14B2B16698900076B16 /* titlenullrecipes.json */; };
 		22A1C1C42B11BCC600CFEEA7 /* RecipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1C1C32B11BCC600CFEEA7 /* RecipeCardView.swift */; };
 		22A1D89D2B0457BC007FD90C /* SearchRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1D89C2B0457BC007FD90C /* SearchRecipeViewModel.swift */; };
 		22A2CB862B0B3E2B001745B5 /* FavoriteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2CB852B0B3E2B001745B5 /* FavoriteDetailView.swift */; };
@@ -94,6 +97,9 @@
 		22917F3E2B0EA35B0021A6E7 /* FavoriteRecipeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeViewModelTests.swift; sourceTree = "<group>"; };
 		229C53C52B141CCA00422351 /* RecipeServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceProtocol.swift; sourceTree = "<group>"; };
 		229C53C72B146A2200422351 /* RecipeMockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeMockService.swift; sourceTree = "<group>"; };
+		229CF1472B1645D500076B16 /* mockrecipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mockrecipes.json; sourceTree = "<group>"; };
+		229CF1492B16523700076B16 /* emptyrecipe.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emptyrecipe.json; sourceTree = "<group>"; };
+		229CF14B2B16698900076B16 /* titlenullrecipes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = titlenullrecipes.json; sourceTree = "<group>"; };
 		22A1C1C32B11BCC600CFEEA7 /* RecipeCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCardView.swift; sourceTree = "<group>"; };
 		22A1D89C2B0457BC007FD90C /* SearchRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeViewModel.swift; sourceTree = "<group>"; };
 		22A2CB852B0B3E2B001745B5 /* FavoriteDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteDetailView.swift; sourceTree = "<group>"; };
@@ -249,6 +255,9 @@
 		22B73C942B14F03500A15C77 /* MockData */ = {
 			isa = PBXGroup;
 			children = (
+				229CF1472B1645D500076B16 /* mockrecipes.json */,
+				229CF14B2B16698900076B16 /* titlenullrecipes.json */,
+				229CF1492B16523700076B16 /* emptyrecipe.json */,
 				229C53C72B146A2200422351 /* RecipeMockService.swift */,
 				22B73C952B14F05900A15C77 /* RecipeEmptyMockService.swift */,
 			);
@@ -488,7 +497,10 @@
 			files = (
 				224E51A72B0FD9C500203EA9 /* MeowScript-Regular.ttf in Resources */,
 				227BEABD2B01D33800329887 /* recipestub.json in Resources */,
+				229CF14A2B16523700076B16 /* emptyrecipe.json in Resources */,
 				22BFB6752B01968B009FF65B /* Spoonacular-Info.plist in Resources */,
+				229CF1482B1645D500076B16 /* mockrecipes.json in Resources */,
+				229CF14C2B16698900076B16 /* titlenullrecipes.json in Resources */,
 				22BFB6422B0192C4009FF65B /* Preview Assets.xcassets in Resources */,
 				22BFB63F2B0192C4009FF65B /* Assets.xcassets in Resources */,
 			);

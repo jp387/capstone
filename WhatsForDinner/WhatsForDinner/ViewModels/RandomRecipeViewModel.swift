@@ -46,17 +46,16 @@ class RandomRecipeViewModel: ObservableObject {
     try await fetchRandomRecipe()
   }
 
-  func fetchBundleRecipe() {
+  func fetchBundleRecipe(for bundle: String) {
     isLoading = true
     isBundle = true
     let decoder = JSONDecoder()
 
     if let recipeURL =
-      Bundle.main.url(forResource: "recipestub", withExtension: "json") {
+      Bundle.main.url(forResource: "\(bundle)", withExtension: "json") {
       do {
         let recipeData = try Data(contentsOf: recipeURL)
         recipes = try decoder.decode(Recipes.self, from: recipeData).recipes
-        print(recipes)
         if recipes.isEmpty {
           showAlert = true
         }

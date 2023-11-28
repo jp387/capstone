@@ -9,6 +9,7 @@ import XCTest
 @testable import WhatsForDinner
 
 final class SearchRecipeViewModelTests: XCTestCase {
+  // The SwiftLint rule is disabled since the variable will be initialized in the setUp() method
   // swiftlint:disable implicitly_unwrapped_optional
   var searchRecipeVM: SearchRecipeViewModel!
   // swiftlint:enable implicitly_unwrapped_optional
