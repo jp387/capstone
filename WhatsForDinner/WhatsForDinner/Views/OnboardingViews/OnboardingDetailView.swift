@@ -39,6 +39,7 @@ struct OnboardingDetailView: View {
             .background(.yellow)
             .cornerRadius(6)
         }
+        .accessibilityIdentifier("onboarding-button")
         .padding()
       }
     }

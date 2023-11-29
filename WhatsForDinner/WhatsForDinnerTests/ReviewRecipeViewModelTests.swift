@@ -12,28 +12,10 @@ final class ReviewRecipeViewModelTests: XCTestCase {
   // The SwiftLint rule is disabled since the variable will be initialized in the setUp() method
   // swiftlint:disable implicitly_unwrapped_optional
   var reviewRecipeVM: ReviewRecipeViewModel!
-  var randomRecipeVM: RandomRecipeViewModel!
   // swiftlint:enable implicitly_unwrapped_optional
 
-  override func setUpWithError() throws {
+  override func setUp() {
     reviewRecipeVM = ReviewRecipeViewModel()
-    randomRecipeVM = RandomRecipeViewModel(service: RecipeService())
-    try super.setUpWithError()
-  }
-
-  override func tearDownWithError() throws {
-    reviewRecipeVM = nil
-    randomRecipeVM = nil
-    try super.tearDownWithError()
-  }
-
-  func test_loadReviewFromDocumentDirectory() {
-    if reviewRecipeVM.review.isEmpty {
-      XCTAssert(reviewRecipeVM.review.isEmpty)
-    } else {
-      XCTAssertFalse(reviewRecipeVM.review.isEmpty)
-      XCTAssertGreaterThanOrEqual(reviewRecipeVM.review.count, 1)
-    }
   }
 
   func test_addRecipeReviews() {

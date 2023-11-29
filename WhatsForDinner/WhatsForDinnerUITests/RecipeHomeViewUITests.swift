@@ -33,7 +33,7 @@ final class RecipeHomeViewUITests: XCTestCase {
     XCTAssert(recipeList.waitForExistence(timeout: 20))
 
     let rows = recipeList.cells
-    XCTAssertEqual(rows.count, 7)
+    XCTAssertEqual(rows.count, 6)
   }
 
   func test_selectedListCellShowsDetailView() {

@@ -62,7 +62,7 @@ final class RandomRecipesViewModelTests: XCTestCase {
 
     XCTAssertFalse(randomRecipeVM.isLoading)
     XCTAssertEqual(randomRecipeVM.recipes, [])
-    XCTAssert(randomRecipeVM.showAlert)
+    XCTAssert(randomRecipeVM.showAlertPrompt)
   }
 
   func test_randomRecipeRefreshEmptyData() async throws {
@@ -75,7 +75,7 @@ final class RandomRecipesViewModelTests: XCTestCase {
 
     XCTAssertFalse(randomRecipeVM.isLoading)
     XCTAssertEqual(randomRecipeVM.recipes, [])
-    XCTAssert(randomRecipeVM.showAlert)
+    XCTAssert(randomRecipeVM.showAlertPrompt)
   }
 
   func test_randomRecipeBundleFetchCorrectData() {
@@ -89,7 +89,7 @@ final class RandomRecipesViewModelTests: XCTestCase {
 
     XCTAssertNotEqual(randomRecipeVM.recipes, [])
     XCTAssertFalse(randomRecipeVM.isLoading)
-    XCTAssertFalse(randomRecipeVM.showAlert)
+    XCTAssertFalse(randomRecipeVM.showAlertPrompt)
   }
 
   func test_randomRecipeBundleLoadError() {
@@ -102,7 +102,7 @@ final class RandomRecipesViewModelTests: XCTestCase {
     randomRecipeVM.fetchBundleRecipe(for: "recipestub1")
 
     XCTAssertFalse(randomRecipeVM.isLoading)
-    XCTAssert(randomRecipeVM.showAlert)
+    XCTAssert(randomRecipeVM.showAlertPrompt)
   }
 
   func test_randomRecipeEmptyBundleError() {
@@ -116,7 +116,7 @@ final class RandomRecipesViewModelTests: XCTestCase {
 
     XCTAssertEqual(randomRecipeVM.recipes, [])
     XCTAssertFalse(randomRecipeVM.isLoading)
-    XCTAssert(randomRecipeVM.showAlert)
+    XCTAssert(randomRecipeVM.showAlertPrompt)
   }
 
   func test_randomRecipeBundleDecodeError() {
@@ -129,6 +129,6 @@ final class RandomRecipesViewModelTests: XCTestCase {
     randomRecipeVM.fetchBundleRecipe(for: "titlenullrecipes")
 
     XCTAssertFalse(randomRecipeVM.isLoading)
-    XCTAssert(randomRecipeVM.showAlert)
+    XCTAssert(randomRecipeVM.showAlertPrompt)
   }
 }

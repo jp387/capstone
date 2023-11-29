@@ -25,6 +25,7 @@ struct OnboardingView: View {
       }
     }
     .onAppear(perform: onboardingVM.loadDetails)
+    .accessibilityIdentifier("onboarding-view")
   }
 }
 

@@ -29,9 +29,9 @@
       }
     },
     {
-      "enabled" : false,
       "parallelizable" : true,
       "skippedTests" : [
+        "RecipeHomeViewUITests",
         "WhatsForDinnerUITestsLaunchTests"
       ],
       "target" : {

@@ -20,14 +20,7 @@ struct RecipeService: RecipeServiceProtocol {
     return value
   }
 
-  let configuration: URLSessionConfiguration
-  let session: URLSession
   let decoder = JSONDecoder()
-
-  init() {
-    self.configuration = URLSessionConfiguration.default
-    self.session = URLSession(configuration: configuration)
-  }
 
   func getRandomRecipe() async throws -> [Recipe] {
     guard var urlComponents = URLComponents(string: baseURLString + "random") else {
@@ -46,18 +39,18 @@ struct RecipeService: RecipeServiceProtocol {
     }
     let request = URLRequest(url: queryURL)
 
-    let (data, response) = try await session.data(for: request)
+    let (data, response) = try await URLSession.shared.data(for: request)
 
     guard (response as? HTTPURLResponse)?.statusCode == 200 else {
       print("Invalid response for getting random recipes: \(response.description)")
       return []
     }
 
-    return try JSONDecoder().decode(Recipes.self, from: data).recipes
+    return try decoder.decode(Recipes.self, from: data).recipes
   }
 
   func getSearchResults(for query: String) async throws -> [Recipe]? {
-    guard var urlComponents = URLComponents(string: baseURLString + "complexSearch") else {
+    guard var urlComponents = URLComponents(string: baseURLString + "complexSearch1") else {
       print("Unable to create a URL component for search.")
       return nil
     }
@@ -78,7 +71,7 @@ struct RecipeService: RecipeServiceProtocol {
     }
     let request = URLRequest(url: queryURL)
 
-    let (data, response) = try await session.data(for: request)
+    let (data, response) = try await URLSession.shared.data(for: request)
 
     guard let response = response as? HTTPURLResponse,
       response.statusCode == 200 else {
