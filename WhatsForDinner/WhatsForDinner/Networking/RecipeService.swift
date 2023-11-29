@@ -49,14 +49,14 @@ struct RecipeService: RecipeServiceProtocol {
     let (data, response) = try await session.data(for: request)
 
     guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-      print("Invalid response for getting random recipes: \(response)")
+      print("Invalid response for getting random recipes: \(response.description)")
       return []
     }
 
     return try JSONDecoder().decode(Recipes.self, from: data).recipes
   }
 
-  func getSearchResults(for query: String) async throws -> Search? {
+  func getSearchResults(for query: String) async throws -> [Recipe]? {
     guard var urlComponents = URLComponents(string: baseURLString + "complexSearch") else {
       print("Unable to create a URL component for search.")
       return nil
@@ -86,6 +86,6 @@ struct RecipeService: RecipeServiceProtocol {
       return nil
     }
 
-    return try decoder.decode(Search.self, from: data)
+    return try decoder.decode(Search.self, from: data).results
   }
 }

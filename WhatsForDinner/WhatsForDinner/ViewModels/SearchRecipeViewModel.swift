@@ -15,17 +15,21 @@ class SearchRecipeViewModel: ObservableObject {
   @Published var showError = false
   @Published var error: Error?
 
-  let service = RecipeService()
+  let service: RecipeServiceProtocol
+
+  init(service: RecipeServiceProtocol) {
+    self.service = service
+  }
 
   @MainActor
   func fetchSearchResults(for query: String) async {
     isLoading = true
     do {
       if let searchResults = try await service.getSearchResults(for: query) {
-        if searchResults.results.isEmpty {
+        if searchResults.isEmpty {
           noResults = true
         } else {
-          for result in searchResults.results {
+          for result in searchResults {
             results.append(result)
           }
         }

@@ -15,7 +15,7 @@ struct NoRecipesView: View {
         .foregroundColor(.red)
         .bold()
       Text("No recipes to see here!")
-        .font(.custom("MeowScript-regular", size: 35))
+        .font(.system(size: 35, weight: .bold, design: .rounded))
         .bold()
       Text("Please try again later.")
         .font(.body)

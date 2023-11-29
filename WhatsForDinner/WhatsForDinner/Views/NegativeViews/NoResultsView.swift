@@ -15,7 +15,7 @@ struct NoResultsView: View {
         .foregroundColor(.yellow)
         .bold()
       Text("No Results")
-        .font(.custom("MeowScript-regular", size: 35))
+        .font(.system(size: 35, weight: .bold, design: .rounded))
         .bold()
       Text("Check the spelling or try a new search.")
         .font(.subheadline)

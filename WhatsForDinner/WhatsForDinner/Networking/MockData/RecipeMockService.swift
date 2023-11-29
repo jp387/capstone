@@ -116,7 +116,76 @@ struct RecipeMockService: RecipeServiceProtocol {
     )
   ]
 
+  var searchResult: [Recipe]? = [
+    Recipe(
+      pricePerServing: 141.03,
+      extendedIngredients: [
+        ExtendedIngredient(
+          id: 1145,
+          aisle: "Milk, Eggs, Other Dairy",
+          consistency: Consistency(rawValue: "SOLID"),
+          name: "butter",
+          original: "2 tablespoons butter",
+          originalName: "unsalted butter",
+          amount: Double(2),
+          unit: "tablespoons",
+          meta: [
+            "unsalted",
+            "melted"
+          ],
+          measures: Measures(
+            usa: Metric(
+              amount: Double(2),
+              unitShort: "Tbsps",
+              unitLong: "Tbsps"),
+            metric: Metric(
+              amount: Double(2),
+              unitShort: "Tbsps",
+              unitLong: "Tbsps")
+          )
+        )
+      ],
+      id: 633265,
+      title: "Bacon & Egg Toast Cups",
+      readyInMinutes: 45,
+      servings: 2,
+      summary: "Bacon & Egg Toast Cups takes 45 minutes.",
+      instructions: "Preheat oven to 375.",
+      analyzedInstructions: [
+        AnalyzedInstruction(
+          name: "",
+          steps: [
+            Step(
+              number: 1,
+              step: "Preheat oven to 37",
+              ingredients: [],
+              equipment: [
+                Ent(
+                  id: 404784,
+                  name: "oven",
+                  localizedName: "oven",
+                  image: "oven.jpg"
+                )
+              ],
+              length: nil)
+          ])
+      ]
+    )
+  ]
+
   func getRandomRecipe() async throws -> [Recipe] {
     return recipes
+  }
+
+  func getSearchResults(for query: String) async throws -> [Recipe]? {
+    if let recipes = searchResult,
+      let recipe = recipes.first {
+      if recipe.title.lowercased().contains(query.lowercased()) {
+        return recipes
+      } else {
+        return []
+      }
+    }
+    return nil
   }
 }

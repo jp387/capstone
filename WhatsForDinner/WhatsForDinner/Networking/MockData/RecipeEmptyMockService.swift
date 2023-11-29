@@ -13,4 +13,8 @@ struct RecipeEmptyMockService: RecipeServiceProtocol {
   func getRandomRecipe() async throws -> [Recipe] {
     return recipes
   }
+
+  func getSearchResults(for query: String) async throws -> [Recipe]? {
+    return nil
+  }
 }

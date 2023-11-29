@@ -76,7 +76,7 @@ struct RecipeSearchView_Previews: PreviewProvider {
     var body: some View {
       RecipeSearchView(
         searchResults: $searchTerm,
-        searchRecipeVM: SearchRecipeViewModel()
+        searchRecipeVM: SearchRecipeViewModel(service: RecipeService())
       )
     }
   }

@@ -20,8 +20,7 @@
       "parallelizable" : true,
       "skippedTests" : [
         "FavoriteRecipeViewModelTests",
-        "ReviewRecipeViewModelTests",
-        "SearchRecipeViewModelTests"
+        "ReviewRecipeViewModelTests"
       ],
       "target" : {
         "containerPath" : "container:WhatsForDinner.xcodeproj",

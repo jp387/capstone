@@ -9,4 +9,5 @@ import Foundation
 
 protocol RecipeServiceProtocol {
   func getRandomRecipe() async throws -> [Recipe]
+  func getSearchResults(for query: String) async throws -> [Recipe]?
 }
