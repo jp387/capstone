@@ -11,7 +11,7 @@ struct OnboardingDetailView: View {
   @AppStorage(
     "isOnboarding"
   )
-  var isOnboarding: Bool?
+  var isOnboarding = true
 
   let detail: OnboardingDetails
 

@@ -8,16 +8,8 @@
 import SwiftUI
 
 struct RecipeHomeView: View {
-  @ObservedObject var randomRecipeVM: RandomRecipeViewModel
+  @StateObject var randomRecipeVM = RandomRecipeViewModel(service: RecipeService())
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
-  @State private var networkFailure = false
-
-  var errorMessage: String {
-    if let error = randomRecipeVM.error {
-      return error.localizedDescription
-    }
-    return ""
-  }
 
   var body: some View {
     NavigationStack {
@@ -31,14 +23,14 @@ struct RecipeHomeView: View {
       .navigationDestination(for: Recipe.self) { recipe in
         RecipeDetailView(recipe: recipe)
       }
-      .alert("Unable to fetch your dinner list. Try again later!", isPresented: $randomRecipeVM.showAlert) {
+      .alert("Unable to fetch your dinner list. Try again later!", isPresented: $randomRecipeVM.showAlertPrompt) {
         Button("OK") {
-          networkFailure = true
+          randomRecipeVM.showFailureScreen = true
         }
       }
-      .alert(errorMessage, isPresented: $randomRecipeVM.showError) {
+      .alert(randomRecipeVM.errorMessage, isPresented: $randomRecipeVM.showError) {
         Button("OK") {
-          networkFailure = true
+          randomRecipeVM.showFailureScreen = true
         }
       }
       .navigationTitle("Dinner Recipes")
@@ -47,21 +39,23 @@ struct RecipeHomeView: View {
       }
       .toolbarBackground(.yellow, for: .navigationBar)
       .toolbarBackground(.visible, for: .navigationBar)
-      .scrollIndicators(.hidden)
       .listStyle(.plain)
-      .task {
+      .onAppear {
         if randomRecipeVM.recipes.isEmpty {
           randomRecipeVM.fetchBundleRecipe(for: "recipestub")
-          //  do {
-          //    try await randomRecipeVM.fetchRandomRecipe()
-          //    networkFailure = false
-          //  } catch { }
         }
       }
-    }
-    .overlay {
-      if networkFailure { NoRecipesView() }
-      if randomRecipeVM.isLoading { LoadingProgressView() }
+      // .task {
+      //  if randomRecipeVM.recipes.isEmpty {
+      //    do {
+      //      try await randomRecipeVM.fetchRandomRecipe()
+      //    } catch { }
+      //  }
+      // }
+      .overlay {
+        if randomRecipeVM.showFailureScreen { NoRecipesView() }
+        if randomRecipeVM.isLoading { LoadingProgressView() }
+      }
     }
   }
 }

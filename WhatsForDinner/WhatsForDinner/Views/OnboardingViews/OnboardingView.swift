@@ -9,7 +9,6 @@ import SwiftUI
 
 struct OnboardingView: View {
   @StateObject private var onboardingVM = OnboardingViewModel()
-  @State private var showButton = false
 
   var body: some View {
     ZStack {

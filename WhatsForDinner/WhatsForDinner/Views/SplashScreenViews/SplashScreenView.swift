@@ -35,7 +35,7 @@ struct SplashScreenView: View {
         self.fadeInOut.toggle()
       }
       .task {
-        try? await Task.sleep(for: Duration.seconds(5))
+        try? await Task.sleep(for: Duration.seconds(2.5))
         self.isActive.toggle()
       }
     }

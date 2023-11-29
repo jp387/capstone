@@ -9,10 +9,11 @@ import Foundation
 
 class RandomRecipeViewModel: ObservableObject {
   @Published var recipes: [Recipe] = []
-  @Published var showAlert = false
+  @Published var showAlertPrompt = false
   @Published var showError = false
   @Published var isLoading = false
   @Published var isBundle = false
+  @Published var showFailureScreen = false
   @Published var error: Error?
 
   let service: RecipeServiceProtocol
@@ -21,17 +22,22 @@ class RandomRecipeViewModel: ObservableObject {
     self.service = service
   }
 
+  var errorMessage: String {
+    if let error = error {
+      return error.localizedDescription
+    }
+    return ""
+  }
+
   @MainActor
   func fetchRandomRecipe() async throws {
     isLoading = true
     do {
       let results = try await service.getRandomRecipe()
       if results.isEmpty {
-        showAlert = true
+        showAlertPrompt = true
       } else {
-        for item in results {
-          recipes.append(item)
-        }
+        recipes = results
       }
     } catch {
       self.error = error
@@ -57,14 +63,14 @@ class RandomRecipeViewModel: ObservableObject {
         let recipeData = try Data(contentsOf: recipeURL)
         recipes = try decoder.decode(Recipes.self, from: recipeData).recipes
         if recipes.isEmpty {
-          showAlert = true
+          showAlertPrompt = true
         }
       } catch {
         self.error = error
-        showAlert = true
+        showAlertPrompt = true
       }
     } else {
-      showAlert = true
+      showAlertPrompt = true
     }
     isLoading = false
   }

@@ -8,20 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State private var searchResults = ""
-  @StateObject private var randomRecipeVM = RandomRecipeViewModel(service: RecipeService())
-  @StateObject private var searchRecipeVM = SearchRecipeViewModel(service: RecipeService())
-  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
-  @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
-
-  init() {
-    UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .lightGray
-    UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .black
-  }
-
   var body: some View {
     TabView {
-      RecipeHomeView(randomRecipeVM: randomRecipeVM)
+      RecipeHomeView()
         .tabItem {
           Label("Home", systemImage: "house")
         }
@@ -29,10 +18,7 @@ struct ContentView: View {
         .tabItem {
           Label("Favorites", systemImage: "heart")
         }
-      RecipeSearchView(
-        searchResults: $searchResults,
-        searchRecipeVM: searchRecipeVM
-      )
+      RecipeSearchView()
       .tabItem {
         Label("Search", systemImage: "magnifyingglass")
       }

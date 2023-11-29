@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct ViewCoordinator: View {
-  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
-  @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
-
   @State private var isActive = false
   @AppStorage(
     "isOnboarding"

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct RecipeSearchView: View {
-  @Binding var searchResults: String
-  @ObservedObject var searchRecipeVM: SearchRecipeViewModel
+  @State private var searchResults = ""
+  @StateObject var searchRecipeVM = SearchRecipeViewModel(service: RecipeService())
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
   @State private var taskSearch: Task<Void, Error>?
   @State private var showDefaultScreen = true
@@ -48,7 +48,6 @@ struct RecipeSearchView: View {
       }
       .searchable(text: $searchResults, prompt: "Search your dinner here...")
       .listStyle(.plain)
-      .scrollIndicators(.hidden)
       .onSubmit(of: .search) {
         taskSearch?.cancel()
         taskSearch = Task {
@@ -75,7 +74,6 @@ struct RecipeSearchView_Previews: PreviewProvider {
 
     var body: some View {
       RecipeSearchView(
-        searchResults: $searchTerm,
         searchRecipeVM: SearchRecipeViewModel(service: RecipeService())
       )
     }

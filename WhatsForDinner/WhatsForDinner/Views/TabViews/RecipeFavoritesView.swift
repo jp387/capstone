@@ -42,7 +42,6 @@ struct RecipeFavoritesView: View {
       }
       .navigationTitle("Favorited Recipes")
       .searchable(text: $favoriteSearch, prompt: "Search for your favorited recipes")
-      .scrollIndicators(.hidden)
       .listStyle(.plain)
     }
     .overlay {

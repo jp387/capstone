@@ -36,7 +36,7 @@ struct RecipeService: RecipeServiceProtocol {
     }
 
     urlComponents.queryItems = [
-      URLQueryItem(name: "number", value: "1"),
+      URLQueryItem(name: "number", value: "25"),
       URLQueryItem(name: "apiKey", value: apiKey)
     ]
 
