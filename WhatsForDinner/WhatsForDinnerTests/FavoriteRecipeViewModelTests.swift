@@ -15,19 +15,15 @@ final class FavoriteRecipeViewModelTests: XCTestCase {
   var randomRecipeVM: RandomRecipeViewModel!
   // swiftlint:enable implicitly_unwrapped_optional
 
-  override func setUpWithError() throws {
+  override func setUp() {
     favoriteRecipeVM = FavoriteRecipeViewModel()
     randomRecipeVM = RandomRecipeViewModel(service: RecipeService())
-    try super.setUpWithError()
+    super.setUp()
   }
 
-  override func tearDownWithError() throws {
+  override func tearDown() {
     favoriteRecipeVM = nil
-    try super.tearDownWithError()
-  }
-
-  func test_loadFavoriteRecipesSuccess() {
-    XCTAssertNoThrow(favoriteRecipeVM.favorite.isEmpty)
+    super.tearDown()
   }
 
   func test_favoriteRecipesIsFound() {
@@ -40,11 +36,20 @@ final class FavoriteRecipeViewModelTests: XCTestCase {
     if let firstRecipe = randomRecipeVM.recipes.first {
       favoriteRecipeVM.addFavorite(recipeId: 1, title: "Maccaroni with Cheese", recipe: firstRecipe)
     }
-    XCTAssertGreaterThan(favoriteRecipeVM.favorite.count, 1)
+    XCTAssert(favoriteRecipeVM.favorite.contains { favorite in
+      favorite.recipeId == 1
+    })
   }
 
   func test_removeFavoriteRecipeSuccess() {
     let recipeId = 1
+    favoriteRecipeVM.removeFavorite(by: recipeId)
+    let index = favoriteRecipeVM.favorite.firstIndex { $0.recipeId == recipeId }
+    XCTAssertNil(index)
+  }
+
+  func test_removeFavoriteRecipeFailure() throws {
+    let recipeId = 2
     favoriteRecipeVM.removeFavorite(by: recipeId)
     let index = favoriteRecipeVM.favorite.firstIndex { $0.recipeId == recipeId }
     XCTAssertNil(index)

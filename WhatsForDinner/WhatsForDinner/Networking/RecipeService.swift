@@ -50,7 +50,7 @@ struct RecipeService: RecipeServiceProtocol {
   }
 
   func getSearchResults(for query: String) async throws -> [Recipe]? {
-    guard var urlComponents = URLComponents(string: baseURLString + "complexSearch1") else {
+    guard var urlComponents = URLComponents(string: baseURLString + "complexSearch") else {
       print("Unable to create a URL component for search.")
       return nil
     }
@@ -61,7 +61,7 @@ struct RecipeService: RecipeServiceProtocol {
       URLQueryItem(name: "type", value: "main course"),
       URLQueryItem(name: "instructionsRequired", value: "true"),
       URLQueryItem(name: "addRecipeNutrition", value: "true"),
-      URLQueryItem(name: "number", value: "10"),
+      URLQueryItem(name: "number", value: "100"),
       URLQueryItem(name: "apiKey", value: apiKey)
     ]
 

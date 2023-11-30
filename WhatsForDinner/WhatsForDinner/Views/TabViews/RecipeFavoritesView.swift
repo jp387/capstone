@@ -31,10 +31,12 @@ struct RecipeFavoritesView: View {
               } label: {
                 Label("Remove", systemImage: "trash")
               }
+              .accessibilityIdentifier("delete-favorite")
             }
         }
         .listRowSeparator(.hidden)
       }
+      .accessibilityIdentifier("favorite-list")
       .toolbarBackground(.yellow, for: .navigationBar)
       .toolbarBackground(.visible, for: .navigationBar)
       .navigationDestination(for: Recipe.self) { recipe in

@@ -15,16 +15,16 @@ struct RecipeDetailView: View {
   var body: some View {
     ScrollView(showsIndicators: false) {
       VStack {
-        TitleView(recipe: recipe)
-        DataView(recipe: recipe)
+        RecipeHeaderView(recipe: recipe)
+        RecipeInformationView(recipe: recipe)
         Divider()
-        SummaryView(recipe: recipe)
+        RecipeSummaryView(recipe: recipe)
         Divider()
-        IngredientsView(recipe: recipe)
+        RecipeIngredientsView(recipe: recipe)
         Divider()
-        InstructionsView(recipe: recipe)
+        RecipeInstructionsView(recipe: recipe)
         Divider()
-        ReviewsView(recipe: recipe)
+        RecipeReviewsView(recipe: recipe)
       }
     }
     .navigationBarTitleDisplayMode(.inline)
@@ -32,7 +32,7 @@ struct RecipeDetailView: View {
   }
 }
 
-struct TitleView: View {
+struct RecipeHeaderView: View {
   var recipe: Recipe
 
   var body: some View {
@@ -51,13 +51,14 @@ struct TitleView: View {
         .frame(width: 480, height: 360)
         .background(.gray)
         FavoriteButtonView(recipe: recipe)
+          .accessibilityIdentifier("favorite-button")
       }
     }
-    .accessibilityIdentifier("recipe-title")
+    .accessibilityIdentifier("recipe-header")
   }
 }
 
-struct DataView: View {
+struct RecipeInformationView: View {
   var recipe: Recipe
 
   var pricePerServing: Double {
@@ -106,7 +107,7 @@ struct DataView: View {
   }
 }
 
-struct SummaryView: View {
+struct RecipeSummaryView: View {
   var recipe: Recipe
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
@@ -123,7 +124,7 @@ struct SummaryView: View {
   }
 }
 
-struct IngredientsView: View {
+struct RecipeIngredientsView: View {
   var recipe: Recipe
 
   var body: some View {
@@ -139,7 +140,7 @@ struct IngredientsView: View {
   }
 }
 
-struct InstructionsView: View {
+struct RecipeInstructionsView: View {
   var recipe: Recipe
 
   var body: some View {
@@ -157,7 +158,7 @@ struct InstructionsView: View {
   }
 }
 
-struct ReviewsView: View {
+struct RecipeReviewsView: View {
   var recipe: Recipe
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
@@ -206,7 +207,6 @@ struct FavoriteButtonView: View {
         .font(.largeTitle)
         .foregroundColor(.red)
     }
-    .accessibilityIdentifier("recipe-detail-favorite-button")
   }
 
   private func addFavorites() {

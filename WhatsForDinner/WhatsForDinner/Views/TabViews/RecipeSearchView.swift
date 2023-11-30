@@ -28,6 +28,7 @@ struct RecipeSearchView: View {
         NavigationLink(value: result) {
           RecipeCardView(recipe: result)
         }
+        .accessibilityIdentifier("search-list")
         .listRowSeparator(.hidden)
       }
       .toolbarBackground(.yellow, for: .navigationBar)

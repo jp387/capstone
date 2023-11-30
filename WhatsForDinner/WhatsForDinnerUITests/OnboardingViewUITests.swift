@@ -6,7 +6,6 @@
 //
 
 import XCTest
-@testable import WhatsForDinner
 
 final class OnboardingViewUITests: XCTestCase {
   // The SwiftLint rule is disabled since the variable will be initialized in the setUp() method
@@ -21,6 +20,11 @@ final class OnboardingViewUITests: XCTestCase {
     deleteApplication()
     app = XCUIApplication()
     app.launchArguments.append("--uitesting")
+  }
+
+  override func tearDown() {
+    app = nil
+    super.tearDown()
   }
 
   func deleteApplication() {
@@ -56,6 +60,8 @@ final class OnboardingViewUITests: XCTestCase {
     onboardingElements.swipeLeft()
     onboardingElements.swipeLeft()
     onboardingElements.swipeLeft()
-    onboardingElements.buttons["Let's Go!"].tap()
+    onboardingElements.buttons["onboarding-button"].tap()
+
+    XCTAssert(app.navigationBars["Dinner Recipes"].exists)
   }
 }

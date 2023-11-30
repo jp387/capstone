@@ -20,6 +20,18 @@ final class ReviewRecipeViewModelTests: XCTestCase {
 
   func test_addRecipeReviews() {
     reviewRecipeVM.addReview(recipeId: 1, rating: 5, comment: "Good Recipe")
-    XCTAssertGreaterThanOrEqual(reviewRecipeVM.review.count, 1)
+    XCTAssertNotEqual(reviewRecipeVM.review, [])
+  }
+
+  func test_recipeReviewExist() {
+    XCTAssert(reviewRecipeVM.review.contains { recipe in
+      recipe.recipeId == 1
+    })
+  }
+
+  func test_recipeReviewNotExist() {
+    XCTAssertFalse(reviewRecipeVM.review.contains { recipe in
+      recipe.recipeId == 2
+    })
   }
 }

@@ -27,11 +27,13 @@ struct RecipeHomeView: View {
         Button("OK") {
           randomRecipeVM.showFailureScreen = true
         }
+        .accessibilityIdentifier("list-failure-prompt")
       }
       .alert(randomRecipeVM.errorMessage, isPresented: $randomRecipeVM.showError) {
         Button("OK") {
           randomRecipeVM.showFailureScreen = true
         }
+        .accessibilityIdentifier("network-failure-prompt")
       }
       .navigationTitle("Dinner Recipes")
       .toolbar {
@@ -75,6 +77,7 @@ struct RefreshButtonView: View {
         .rotationEffect(.degrees(isSpinning ? 0 : 360))
         .animation(.easeInOut(duration: 1), value: isSpinning)
     }
+    .accessibilityIdentifier("refresh-button")
     .foregroundColor(.red)
     .disabled(randomRecipeVM.isBundle)
   }

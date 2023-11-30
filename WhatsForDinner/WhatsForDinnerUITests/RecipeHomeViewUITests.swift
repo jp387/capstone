@@ -6,42 +6,48 @@
 //
 
 import XCTest
-@testable import WhatsForDinner
 
 final class RecipeHomeViewUITests: XCTestCase {
   // swiftlint:disable implicitly_unwrapped_optional
   var app: XCUIApplication!
   // swiftlint:enable implicitly_unwrapped_optional
 
-  override func setUpWithError() throws {
+  override func setUp() {
+    super.setUp()
     continueAfterFailure = false
     app = XCUIApplication()
     app.launch()
-    try super.setUpWithError()
   }
 
-  override func tearDownWithError() throws {
+  override func tearDown() {
     app = nil
-    try super.tearDownWithError()
+    super.tearDown()
   }
 
-  func test_listCellLoadsCorrectly() {
+  func test_recipeHomeViewAppears() {
+    let recipeList = app.descendants(matching: .any)
+      .matching(identifier: "recipe-list")
+      .element
+
+    XCTAssert(recipeList.waitForExistence(timeout: 20))
+    XCTAssert(app.navigationBars["Dinner Recipes"].exists)
+  }
+
+  func test_listCellRefreshButtonLoadsNewRecipes() {
+    let homeNavigationBars = app.navigationBars["Dinner Recipes"]
+    let homeRefreshButton = homeNavigationBars.buttons["refresh-button"]
+    homeRefreshButton.tap()
+
     let recipeList = app.descendants(matching: .any)
       .matching(identifier: "recipe-list")
       .element
 
     XCTAssert(recipeList.waitForExistence(timeout: 20))
 
-    let rows = recipeList.cells
-    XCTAssertEqual(rows.count, 6)
-  }
-
-  func test_selectedListCellShowsDetailView() {
-    let recipeList = app.descendants(matching: .any)
-      .matching(identifier: "recipe-list")
-      .element
-
-    XCTAssert(recipeList.waitForExistence(timeout: 20))
+    recipeList.swipeUp()
+    recipeList.swipeUp()
+    recipeList.swipeUp()
+    recipeList.swipeUp()
 
     let rows = recipeList.cells
     XCTAssertEqual(rows.count, 7)

@@ -15,7 +15,7 @@ struct FavoriteDetailView: View {
   var body: some View {
     ScrollView(showsIndicators: false) {
       VStack {
-        FavoriteTitleView(recipe: recipe)
+        FavoriteHeaderView(recipe: recipe)
         FavoriteDataView(recipe: recipe)
         Divider()
         FavoriteSummaryView(recipe: recipe)
@@ -31,7 +31,7 @@ struct FavoriteDetailView: View {
   }
 }
 
-struct FavoriteTitleView: View {
+struct FavoriteHeaderView: View {
   var recipe: Recipe
 
   var body: some View {
@@ -49,6 +49,7 @@ struct FavoriteTitleView: View {
       .frame(width: 480, height: 360)
       .background(.gray)
     }
+    .accessibilityIdentifier("favorite-recipe-header")
   }
 }
 
@@ -97,6 +98,7 @@ struct FavoriteDataView: View {
       }
       .padding()
     }
+    .accessibilityIdentifier("favorite-recipe-data")
   }
 }
 
@@ -112,6 +114,7 @@ struct FavoriteSummaryView: View {
         .frame(width: 350)
       ReviewButtonView(recipeId: recipe.id)
     }
+    .accessibilityIdentifier("favorite-recipe-summary")
   }
 }
 
@@ -127,6 +130,7 @@ struct FavoriteIngredientsView: View {
       }
     }
     .frame(width: 350)
+    .accessibilityIdentifier("favorite-recipe-ingredients")
   }
 }
 
@@ -144,6 +148,7 @@ struct FavoriteInstructionsView: View {
       }
     }
     .frame(width: 350)
+    .accessibilityIdentifier("favorite-recipe-instructions")
   }
 }
 
@@ -172,5 +177,6 @@ struct FavoriteReviewsView: View {
       if filteredReviews.isEmpty { Text("No reviews for this recipe.") }
     }
     .padding(5)
+    .accessibilityIdentifier("favorite-recipe-reviews")
   }
 }

@@ -25,6 +25,7 @@ struct DefaultFavoritesView: View {
         .font(.subheadline)
         .foregroundColor(.gray)
     }
+    .accessibilityIdentifier("default-favorite-view")
   }
 }
 
