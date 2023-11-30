@@ -11,28 +11,28 @@ The application does not use any third party libraries to perform the features l
 
 The What's For Dinner project folders are organized in the following order:
 
-Folder: App
+**App**
 - The folder contains files that are used to setup the fonts used for the Splash Screen view and the logic to setup the views for the Onboarding, Splash Screen and Home screen. Also, the folder contains the Asset Catalog.
 
-Folder: Extensions
+**Extensions**
 - The folder contains extension files that are used to strip the HTML from the summary in the detail screen and the FileManager used to store files in the Document Directory.
 
-Folder: Networking
+**Networking**
 - The folder contains files that are used to send a request and response to the Spoonacular API, along with files used to perform unit testing.
 
-Folder: Models
+**Models**
 - The folder contains files that are used for creating the model for the JSON data to be used for decoding on the view models. Also, the folder contains files that are used to setup the Onboarding views and saving favorites and reviews.
 
-Folder: Views
+**Views**
 - The folder contains files for all the views used throughout the What's For Dinner application.
 
-Folder: ViewModels
-- The folder contains files used for fetching data from the Spoonacular API and Bundle JSON file provided in the project.
+**ViewModels**
+- The folder contains files used for fetching data from the Spoonacular API and Bundle JSON file for the project.
 
-Folder: WhatsForDinnerTests
+**WhatsForDinnerTests**
 - The folder contains files used to perform unit testing.
 
-Folder: WhatsForDinnerUITests
+**WhatsForDinnerUITests**
 - The folder contains files used to peform UI testing.
 
 # Testing Notes
