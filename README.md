@@ -13,27 +13,117 @@ The What's For Dinner project folders are organized in the following order:
 
 **App**
 - The folder contains files that are used to setup the fonts used for the Splash Screen view and the logic to setup the views for the Onboarding, Splash Screen and Home screen. Also, the folder contains the Asset Catalog.
+  The following app files/folder are contained in this folder:
+    - **_ViewCoordinator.swift_** (contains the view code used to manage the views for the splash, onboarding and main screen and uses AppStorage to save the onboarding completion state)
+    - **_WhatsForDinnerApp.swift_** (contains the code used to setup the enviroment objects and view coordinator)
+    - **_Assets.xcassets_** (contains icons and colors used throughout the application)
+    - **_Fonts_** (folder that contains the font used to style the splash screen text)
 
 **Extensions**
 - The folder contains extension files that are used to strip the HTML from the summary in the detail screen and the FileManager used to store files in the Document Directory.
+  - The following extension files are contained in this folder:
+    - **_FileManager.swift_** (contains the FileManager code used to access the Document Directory)
+    - **_Utility.swift_** (contains code to strip out HTML tags from the recipe summary)
 
 **Networking**
 - The folder contains files that are used to send a request and response to the Spoonacular API, along with files used to perform unit testing.
+  - The following networking files/folder are contained in this folder:
+      - **_RecipeService.swift_** (contains the networking code used for getting random recipes and performing searches from the Spoonacular API)
+      - **_RecipeServiceProtocol.swift_** (contains the protocol code used to manange the methods used for the RecipeService.swift and unit testing the view models)
+      - **_MockData_** (contains files used for testing the view models)
 
 **Models**
 - The folder contains files that are used for creating the model for the JSON data to be used for decoding on the view models. Also, the folder contains files that are used to setup the Onboarding views and saving favorites and reviews.
+  - The following model files are contained in this folder:
+    - **_RecipeModel.swift_** (contains the model used for the recipes from the Spoonacular API)
+    - **_ReviewRecipeModel.swift_** (contains the model used for storing the reviews)
+    - **_FavoriteRecipeModel.swift_** (contains the model used for storing the favorited recipes)
+    - **_OnboardingModel.swift_** (contains the model used for creating the onboarding views)
 
 **Views**
 - The folder contains files for all the views used throughout the What's For Dinner application.
+  - The following view files are contained in this folder (Bold denotes folder name):
+    - Splash Screen View (contains animations for displaying the plate of food)
+      - **SplashScreenViews**
+        - **_SplashScreenView.swift_**
+    - Onboarding View
+      - **OnboaringViews**
+        - **_OnboardingView.swift_** (to display the onboarding view)
+        - **_OnboardingDetailView.swift_** (to setup the details for the onboarding view)
+    - Main View (contains the tab views)
+      - **MainViews**
+        - **_MainView.swift_**
+    -  Tab View
+      - Home View
+        - **TabViews**
+          - **_RecipeHomeView.swift_** (contains animations when tapping on the refresh button)
+      - Favorites View
+        - **TabViews**
+          - **_RecipeFavoritesView.swift_**
+      - Search View
+        - **TabViews**
+          - **_RecipeSearchView.swift_**
+    - Detail View
+      - Recipe Detail View
+        - **DetailViews**
+          - **_RecipeDetailView.swift_**
+      - Favorites Detail View
+        - **DetailViews**
+          - **_FavoriteDetailView.swift_**
+    - Review View
+      - Review Button View
+        - **ReviewViews**
+          - **_ReviewButtonView.swift_**
+      - Review Form View
+        - **ReviewViews**
+          - **_NewReviewFormView.swift_**
+    - Default View
+      - Favorites Default View (when no favorites have been added)
+        - **DefaultViews**
+          - **_DefaultFavoritesView.swift_**
+      - Search Default View (when no search has been performed)
+        - **DefaultViews**
+          - **_DefaultSearchView.swift_**
+    - Reuseable View
+      - Recipe Card View (to display the cards from the list in the Home, Favorites and Search views)
+        - **ReuseableViews**
+          - **_RecipeCardView.swift_**
+      - Loading Progress View (to display an indeterminate progress view)
+        - **ReuseableViews**
+          - **_LoadingProgessView.swift_**
+    - Negative View
+      - No Results View (to display when a search fails for the Favorites and Search views)
+        - **NegativeViews**
+          - **_NoResultsView.swift_**
+      - No Recipes View (to display when bundle file fails to load, API request fails or when there is no network connection)
+        - **NegativeViews**
+          - **_NoRecipesView.swift_**
 
 **ViewModels**
 - The folder contains files used for fetching data from the Spoonacular API and Bundle JSON file for the project.
+  - The following view model files are contained in this folder:
+    - **_RandomRecipeViewModel.swift_** (contains the view model code used to fetch and refresh random recipes from the Spoonacular API and bundle files for freeze dried JSON data)
+    - **_SearchRecipeViewModel.swift_** (contains the view model code used to fetch search results from the Spoonacular API)
+    - **_ReviewRecipeViewModel.swift_** (contains the view model code used to load, add and save reviews into the Document Directory)
+    - **_FavoriteRecipeViewModel.swift_** (contains the view model code used to load, add, remove and save favorites into the Document Directory)
+    - **_OnboardingViewModel.swift_** (contains the view model code used to setup the data for the onboading view)
 
 **WhatsForDinnerTests**
 - The folder contains files used to perform unit testing.
+  - The following unit test files are contained in this folder:
+    - **_RandomRecipesViewModelTests.swift_** (contains test cases to test the RandomRecipeViewModel.swift file)
+    - **_SearchRecipeViewModelTests.swift_** (contains test cases to test the SearchRecipeViewModel.swift file)
+    - **_ReviewRecipeViewModelTests.swift_** (contains test cases to test the ReviewRecipeViewModel.swift file)
+    - **_FavoriteRecipeViewModelTests.swift_** (contains test cases to test the FavoriteRecipeViewModel.swift file)
 
 **WhatsForDinnerUITests**
 - The folder contains files used to peform UI testing.
+  - The following UI test files are contained in this folder:
+    - **_OnboardingViewUITests.swift_** (contains test cases to test the UI for the onboarding view)
+    - **_RecipeHomeViewUITests.swift_** (contains test cases to test the UI for the home tab view)
+    - **_RecipeDetailViewUITests.swift_** (contains test cases to test the UI for the recipe detail view view)
+    - **_RecipeFavoritesViewUITests.swift_** (contains test cases to test the UI for the favorites tab view)
+    - **_RecipeSearchViewUITests.swift_** (contains test cases to test the UI for the search tab view)
 
 # Testing Notes
 
