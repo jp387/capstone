@@ -20,7 +20,7 @@ struct RecipeCardView: View {
 
   var body: some View {
     HStack(alignment: .center) {
-      AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-90x90.jpg")) { image in
+      AsyncImage(url: recipe.thumbnailURL) { image in
         image
           .resizable()
           .cornerRadius(10)
@@ -40,29 +40,7 @@ struct RecipeCardView: View {
           .foregroundColor(Color("CardTextColor"))
           .multilineTextAlignment(.leading)
           .padding(.bottom, 5)
-        if recipe.readyInMinutes >= 60 {
-          let hours = Int(recipe.readyInMinutes / 60)
-          let minutes = Int(recipe.readyInMinutes - (hours * 60))
-          let hoursText = hours > 1 ? "hours" : "hour"
-
-          if minutes == 0 || minutes == 60 {
-            Text("Cooking Time: \(hours) \(hoursText)")
-              .foregroundColor(Color("CardTextColor"))
-              .font(.caption)
-          } else if minutes == 1 {
-            Text("Cooking Time: \(hours) \(hoursText) \(minutes) minute")
-              .foregroundColor(Color("CardTextColor"))
-              .font(.caption)
-          } else {
-            Text("Cooking Time: \(hours) \(hoursText) \(minutes) minutes")
-              .foregroundColor(Color("CardTextColor"))
-              .font(.caption)
-          }
-        } else {
-          Text("Cooking Time: \(recipe.readyInMinutes) minutes")
-            .foregroundColor(Color("CardTextColor"))
-            .font(.caption)
-        }
+        recipe.cardCookingTime
         Text("Serving: \(recipe.servings)")
           .foregroundColor(Color("CardTextColor"))
           .font(.caption)
@@ -82,18 +60,33 @@ struct RecipeCardView: View {
 
 struct RecipeCardView_Previews: PreviewProvider {
   static var previews: some View {
-    RecipeCardView(
-      recipe: Recipe(
-        pricePerServing: 2.0,
-        extendedIngredients: [],
-        id: 10,
-        title: "Recipe",
-        readyInMinutes: 45,
-        servings: 2,
-        summary: "",
-        instructions: "",
-        analyzedInstructions: [])
-    )
-    .previewLayout(.sizeThatFits)
+    VStack {
+      RecipeCardView(
+        recipe: Recipe(
+          pricePerServing: 2.0,
+          extendedIngredients: [],
+          id: 10,
+          title: "Recipe",
+          readyInMinutes: 1,
+          servings: 2,
+          summary: "",
+          instructions: "",
+          analyzedInstructions: [])
+      )
+      .previewLayout(.sizeThatFits)
+      RecipeCardView(
+        recipe: Recipe(
+          pricePerServing: 2.0,
+          extendedIngredients: [],
+          id: 10,
+          title: "Recipe",
+          readyInMinutes: 120,
+          servings: 6,
+          summary: "",
+          instructions: "",
+          analyzedInstructions: [])
+      )
+      .previewLayout(.sizeThatFits)
+    }
   }
 }

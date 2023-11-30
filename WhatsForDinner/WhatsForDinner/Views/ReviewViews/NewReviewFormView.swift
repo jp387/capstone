@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewReviewFormView: View {
-  @Binding var displayModal: Bool
+  @Binding var isPresented: Bool
   @State private var selectedRating = 1
   @State private var comments = ""
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
@@ -58,7 +58,7 @@ struct NewReviewFormView: View {
       recipeId: recipeId,
       rating: selectedRating,
       comment: comments)
-    displayModal.toggle()
+    isPresented.toggle()
   }
 }
 
@@ -101,7 +101,7 @@ struct RatingView: View {
 struct NewReviewFormView_Previews: PreviewProvider {
   static var previews: some View {
     NewReviewFormView(
-      displayModal: .constant(true),
+      isPresented: .constant(true),
       recipeId: 10
     )
     .environmentObject(ReviewRecipeViewModel())

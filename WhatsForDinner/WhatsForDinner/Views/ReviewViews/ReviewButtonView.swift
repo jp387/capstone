@@ -13,21 +13,23 @@ struct ReviewButtonView: View {
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var body: some View {
-    Button {
-      isPresented.toggle()
-    } label: {
-      ButtonView(systemName: "star.fill", title: "Rate This Recipe")
-        .accessibilityIdentifier("review-button")
-    }
-    .buttonStyle(.borderedProminent)
-    .tint(.red)
-    .sheet(isPresented: $isPresented) {
-      NewReviewFormView(
-        displayModal: $isPresented,
-        recipeId: recipeId
-      )
-      .presentationDetents([.medium])
-      .accessibilityIdentifier("review-sheet")
+    VStack {
+      Button {
+        isPresented.toggle()
+      } label: {
+        ButtonView(systemName: "star.fill", title: "Rate This Recipe")
+          .accessibilityIdentifier("review-button")
+      }
+      .buttonStyle(.borderedProminent)
+      .tint(.red)
+      .sheet(isPresented: $isPresented) {
+        NewReviewFormView(
+          isPresented: $isPresented,
+          recipeId: recipeId
+        )
+        .presentationDetents([.medium])
+        .accessibilityIdentifier("review-sheet")
+      }
     }
   }
 }

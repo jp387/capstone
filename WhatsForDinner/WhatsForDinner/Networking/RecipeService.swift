@@ -61,7 +61,7 @@ struct RecipeService: RecipeServiceProtocol {
       URLQueryItem(name: "type", value: "main course"),
       URLQueryItem(name: "instructionsRequired", value: "true"),
       URLQueryItem(name: "addRecipeNutrition", value: "true"),
-      URLQueryItem(name: "number", value: "100"),
+      URLQueryItem(name: "number", value: "50"),
       URLQueryItem(name: "apiKey", value: apiKey)
     ]
 

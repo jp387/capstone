@@ -39,7 +39,7 @@ struct FavoriteHeaderView: View {
       Text(recipe.title)
         .font(.headline)
         .frame(width: 350)
-      AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-480x360.jpg")) { image in
+      AsyncImage(url: recipe.fullImageURL) { image in
         image
       } placeholder: {
         ProgressView()
@@ -56,45 +56,17 @@ struct FavoriteHeaderView: View {
 struct FavoriteDataView: View {
   var recipe: Recipe
 
-  var pricePerServing: Double {
-    return Double(recipe.pricePerServing / 100.0)
-  }
-
-  var hours: Int {
-    return Int(recipe.readyInMinutes / 60)
-  }
-
-  var minutes: Int {
-    return Int(recipe.readyInMinutes - (hours * 60))
-  }
-
   var body: some View {
     HStack {
       VStack {
         Image("cheap")
-        Text("$\(String(format: "%.2f", pricePerServing)) per serving")
+        Text("$\(String(format: "%.2f", recipe.pricePerServingCost)) per serving")
           .font(.subheadline)
       }
       .padding()
       VStack {
         Image("fast")
-        if recipe.readyInMinutes >= 60 {
-          let hoursText = hours > 1 ? "hours" : "hour"
-
-          if minutes == 0 || minutes == 60 {
-            Text("Ready in \(hours) \(hoursText)")
-              .font(.subheadline)
-          } else if minutes == 1 {
-            Text("Ready in \(hours) \(hoursText) \(minutes) minute")
-              .font(.subheadline)
-          } else {
-            Text("Ready in \(hours) \(hoursText) \(minutes) minutes")
-              .font(.subheadline)
-          }
-        } else {
-          Text("Ready in \(recipe.readyInMinutes) minutes")
-            .font(.subheadline)
-        }
+        recipe.cookingTime
       }
       .padding()
     }
@@ -113,6 +85,7 @@ struct FavoriteSummaryView: View {
       Text(recipe.summary.stripHTML)
         .frame(width: 350)
       ReviewButtonView(recipeId: recipe.id)
+        .accessibilityIdentifier("favorite-detail-review-button")
     }
     .accessibilityIdentifier("favorite-recipe-summary")
   }

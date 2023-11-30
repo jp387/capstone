@@ -19,7 +19,7 @@ struct ViewCoordinator: View {
       if isOnboarding && isActive {
         OnboardingView()
       } else if !isOnboarding && isActive {
-        ContentView()
+        MainView()
       } else {
         SplashScreenView(isActive: $isActive)
       }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
   var body: some View {
     TabView {
       RecipeHomeView()
@@ -26,18 +26,18 @@ struct ContentView: View {
   }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView()
+    MainView()
       .environmentObject(ReviewRecipeViewModel())
       .environmentObject(FavoriteRecipeViewModel())
-    ContentView()
+    MainView()
       .environmentObject(ReviewRecipeViewModel())
       .environmentObject(FavoriteRecipeViewModel())
       .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))
       .previewInterfaceOrientation(.landscapeLeft)
       .preferredColorScheme(.dark)
-    ContentView()
+    MainView()
       .environmentObject(ReviewRecipeViewModel())
       .environmentObject(FavoriteRecipeViewModel())
       .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))

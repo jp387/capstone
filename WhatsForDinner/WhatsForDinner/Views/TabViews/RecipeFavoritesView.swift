@@ -16,7 +16,9 @@ struct RecipeFavoritesView: View {
     if favoriteSearch.isEmpty {
       return favoriteRecipeVM.favorite
     } else {
-      return favoriteRecipeVM.favorite.filter { $0.title.lowercased().contains(favoriteSearch.lowercased()) }
+      return favoriteRecipeVM.favorite.filter {
+        $0.title.lowercased().contains(favoriteSearch.lowercased())
+      }
     }
   }
 
@@ -47,8 +49,12 @@ struct RecipeFavoritesView: View {
       .listStyle(.plain)
     }
     .overlay {
-      if favoriteRecipeVM.favorite.isEmpty, favoriteSearch.isEmpty { DefaultFavoritesView() }
-      if filteredFavorites.isEmpty, !favoriteSearch.isEmpty { NoResultsView() }
+      if favoriteRecipeVM.favorite.isEmpty, favoriteSearch.isEmpty {
+        DefaultFavoritesView()
+      }
+      if filteredFavorites.isEmpty, !favoriteSearch.isEmpty {
+        NoResultsView()
+      }
     }
   }
 

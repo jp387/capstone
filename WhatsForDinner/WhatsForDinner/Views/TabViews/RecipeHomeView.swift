@@ -55,8 +55,12 @@ struct RecipeHomeView: View {
       //  }
       // }
       .overlay {
-        if randomRecipeVM.showFailureScreen { NoRecipesView() }
-        if randomRecipeVM.isLoading { LoadingProgressView() }
+        if randomRecipeVM.showFailureScreen {
+          NoRecipesView()
+        }
+        if randomRecipeVM.isLoading {
+          LoadingProgressView()
+        }
       }
     }
   }

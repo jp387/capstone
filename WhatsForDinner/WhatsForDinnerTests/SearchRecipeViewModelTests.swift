@@ -62,6 +62,6 @@ final class SearchRecipeViewModelTests: XCTestCase {
     XCTAssertFalse(searchRecipeVM.isLoading)
     XCTAssertEqual(searchRecipeVM.results, [])
     XCTAssertNil(searchRecipeVM.error)
-    XCTAssert(searchRecipeVM.showAlert)
+    XCTAssert(searchRecipeVM.showAlertPrompt)
   }
 }
