@@ -1,6 +1,6 @@
 //
 //  RandomRecipeViewModel.swift
-//  LastMinuteMeals
+//  WhatsForDinner
 //
 //  Created by John Phung on 11/12/23.
 //
@@ -9,28 +9,35 @@ import Foundation
 
 class RandomRecipeViewModel: ObservableObject {
   @Published var recipes: [Recipe] = []
-  @Published var showAlert = false
+  @Published var showAlertPrompt = false
   @Published var showError = false
   @Published var isLoading = false
   @Published var isBundle = false
+  @Published var showFailureScreen = false
   @Published var error: Error?
 
-  let service = RecipeService()
+  let service: RecipeServiceProtocol
+
+  init(service: RecipeServiceProtocol) {
+    self.service = service
+  }
+
+  var errorMessage: String {
+    if let error = error {
+      return error.localizedDescription
+    }
+    return ""
+  }
 
   @MainActor
-  func fetchRandomRecipe() async {
+  func fetchRandomRecipe() async throws {
     isLoading = true
     do {
-      if let results = try await service.getRandomRecipe(numberOfRecipes: 1) {
-        if results.recipes.isEmpty {
-          showAlert = true
-        } else {
-          for item in results.recipes {
-            recipes.append(item)
-          }
-        }
+      let results = try await service.getRandomRecipe()
+      if results.isEmpty {
+        showAlertPrompt = true
       } else {
-        showAlert = true
+        recipes = results
       }
     } catch {
       self.error = error
@@ -40,30 +47,30 @@ class RandomRecipeViewModel: ObservableObject {
   }
 
   @MainActor
-  func refreshRandomRecipe() async {
+  func refreshRandomRecipe() async throws {
     recipes.removeAll()
-    await fetchRandomRecipe()
+    try await fetchRandomRecipe()
   }
 
-  func fetchBundleRecipe() {
+  func fetchBundleRecipe(for bundle: String) {
     isLoading = true
     isBundle = true
     let decoder = JSONDecoder()
 
     if let recipeURL =
-      Bundle.main.url(forResource: "recipestub", withExtension: "json") {
+      Bundle.main.url(forResource: "\(bundle)", withExtension: "json") {
       do {
         let recipeData = try Data(contentsOf: recipeURL)
         recipes = try decoder.decode(Recipes.self, from: recipeData).recipes
         if recipes.isEmpty {
-          showAlert = true
+          showAlertPrompt = true
         }
       } catch {
         self.error = error
-        showAlert = true
+        showAlertPrompt = true
       }
     } else {
-      showAlert = true
+      showAlertPrompt = true
     }
     isLoading = false
   }

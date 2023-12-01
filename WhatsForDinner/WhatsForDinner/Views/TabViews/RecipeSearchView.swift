@@ -8,19 +8,8 @@
 import SwiftUI
 
 struct RecipeSearchView: View {
-  @Binding var searchResults: String
-  @ObservedObject var searchRecipeVM: SearchRecipeViewModel
-  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
+  @StateObject var searchRecipeVM = SearchRecipeViewModel(service: RecipeService())
   @State private var taskSearch: Task<Void, Error>?
-  @State private var showDefaultScreen = true
-  @State private var networkFailure = false
-
-  var errorMessage: String {
-    if let error = searchRecipeVM.error {
-      return error.localizedDescription
-    }
-    return ""
-  }
 
   var body: some View {
     NavigationStack {
@@ -28,43 +17,53 @@ struct RecipeSearchView: View {
         NavigationLink(value: result) {
           RecipeCardView(recipe: result)
         }
+        .accessibilityIdentifier("search-list")
         .listRowSeparator(.hidden)
       }
-      .toolbarBackground(.yellow, for: .navigationBar)
-      .toolbarBackground(.visible, for: .navigationBar)
       .navigationDestination(for: Recipe.self) { result in
         RecipeDetailView(recipe: result)
       }
+      .toolbarBackground(.yellow, for: .navigationBar)
+      .toolbarBackground(.visible, for: .navigationBar)
       .navigationTitle("Find Your Dinner")
-      .alert("Unable to fetch your dinner list. Try again later!", isPresented: $searchRecipeVM.showAlert) {
+      .alert("Unable to search your dinner list. Try again later!", isPresented: $searchRecipeVM.showAlertPrompt) {
         Button("OK") {
-          networkFailure = true
+          searchRecipeVM.showNoNetworkScreen = true
         }
       }
-      .alert(errorMessage, isPresented: $searchRecipeVM.showError) {
+      .alert(searchRecipeVM.errorMessage, isPresented: $searchRecipeVM.showErrorPrompt) {
         Button("OK") {
-          networkFailure = true
+          searchRecipeVM.showNoNetworkScreen = true
         }
       }
-      .searchable(text: $searchResults, prompt: "Search your dinner here...")
+      .searchable(text: $searchRecipeVM.searchResults, prompt: "Search your dinner here...")
       .listStyle(.plain)
-      .scrollIndicators(.hidden)
       .onSubmit(of: .search) {
         taskSearch?.cancel()
         taskSearch = Task {
-          showDefaultScreen = false
-          networkFailure = false
-          if searchRecipeVM.noResults { searchRecipeVM.noResults = false }
+          searchRecipeVM.showDefaultScreen = false
+          searchRecipeVM.showNoNetworkScreen = false
+          if searchRecipeVM.noResults {
+            searchRecipeVM.noResults = false
+          }
           searchRecipeVM.results.removeAll()
-          await searchRecipeVM.fetchSearchResults(for: searchResults)
+          await searchRecipeVM.fetchSearchResults(for: searchRecipeVM.searchResults)
         }
       }
     }
     .overlay {
-      if showDefaultScreen { DefaultSearchView() }
-      if networkFailure { NoRecipesView() }
-      if searchRecipeVM.isLoading { LoadingProgressView() }
-      if searchRecipeVM.noResults { NoResultsView() }
+      if searchRecipeVM.showDefaultScreen {
+        DefaultSearchView()
+      }
+      if searchRecipeVM.showNoNetworkScreen {
+        NoRecipesView()
+      }
+      if searchRecipeVM.isLoading {
+        LoadingProgressView()
+      }
+      if searchRecipeVM.noResults {
+        NoResultsView()
+      }
     }
   }
 }
@@ -75,8 +74,7 @@ struct RecipeSearchView_Previews: PreviewProvider {
 
     var body: some View {
       RecipeSearchView(
-        searchResults: $searchTerm,
-        searchRecipeVM: SearchRecipeViewModel()
+        searchRecipeVM: SearchRecipeViewModel(service: RecipeService())
       )
     }
   }

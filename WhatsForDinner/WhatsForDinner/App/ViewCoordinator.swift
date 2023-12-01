@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct ViewCoordinator: View {
-  @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
-  @EnvironmentObject var favoriteRecipeVM: FavoriteRecipeViewModel
-
   @State private var isActive = false
   @AppStorage(
     "isOnboarding"
@@ -22,7 +19,7 @@ struct ViewCoordinator: View {
       if isOnboarding && isActive {
         OnboardingView()
       } else if !isOnboarding && isActive {
-        ContentView()
+        MainView()
       } else {
         SplashScreenView(isActive: $isActive)
       }

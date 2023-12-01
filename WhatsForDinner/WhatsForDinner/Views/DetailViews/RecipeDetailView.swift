@@ -15,95 +15,73 @@ struct RecipeDetailView: View {
   var body: some View {
     ScrollView(showsIndicators: false) {
       VStack {
-        TitleView(recipe: recipe)
-        DataView(recipe: recipe)
+        RecipeHeaderView(recipe: recipe)
+        RecipeInformationView(recipe: recipe)
         Divider()
-        SummaryView(recipe: recipe)
+        RecipeSummaryView(recipe: recipe)
         Divider()
-        IngredientsView(recipe: recipe)
+        RecipeIngredientsView(recipe: recipe)
         Divider()
-        InstructionsView(recipe: recipe)
+        RecipeInstructionsView(recipe: recipe)
         Divider()
-        ReviewsView(recipe: recipe)
+        RecipeReviewsView(recipe: recipe)
       }
     }
     .navigationBarTitleDisplayMode(.inline)
+    .accessibilityIdentifier("recipe-details")
   }
 }
 
-struct TitleView: View {
+struct RecipeHeaderView: View {
   var recipe: Recipe
 
   var body: some View {
     VStack {
       Text(recipe.title)
         .font(.headline)
-        .frame(width: 350)
+        .frame(width: Constants.RecipeDetail.detailFrameWidth)
       ZStack {
-        AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-480x360.jpg")) { image in
+        AsyncImage(url: recipe.fullImageURL) { image in
           image
         } placeholder: {
           ProgressView()
             .tint(.red)
             .controlSize(.large)
         }
-        .frame(width: 480, height: 360)
+        .frame(
+          width: Constants.RecipeDetail.headerImageWidth,
+          height: Constants.RecipeDetail.headerImageHeight)
         .background(.gray)
         FavoriteButtonView(recipe: recipe)
+          .accessibilityIdentifier("favorite-button")
       }
     }
+    .accessibilityIdentifier("recipe-header")
   }
 }
 
-struct DataView: View {
+struct RecipeInformationView: View {
   var recipe: Recipe
-
-  var pricePerServing: Double {
-    return Double(recipe.pricePerServing / 100.0)
-  }
-
-  var hours: Int {
-    return Int(recipe.readyInMinutes / 60)
-  }
-
-  var minutes: Int {
-    return Int(recipe.readyInMinutes - (hours * 60))
-  }
 
   var body: some View {
     HStack {
       VStack {
         Image("cheap")
-        Text("$\(String(format: "%.2f", pricePerServing)) per serving")
+        Text("$\(String(format: "%.2f", recipe.pricePerServingCost)) per serving")
           .font(.subheadline)
       }
       .padding()
       VStack {
         Image("fast")
-        if recipe.readyInMinutes >= 60 {
-          let hoursText = hours > 1 ? "hours" : "hour"
-
-          if minutes == 0 || minutes == 60 {
-            Text("Ready in \(hours) \(hoursText)")
-              .font(.subheadline)
-          } else if minutes == 1 {
-            Text("Ready in \(hours) \(hoursText) \(minutes) minute")
-              .font(.subheadline)
-          } else {
-            Text("Ready in \(hours) \(hoursText) \(minutes) minutes")
-              .font(.subheadline)
-          }
-        } else {
-          Text("Ready in \(recipe.readyInMinutes) minutes")
-            .font(.subheadline)
-        }
+        recipe.cookingTime
       }
       .padding()
     }
+    .accessibilityIdentifier("recipe-data")
   }
 }
 
-struct SummaryView: View {
+struct RecipeSummaryView: View {
   var recipe: Recipe
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
@@ -112,13 +90,15 @@ struct SummaryView: View {
       Text("Summary")
         .padding()
       Text(recipe.summary.stripHTML)
-        .frame(width: 350)
+        .frame(width: Constants.RecipeDetail.detailFrameWidth)
       ReviewButtonView(recipeId: recipe.id)
+        .accessibilityIdentifier("recipe-detail-review-button")
     }
+    .accessibilityIdentifier("recipe-summary")
   }
 }
 
-struct IngredientsView: View {
+struct RecipeIngredientsView: View {
   var recipe: Recipe
 
   var body: some View {
@@ -129,11 +109,12 @@ struct IngredientsView: View {
         Text("* \(ingredient.original ?? "")")
       }
     }
-    .frame(width: 350)
+    .frame(width: Constants.RecipeDetail.detailFrameWidth)
+    .accessibilityIdentifier("recipe-ingredients")
   }
 }
 
-struct InstructionsView: View {
+struct RecipeInstructionsView: View {
   var recipe: Recipe
 
   var body: some View {
@@ -146,11 +127,12 @@ struct InstructionsView: View {
         }
       }
     }
-    .frame(width: 350)
+    .frame(width: Constants.RecipeDetail.detailFrameWidth)
+    .accessibilityIdentifier("recipe-instructions")
   }
 }
 
-struct ReviewsView: View {
+struct RecipeReviewsView: View {
   var recipe: Recipe
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
@@ -165,16 +147,17 @@ struct ReviewsView: View {
       ForEach(filteredReviews) { review in
         Text("Posted on \(review.date)")
         Text("Rating: \(String(review.rating))")
-          .padding(.bottom, 5)
+          .padding(.bottom, Constants.RecipeDetail.reviewPadding)
         Text("Comment: \(review.comment)")
         Divider()
       }
     }
-    .frame(width: 350)
+    .frame(width: Constants.RecipeDetail.detailFrameWidth)
     .overlay {
       if filteredReviews.isEmpty { Text("No reviews for this recipe.") }
     }
-    .padding(5)
+    .padding(Constants.RecipeDetail.reviewPadding)
+    .accessibilityIdentifier("recipe-reviews")
   }
 }
 
@@ -188,10 +171,10 @@ struct FavoriteButtonView: View {
 
   var body: some View {
     Button {
-      if !favoriteRecipeExist {
-        addFavorites()
-      } else {
+      if favoriteRecipeExist {
         deleteFavorites()
+      } else {
+        addFavorites()
       }
     } label: {
       Image(systemName: favoriteRecipeExist ? "heart.fill" : "heart")

@@ -1,6 +1,6 @@
 //
 //  NewReviewFormView.swift
-//  LastMinuteMeals
+//  WhatsForDinner
 //
 //  Created by John Phung on 11/15/23.
 //
@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct NewReviewFormView: View {
-  @Binding var displayModal: Bool
-  @State private var selectedRating = 1
+  @Binding var isPresented: Bool
+  @State private var selectedRating = Constants.ReviewForm.defaultRating
   @State private var comments = ""
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
   @Environment (
@@ -27,9 +27,10 @@ struct NewReviewFormView: View {
         }
         Section("Write a Comment") {
           TextField("", text: $comments, axis: .vertical)
-            .lineLimit(5...)
+            .lineLimit(Constants.ReviewForm.defaultLineLimit...)
         }
       }
+      .accessibilityIdentifier("review-form")
       .navigationBarTitle(Text("Write a Review"), displayMode: .inline)
       .navigationBarItems(
         leading:
@@ -37,7 +38,9 @@ struct NewReviewFormView: View {
             dismiss()
           }, label: {
             Text("Cancel")
-          }),
+          })
+          .accessibilityIdentifier("form-cancel")
+        ,
         trailing:
           Button(action: {
             addReview()
@@ -45,6 +48,7 @@ struct NewReviewFormView: View {
             Text("Add")
           })
           .disabled(comments.isEmpty)
+          .accessibilityIdentifier("form-submit")
       )
     }
   }
@@ -54,7 +58,7 @@ struct NewReviewFormView: View {
       recipeId: recipeId,
       rating: selectedRating,
       comment: comments)
-    displayModal.toggle()
+    isPresented.toggle()
   }
 }
 
@@ -97,7 +101,7 @@ struct RatingView: View {
 struct NewReviewFormView_Previews: PreviewProvider {
   static var previews: some View {
     NewReviewFormView(
-      displayModal: .constant(true),
+      isPresented: .constant(true),
       recipeId: 10
     )
     .environmentObject(ReviewRecipeViewModel())

@@ -1,6 +1,6 @@
 //
-//  DefaultView.swift
-//  Homework09
+//  DefaultSearchView.swift
+//  WhatsForDinner
 //
 //  Created by John Phung on 10/26/23.
 //
@@ -12,11 +12,14 @@ struct DefaultSearchView: View {
     VStack {
       HStack {
         Image(systemName: "magnifyingglass")
-          .font(.system(size: 30))
+          .font(.system(size: Constants.General.imageFontSize))
           .foregroundColor(.yellow)
         .bold()
         Text("Not sure what to cook?!")
-          .font(.custom("MeowScript-regular", size: 35))
+          .font(.system(
+            size: Constants.DefaultView.textFontSize,
+            weight: .bold,
+            design: .rounded))
           .bold()
       }
       Text("Find your dinner recipes here!")

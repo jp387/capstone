@@ -10,8 +10,12 @@ import SwiftUI
 struct CardModifier: ViewModifier {
   func body(content: Content) -> some View {
     content
-      .cornerRadius(20)
-      .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 0)
+      .cornerRadius(Constants.RecipeCard.cardModifierCornerRadius)
+      .shadow(
+        color: Color.black.opacity(Constants.RecipeCard.cardModifierOpacity),
+        radius: Constants.RecipeCard.cardModifierCornerRadius,
+        x: Constants.RecipeCard.cardModifierXYAxis,
+        y: Constants.RecipeCard.cardModifierXYAxis)
   }
 }
 
@@ -20,62 +24,75 @@ struct RecipeCardView: View {
 
   var body: some View {
     HStack(alignment: .center) {
-      AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-90x90.jpg")) { image in
+      AsyncImage(url: recipe.thumbnailURL) { image in
         image
           .resizable()
-          .cornerRadius(10)
+          .cornerRadius(Constants.RecipeCard.imageCornerRadius)
           .aspectRatio(contentMode: .fit)
-          .frame(width: 90)
-          .padding(.all, 10)
+          .frame(width: Constants.RecipeCard.imageFrameSize)
+          .padding(.all, Constants.RecipeCard.imagePadding)
       } placeholder: {
         ProgressView()
           .tint(.red)
           .controlSize(.large)
       }
-      .frame(width: 90, height: 90)
+      .frame(
+        width: Constants.RecipeCard.imageFrameSize,
+        height: Constants.RecipeCard.imageFrameSize)
 
       VStack(alignment: .leading) {
         Text(recipe.title)
           .bold()
-          .foregroundColor(.white)
+          .foregroundColor(Color("CardTextColor"))
           .multilineTextAlignment(.leading)
-          .padding(.bottom, 5)
-        if recipe.readyInMinutes >= 60 {
-          let hours = Int(recipe.readyInMinutes / 60)
-          let minutes = Int(recipe.readyInMinutes - (hours * 60))
-          let hoursText = hours > 1 ? "hours" : "hour"
-
-          if minutes == 0 || minutes == 60 {
-            Text("Cooking Time: \(hours) \(hoursText)")
-              .foregroundColor(.white)
-              .font(.caption)
-          } else if minutes == 1 {
-            Text("Cooking Time: \(hours) \(hoursText) \(minutes) minute")
-              .foregroundColor(.white)
-              .font(.caption)
-          } else {
-            Text("Cooking Time: \(hours) \(hoursText) \(minutes) minutes")
-              .foregroundColor(.white)
-              .font(.caption)
-          }
-        } else {
-          Text("Cooking Time: \(recipe.readyInMinutes) minutes")
-            .foregroundColor(.white)
-            .font(.caption)
-        }
+          .padding(.bottom, Constants.RecipeCard.textPadding)
+        recipe.cardCookingTime
         Text("Serving: \(recipe.servings)")
-          .foregroundColor(.white)
+          .foregroundColor(Color("CardTextColor"))
           .font(.caption)
       }
-      .padding(.trailing, 20)
+      .padding(.trailing, Constants.RecipeCard.vStackPadding)
       Spacer()
     }
     .frame(maxWidth: .infinity, alignment: .center)
     .background(Color(
-      red: 32 / 255,
-      green: 36 / 255,
-      blue: 38 / 255))
+      red: 250 / 255,
+      green: 250 / 255,
+      blue: 250 / 255))
     .modifier(CardModifier())
-    .padding(.all, 10)
+    .padding(.all, Constants.RecipeCard.hStackPadding)
+  }
+}
+
+struct RecipeCardView_Previews: PreviewProvider {
+  static var previews: some View {
+    VStack {
+      RecipeCardView(
+        recipe: Recipe(
+          pricePerServing: 2.0,
+          extendedIngredients: [],
+          id: 10,
+          title: "Recipe",
+          readyInMinutes: 1,
+          servings: 2,
+          summary: "",
+          instructions: "",
+          analyzedInstructions: [])
+      )
+      .previewLayout(.sizeThatFits)
+      RecipeCardView(
+        recipe: Recipe(
+          pricePerServing: 2.0,
+          extendedIngredients: [],
+          id: 10,
+          title: "Recipe",
+          readyInMinutes: 120,
+          servings: 6,
+          summary: "",
+          instructions: "",
+          analyzedInstructions: [])
+      )
+      .previewLayout(.sizeThatFits)
+    }
   }
 }

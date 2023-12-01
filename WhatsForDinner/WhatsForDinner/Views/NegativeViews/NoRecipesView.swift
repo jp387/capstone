@@ -11,11 +11,14 @@ struct NoRecipesView: View {
   var body: some View {
     VStack {
       Image(systemName: "exclamationmark.circle.fill")
-        .font(.system(size: 30))
+        .font(.system(size: Constants.General.imageFontSize))
         .foregroundColor(.red)
         .bold()
       Text("No recipes to see here!")
-        .font(.custom("MeowScript-regular", size: 35))
+        .font(.system(
+          size: Constants.General.textFontSize,
+          weight: .bold,
+          design: .rounded))
         .bold()
       Text("Please try again later.")
         .font(.body)

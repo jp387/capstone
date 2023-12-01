@@ -12,10 +12,13 @@ struct DefaultFavoritesView: View {
     VStack {
       HStack {
         Image(systemName: "heart.slash.fill")
-          .font(.system(size: 25))
+          .font(.system(size: Constants.DefaultView.textFontSize))
         .foregroundColor(.red)
         Text("You don't have any favorite recipes.")
-          .font(.custom("MeowScript-regular", size: 30))
+          .font(.system(
+            size: Constants.DefaultView.textFavoriteFontSize,
+            weight: .bold,
+            design: .rounded))
           .bold()
       }
       Text("Tap the \(Image(systemName: "heart")) to favorite a recipe.")
@@ -25,6 +28,7 @@ struct DefaultFavoritesView: View {
         .font(.subheadline)
         .foregroundColor(.gray)
     }
+    .accessibilityIdentifier("default-favorite-view")
   }
 }
 

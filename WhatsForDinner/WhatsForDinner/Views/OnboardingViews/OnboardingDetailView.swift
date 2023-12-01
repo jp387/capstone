@@ -11,22 +11,28 @@ struct OnboardingDetailView: View {
   @AppStorage(
     "isOnboarding"
   )
-  var isOnboarding: Bool?
+  var isOnboarding = true
 
   let detail: OnboardingDetails
 
   var body: some View {
-    VStack(spacing: 0) {
+    VStack(spacing: Constants.Onboarding.vStackSpacing) {
       Text(detail.emoji)
-        .font(.system(size: 150))
+        .font(.system(size: Constants.Onboarding.emojiFontSize))
       Text(detail.title)
-        .font(.system(size: 35, weight: .heavy, design: .rounded))
-        .padding(.bottom, 12)
-        .foregroundColor(.yellow)
+        .font(.system(
+          size: Constants.Onboarding.detailFontSize,
+          weight: .heavy,
+          design: .rounded))
+        .padding(.bottom, Constants.Onboarding.detailPadding)
+        .foregroundColor(.red)
 
       Text(detail.content)
-        .font(.system(size: 18, weight: .light, design: .rounded))
-        .foregroundColor(.yellow)
+        .font(.system(
+          size: Constants.Onboarding.detailContentFontSize,
+          weight: .light,
+          design: .rounded))
+        .foregroundColor(.red)
 
       if detail.last {
         Button {
@@ -34,11 +40,14 @@ struct OnboardingDetailView: View {
         } label: {
           Text("Let's Go!")
             .bold()
-            .foregroundColor(.red)
-            .frame(width: 200, height: 50)
-            .background(.yellow)
-            .cornerRadius(6)
+            .foregroundColor(.yellow)
+            .frame(
+              width: Constants.Onboarding.buttonFrameWidth,
+              height: Constants.Onboarding.buttonFrameHeight)
+            .background(.red)
+            .cornerRadius(Constants.Onboarding.buttonRadius)
         }
+        .accessibilityIdentifier("onboarding-button")
         .padding()
       }
     }
@@ -56,6 +65,6 @@ struct OnboardingDetailView_Previews: PreviewProvider {
       content: "Making dinner tonight? Use our app!",
       last: true))
       .previewLayout(.sizeThatFits)
-      .background(.red)
+      .background(.yellow)
   }
 }

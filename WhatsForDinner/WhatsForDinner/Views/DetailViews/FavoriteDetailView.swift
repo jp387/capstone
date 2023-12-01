@@ -15,7 +15,7 @@ struct FavoriteDetailView: View {
   var body: some View {
     ScrollView(showsIndicators: false) {
       VStack {
-        FavoriteTitleView(recipe: recipe)
+        FavoriteHeaderView(recipe: recipe)
         FavoriteDataView(recipe: recipe)
         Divider()
         FavoriteSummaryView(recipe: recipe)
@@ -31,72 +31,48 @@ struct FavoriteDetailView: View {
   }
 }
 
-struct FavoriteTitleView: View {
+struct FavoriteHeaderView: View {
   var recipe: Recipe
 
   var body: some View {
     VStack {
       Text(recipe.title)
         .font(.headline)
-        .frame(width: 350)
-      AsyncImage(url: URL(string: "https://spoonacular.com/recipeImages/\(recipe.id)-480x360.jpg")) { image in
+        .frame(width: Constants.RecipeDetail.detailFrameWidth)
+      AsyncImage(url: recipe.fullImageURL) { image in
         image
       } placeholder: {
         ProgressView()
           .tint(.red)
           .controlSize(.large)
       }
-      .frame(width: 480, height: 360)
+      .frame(
+        width: Constants.RecipeDetail.headerImageWidth,
+        height: Constants.RecipeDetail.headerImageHeight)
       .background(.gray)
     }
+    .accessibilityIdentifier("favorite-recipe-header")
   }
 }
 
 struct FavoriteDataView: View {
   var recipe: Recipe
 
-  var pricePerServing: Double {
-    return Double(recipe.pricePerServing / 100.0)
-  }
-
-  var hours: Int {
-    return Int(recipe.readyInMinutes / 60)
-  }
-
-  var minutes: Int {
-    return Int(recipe.readyInMinutes - (hours * 60))
-  }
-
   var body: some View {
     HStack {
       VStack {
         Image("cheap")
-        Text("$\(String(format: "%.2f", pricePerServing)) per serving")
+        Text("$\(String(format: "%.2f", recipe.pricePerServingCost)) per serving")
           .font(.subheadline)
       }
       .padding()
       VStack {
         Image("fast")
-        if recipe.readyInMinutes >= 60 {
-          let hoursText = hours > 1 ? "hours" : "hour"
-
-          if minutes == 0 || minutes == 60 {
-            Text("Ready in \(hours) \(hoursText)")
-              .font(.subheadline)
-          } else if minutes == 1 {
-            Text("Ready in \(hours) \(hoursText) \(minutes) minute")
-              .font(.subheadline)
-          } else {
-            Text("Ready in \(hours) \(hoursText) \(minutes) minutes")
-              .font(.subheadline)
-          }
-        } else {
-          Text("Ready in \(recipe.readyInMinutes) minutes")
-            .font(.subheadline)
-        }
+        recipe.cookingTime
       }
       .padding()
     }
+    .accessibilityIdentifier("favorite-recipe-data")
   }
 }
 
@@ -109,9 +85,11 @@ struct FavoriteSummaryView: View {
       Text("Summary")
         .padding()
       Text(recipe.summary.stripHTML)
-        .frame(width: 350)
+        .frame(width: Constants.RecipeDetail.detailFrameWidth)
       ReviewButtonView(recipeId: recipe.id)
+        .accessibilityIdentifier("favorite-detail-review-button")
     }
+    .accessibilityIdentifier("favorite-recipe-summary")
   }
 }
 
@@ -126,7 +104,8 @@ struct FavoriteIngredientsView: View {
         Text("* \(ingredient.original ?? "")")
       }
     }
-    .frame(width: 350)
+    .frame(width: Constants.RecipeDetail.detailFrameWidth)
+    .accessibilityIdentifier("favorite-recipe-ingredients")
   }
 }
 
@@ -143,7 +122,8 @@ struct FavoriteInstructionsView: View {
         }
       }
     }
-    .frame(width: 350)
+    .frame(width: Constants.RecipeDetail.detailFrameWidth)
+    .accessibilityIdentifier("favorite-recipe-instructions")
   }
 }
 
@@ -162,15 +142,16 @@ struct FavoriteReviewsView: View {
       ForEach(filteredReviews) { review in
         Text("Posted on \(review.date)")
         Text("Rating: \(String(review.rating))")
-          .padding(.bottom, 5)
+          .padding(.bottom, Constants.RecipeDetail.reviewPadding)
         Text("Comment: \(review.comment)")
         Divider()
       }
     }
-    .frame(width: 350)
+    .frame(width: Constants.RecipeDetail.detailFrameWidth)
     .overlay {
       if filteredReviews.isEmpty { Text("No reviews for this recipe.") }
     }
-    .padding(5)
+    .padding(Constants.RecipeDetail.reviewPadding)
+    .accessibilityIdentifier("favorite-recipe-reviews")
   }
 }

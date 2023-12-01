@@ -1,6 +1,6 @@
 //
 //  ReviewButtonView.swift
-//  LastMinuteMeals
+//  WhatsForDinner
 //
 //  Created by John Phung on 11/15/23.
 //
@@ -13,19 +13,23 @@ struct ReviewButtonView: View {
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
 
   var body: some View {
-    Button {
-      isPresented.toggle()
-    } label: {
-      ButtonView(systemName: "star.fill", title: "Rate This Recipe")
-    }
-    .buttonStyle(.borderedProminent)
-    .tint(.red)
-    .sheet(isPresented: $isPresented) {
-      NewReviewFormView(
-        displayModal: $isPresented,
-        recipeId: recipeId
-      )
-      .presentationDetents([.medium])
+    VStack {
+      Button {
+        isPresented.toggle()
+      } label: {
+        ButtonView(systemName: "star.fill", title: "Rate This Recipe")
+          .accessibilityIdentifier("review-button")
+      }
+      .buttonStyle(.borderedProminent)
+      .tint(.red)
+      .sheet(isPresented: $isPresented) {
+        NewReviewFormView(
+          isPresented: $isPresented,
+          recipeId: recipeId
+        )
+        .presentationDetents([.medium])
+        .accessibilityIdentifier("review-sheet")
+      }
     }
   }
 }
@@ -38,7 +42,7 @@ struct ButtonView: View {
     HStack {
       Image(systemName: systemName)
         .foregroundColor(.yellow)
-        .padding(.bottom, 5)
+        .padding(.bottom, Constants.RecipeDetail.reviewPadding)
       Text(title)
         .bold()
         .font(.subheadline)

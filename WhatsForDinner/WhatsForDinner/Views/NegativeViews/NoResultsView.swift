@@ -1,6 +1,6 @@
 //
 //  NoResultsView.swift
-//  Homework09
+//  WhatsForDinner
 //
 //  Created by John Phung on 10/26/23.
 //
@@ -11,11 +11,14 @@ struct NoResultsView: View {
   var body: some View {
     VStack {
       Image(systemName: "magnifyingglass")
-        .font(.system(size: 30))
+        .font(.system(size: Constants.General.imageFontSize))
         .foregroundColor(.yellow)
         .bold()
       Text("No Results")
-        .font(.custom("MeowScript-regular", size: 35))
+        .font(.system(
+          size: Constants.General.textFontSize,
+          weight: .bold,
+          design: .rounded))
         .bold()
       Text("Check the spelling or try a new search.")
         .font(.subheadline)

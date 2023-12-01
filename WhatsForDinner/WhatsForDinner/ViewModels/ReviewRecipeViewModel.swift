@@ -1,6 +1,6 @@
 //
-//  NewRecipeReviewVM.swift
-//  LastMinuteMeals
+//  ReviewRecipeViewModel.swift
+//  WhatsForDinner
 //
 //  Created by John Phung on 11/16/23.
 //
@@ -29,8 +29,16 @@ class ReviewRecipeViewModel: ObservableObject {
     do {
       let data = try Data(contentsOf: reviewsURL)
       review = try decoder.decode(Reviews.self, from: data).reviews
+    } catch DecodingError.dataCorrupted(let context) {
+      print("Data corrupted: \(context.debugDescription)")
+    } catch DecodingError.keyNotFound(let key, let context) {
+      print("Key '\(key.stringValue)' not found: \(context.debugDescription)")
+    } catch DecodingError.typeMismatch(let type, let context) {
+      print("Type mismatch for type \(type): \(context.debugDescription)")
+    } catch DecodingError.valueNotFound(let type, let context) {
+      print("Value not found for type \(type): \(context.debugDescription)")
     } catch {
-      print(error.localizedDescription)
+      print("Other decoding error: \(error)")
     }
   }
 

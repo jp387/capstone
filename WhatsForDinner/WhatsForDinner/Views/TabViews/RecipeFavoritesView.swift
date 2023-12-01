@@ -16,7 +16,9 @@ struct RecipeFavoritesView: View {
     if favoriteSearch.isEmpty {
       return favoriteRecipeVM.favorite
     } else {
-      return favoriteRecipeVM.favorite.filter { $0.title.lowercased().contains(favoriteSearch.lowercased()) }
+      return favoriteRecipeVM.favorite.filter {
+        $0.title.lowercased().contains(favoriteSearch.lowercased())
+      }
     }
   }
 
@@ -31,10 +33,12 @@ struct RecipeFavoritesView: View {
               } label: {
                 Label("Remove", systemImage: "trash")
               }
+              .accessibilityIdentifier("delete-favorite")
             }
         }
         .listRowSeparator(.hidden)
       }
+      .accessibilityIdentifier("favorite-list")
       .toolbarBackground(.yellow, for: .navigationBar)
       .toolbarBackground(.visible, for: .navigationBar)
       .navigationDestination(for: Recipe.self) { recipe in
@@ -42,12 +46,15 @@ struct RecipeFavoritesView: View {
       }
       .navigationTitle("Favorited Recipes")
       .searchable(text: $favoriteSearch, prompt: "Search for your favorited recipes")
-      .scrollIndicators(.hidden)
       .listStyle(.plain)
     }
     .overlay {
-      if favoriteRecipeVM.favorite.isEmpty, favoriteSearch.isEmpty { DefaultFavoritesView() }
-      if filteredFavorites.isEmpty, !favoriteSearch.isEmpty { NoResultsView() }
+      if favoriteRecipeVM.favorite.isEmpty, favoriteSearch.isEmpty {
+        DefaultFavoritesView()
+      }
+      if filteredFavorites.isEmpty, !favoriteSearch.isEmpty {
+        NoResultsView()
+      }
     }
   }
 

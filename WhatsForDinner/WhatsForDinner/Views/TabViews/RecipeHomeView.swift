@@ -8,16 +8,8 @@
 import SwiftUI
 
 struct RecipeHomeView: View {
-  @ObservedObject var randomRecipeVM: RandomRecipeViewModel
+  @StateObject var randomRecipeVM = RandomRecipeViewModel(service: RecipeService())
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
-  @State private var networkFailure = false
-
-  var errorMessage: String {
-    if let error = randomRecipeVM.error {
-      return error.localizedDescription
-    }
-    return ""
-  }
 
   var body: some View {
     NavigationStack {
@@ -27,38 +19,49 @@ struct RecipeHomeView: View {
         }
         .listRowSeparator(.hidden)
       }
+      .accessibilityIdentifier("recipe-list")
       .navigationDestination(for: Recipe.self) { recipe in
         RecipeDetailView(recipe: recipe)
       }
-      .alert("Unable to fetch your dinner list. Try again later!", isPresented: $randomRecipeVM.showAlert) {
+      .alert("Unable to fetch your dinner list. Try again later!", isPresented: $randomRecipeVM.showAlertPrompt) {
         Button("OK") {
-          networkFailure = true
+          randomRecipeVM.showFailureScreen = true
         }
+        .accessibilityIdentifier("list-failure-prompt")
       }
-      .alert(errorMessage, isPresented: $randomRecipeVM.showError) {
+      .alert(randomRecipeVM.errorMessage, isPresented: $randomRecipeVM.showError) {
         Button("OK") {
-          networkFailure = true
+          randomRecipeVM.showFailureScreen = true
         }
+        .accessibilityIdentifier("network-failure-prompt")
       }
       .navigationTitle("Dinner Recipes")
       .toolbar {
         RefreshButtonView(randomRecipeVM: randomRecipeVM)
       }
-      .toolbarBackground(.red, for: .navigationBar)
+      .toolbarBackground(.yellow, for: .navigationBar)
       .toolbarBackground(.visible, for: .navigationBar)
-      .scrollIndicators(.hidden)
       .listStyle(.plain)
+      // .onAppear {
+      //  if randomRecipeVM.recipes.isEmpty {
+      //    randomRecipeVM.fetchBundleRecipe(for: "recipestub")
+      //  }
+      // }
       .task {
         if randomRecipeVM.recipes.isEmpty {
-          randomRecipeVM.fetchBundleRecipe()
-          //  await randomRecipeVM.fetchRandomRecipe()
-          //  networkFailure = false
+          do {
+            try await randomRecipeVM.fetchRandomRecipe()
+          } catch { }
         }
       }
-    }
-    .overlay {
-      if networkFailure { NoRecipesView() }
-      if randomRecipeVM.isLoading { LoadingProgressView() }
+      .overlay {
+        if randomRecipeVM.showFailureScreen {
+          NoRecipesView()
+        }
+        if randomRecipeVM.isLoading {
+          LoadingProgressView()
+        }
+      }
     }
   }
 }
@@ -70,22 +73,25 @@ struct RefreshButtonView: View {
   var body: some View {
     Button {
       Task {
-        await randomRecipeVM.refreshRandomRecipe()
+        try await randomRecipeVM.refreshRandomRecipe()
       }
       isSpinning.toggle()
     } label: {
       Image(systemName: "arrow.clockwise")
-        .rotationEffect(.degrees(isSpinning ? 0 : 360))
-        .animation(.easeInOut(duration: 1), value: isSpinning)
+        .rotationEffect(.degrees(
+          isSpinning ? Constants.HomeView.rotationEffectDefault : Constants.HomeView.rotationEffectFullCircle))
+        .animation(.easeInOut(
+          duration: Constants.General.animationDuration), value: isSpinning)
     }
-    .foregroundColor(.yellow)
+    .accessibilityIdentifier("refresh-button")
+    .foregroundColor(.red)
     .disabled(randomRecipeVM.isBundle)
   }
 }
 
 struct RecipeHomeView_Previews: PreviewProvider {
   static var previews: some View {
-    RecipeHomeView(randomRecipeVM: RandomRecipeViewModel())
+    RecipeHomeView(randomRecipeVM: RandomRecipeViewModel(service: RecipeService()))
       .environmentObject(ReviewRecipeViewModel())
       .environmentObject(FavoriteRecipeViewModel())
   }

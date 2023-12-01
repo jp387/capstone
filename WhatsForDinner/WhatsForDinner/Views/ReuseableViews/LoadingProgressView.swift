@@ -10,23 +10,25 @@ import SwiftUI
 struct LoadingProgressView: View {
   var body: some View {
     ZStack {
-      RoundedRectangle(cornerRadius: 0)
+      RoundedRectangle(cornerRadius: Constants.ProgressView.roundedRectangleCornerRadius)
         .ignoresSafeArea()
         .foregroundColor(.gray)
-        .opacity(0.1)
+        .opacity(Constants.ProgressView.roundedRectangleOpacity)
       VStack {
         ProgressView()
           .tint(.yellow)
           .controlSize(.large)
-          .padding(5)
+          .padding(Constants.ProgressView.progressViewPadding)
         Text("Please wait...")
           .font(.title3)
           .fontWeight(.semibold)
           .foregroundColor(.black)
       }
-      .frame(width: 150, height: 150)
+      .frame(
+        width: Constants.ProgressView.vStackFrameSize,
+        height: Constants.ProgressView.vStackFrameSize)
       .background(.white)
-      .cornerRadius(16)
+      .cornerRadius(Constants.ProgressView.vStackCornerRadius)
     }
   }
 }

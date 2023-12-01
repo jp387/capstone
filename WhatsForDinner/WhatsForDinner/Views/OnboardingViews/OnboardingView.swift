@@ -9,11 +9,10 @@ import SwiftUI
 
 struct OnboardingView: View {
   @StateObject private var onboardingVM = OnboardingViewModel()
-  @State private var showButton = false
 
   var body: some View {
     ZStack {
-      Color.red.ignoresSafeArea()
+      Color.yellow.ignoresSafeArea()
 
       if !onboardingVM.details.isEmpty {
         TabView {
@@ -22,10 +21,11 @@ struct OnboardingView: View {
           }
         }
         .tabViewStyle(.page)
-        .indexViewStyle(.page(backgroundDisplayMode: .never))
+        .indexViewStyle(.page(backgroundDisplayMode: .always))
       }
     }
     .onAppear(perform: onboardingVM.loadDetails)
+    .accessibilityIdentifier("onboarding-view")
   }
 }
 
