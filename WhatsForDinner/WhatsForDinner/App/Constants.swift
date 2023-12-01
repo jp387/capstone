@@ -11,6 +11,10 @@ enum Constants {
   enum General {
     public static let imageFontSize = CGFloat(30)
     public static let textFontSize = CGFloat(35)
+    public static let georgiaFontSize = CGFloat(13)
+    public static let georgiaFontLargeSize = CGFloat(18)
+    public static let georgiaBoldFontSize = CGFloat(18)
+    public static let georgiaBoldFontSmallSize = CGFloat(13)
     public static let animationDuration: Double = 1
   }
 
@@ -45,7 +49,7 @@ enum Constants {
     public static let imageFrameSize = CGFloat(90)
     public static let imagePadding = CGFloat(10)
     public static let textPadding = CGFloat(5)
-    public static let vStackPadding = CGFloat(20)
+    public static let vStackPadding = CGFloat(5)
     public static let hStackPadding = CGFloat(10)
   }
 
@@ -73,6 +77,7 @@ enum Constants {
     public static let headerImageWidth = CGFloat(480)
     public static let headerImageHeight = CGFloat(360)
     public static let reviewPadding = CGFloat(5)
+    public static let starFontSize = CGFloat(13)
   }
 
   enum ReviewForm {

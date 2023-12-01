@@ -51,24 +51,24 @@ struct Recipe: Codable, Hashable, Equatable, Identifiable {
       if minutes == 0 || minutes == 60 {
         Text("Cooking Time: \(hours) \(hoursText)")
           .foregroundColor(Color("CardTextColor"))
-          .font(.caption)
+          .font(.custom("Georgia", size: Constants.General.georgiaFontSize))
       } else if minutes == 1 {
         Text("Cooking Time: \(hours) \(hoursText) \(minutes) minute")
           .foregroundColor(Color("CardTextColor"))
-          .font(.caption)
+          .font(.custom("Georgia", size: Constants.General.georgiaFontSize))
       } else {
         Text("Cooking Time: \(hours) \(hoursText) \(minutes) minutes")
           .foregroundColor(Color("CardTextColor"))
-          .font(.caption)
+          .font(.custom("Georgia", size: Constants.General.georgiaFontSize))
       }
     } else if readyInMinutes == 1 {
       Text("Cooking Time: \(readyInMinutes) minute")
         .foregroundColor(Color("CardTextColor"))
-        .font(.caption)
+        .font(.custom("Georgia", size: Constants.General.georgiaFontSize))
     } else {
       Text("Cooking Time: \(readyInMinutes) minutes")
         .foregroundColor(Color("CardTextColor"))
-        .font(.caption)
+        .font(.custom("Georgia", size: Constants.General.georgiaFontSize))
     }
   }
 
@@ -80,21 +80,20 @@ struct Recipe: Codable, Hashable, Equatable, Identifiable {
       let hoursText = hours > 1 ? "hours" : "hour"
       if minutes == 0 || minutes == 60 {
         Text("Ready in \(hours) \(hoursText)")
-          .font(.subheadline)
+          .font(.custom("Georgia-Bold", size: Constants.General.georgiaBoldFontSmallSize))
       } else if minutes == 1 {
         Text("Ready in \(hours) \(hoursText) \(minutes) minute")
-          .font(.subheadline)
+          .font(.custom("Georgia-Bold", size: Constants.General.georgiaBoldFontSmallSize))
       } else {
         Text("Ready in \(hours) \(hoursText) \(minutes) minutes")
-          .font(.subheadline)
+          .font(.custom("Georgia-Bold", size: Constants.General.georgiaBoldFontSmallSize))
       }
     } else if readyInMinutes == 1 {
-      Text("Cooking Time: \(readyInMinutes) minute")
-        .foregroundColor(Color("CardTextColor"))
-        .font(.caption)
+      Text("Ready in \(readyInMinutes) minute")
+        .font(.custom("Georgia-Bold", size: Constants.General.georgiaBoldFontSmallSize))
     } else {
       Text("Ready in \(readyInMinutes) minutes")
-        .font(.subheadline)
+        .font(.custom("Georgia-Bold", size: Constants.General.georgiaBoldFontSmallSize))
     }
   }
 }

@@ -42,16 +42,16 @@ struct RecipeCardView: View {
 
       VStack(alignment: .leading) {
         Text(recipe.title)
-          .bold()
+          .font(.custom("Georgia-Bold", size: Constants.General.georgiaBoldFontSize))
           .foregroundColor(Color("CardTextColor"))
           .multilineTextAlignment(.leading)
           .padding(.bottom, Constants.RecipeCard.textPadding)
         recipe.cardCookingTime
         Text("Serving: \(recipe.servings)")
           .foregroundColor(Color("CardTextColor"))
-          .font(.caption)
+          .font(.custom("Georgia", size: Constants.General.georgiaFontSize))
       }
-      .padding(.trailing, Constants.RecipeCard.vStackPadding)
+      .padding(.all, Constants.RecipeCard.vStackPadding)
       Spacer()
     }
     .frame(maxWidth: .infinity, alignment: .center)
@@ -72,7 +72,7 @@ struct RecipeCardView_Previews: PreviewProvider {
           pricePerServing: 2.0,
           extendedIngredients: [],
           id: 10,
-          title: "Recipe",
+          title: "Smoky Black Bean Soup With Sweet Potato & Kale",
           readyInMinutes: 1,
           servings: 2,
           summary: "",

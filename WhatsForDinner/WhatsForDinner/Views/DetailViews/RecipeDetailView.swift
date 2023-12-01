@@ -38,7 +38,7 @@ struct RecipeHeaderView: View {
   var body: some View {
     VStack {
       Text(recipe.title)
-        .font(.headline)
+        .font(.custom("Georgia-Bold", size: Constants.General.georgiaBoldFontSize))
         .frame(width: Constants.RecipeDetail.detailFrameWidth)
       ZStack {
         AsyncImage(url: recipe.fullImageURL) { image in
@@ -68,7 +68,7 @@ struct RecipeInformationView: View {
       VStack {
         Image("cheap")
         Text("$\(String(format: "%.2f", recipe.pricePerServingCost)) per serving")
-          .font(.subheadline)
+          .font(.custom("Georgia-Bold", size: Constants.General.georgiaBoldFontSmallSize))
       }
       .padding()
       VStack {
@@ -88,8 +88,10 @@ struct RecipeSummaryView: View {
   var body: some View {
     VStack {
       Text("Summary")
+        .font(.custom("Georgia-Bold", size: Constants.General.georgiaBoldFontSize, relativeTo: .headline))
         .padding()
       Text(recipe.summary.stripHTML)
+        .font(.custom("Georgia", size: Constants.General.georgiaFontLargeSize))
         .frame(width: Constants.RecipeDetail.detailFrameWidth)
       ReviewButtonView(recipeId: recipe.id)
         .accessibilityIdentifier("recipe-detail-review-button")
@@ -103,10 +105,12 @@ struct RecipeIngredientsView: View {
 
   var body: some View {
     Text("Ingredients")
+      .font(.custom("Georgia-Bold", size: Constants.General.georgiaBoldFontSize))
       .padding()
     VStack(alignment: .leading) {
       ForEach(recipe.extendedIngredients, id: \.id) { ingredient in
         Text("* \(ingredient.original ?? "")")
+          .font(.custom("Georgia", size: Constants.General.georgiaFontLargeSize))
       }
     }
     .frame(width: Constants.RecipeDetail.detailFrameWidth)
@@ -119,11 +123,13 @@ struct RecipeInstructionsView: View {
 
   var body: some View {
     Text("Cooking Instructions")
+      .font(.custom("Georgia-Bold", size: Constants.General.georgiaBoldFontSize))
       .padding()
     VStack(alignment: .leading) {
       if let instructions = recipe.analyzedInstructions.first {
         ForEach(instructions.steps, id: \.number) { instruction in
           Text("\(String(instruction.number)). \(instruction.step)")
+            .font(.custom("Georgia", size: Constants.General.georgiaFontLargeSize))
         }
       }
     }
@@ -142,19 +148,31 @@ struct RecipeReviewsView: View {
 
   var body: some View {
     Text("Reviews")
+      .font(.custom("Georgia-Bold", size: Constants.General.georgiaBoldFontSize))
       .padding()
     VStack(alignment: .leading) {
       ForEach(filteredReviews) { review in
         Text("Posted on \(review.date)")
-        Text("Rating: \(String(review.rating))")
-          .padding(.bottom, Constants.RecipeDetail.reviewPadding)
+          .font(.custom("Georgia", size: Constants.General.georgiaFontLargeSize))
+        HStack(spacing: 0) {
+          Text("Rating: \(String(review.rating))")
+            .font(.custom("Georgia", size: Constants.General.georgiaFontLargeSize))
+            .padding(.bottom, Constants.RecipeDetail.reviewPadding)
+          Image(systemName: "star.fill")
+            .foregroundColor(.yellow)
+            .font(.system(size: Constants.RecipeDetail.starFontSize))
+        }
         Text("Comment: \(review.comment)")
+          .font(.custom("Georgia", size: Constants.General.georgiaFontLargeSize))
         Divider()
       }
     }
     .frame(width: Constants.RecipeDetail.detailFrameWidth)
     .overlay {
-      if filteredReviews.isEmpty { Text("No reviews for this recipe.") }
+      if filteredReviews.isEmpty {
+        Text("No reviews for this recipe.")
+          .font(.custom("Georgia", size: Constants.General.georgiaFontLargeSize))
+      }
     }
     .padding(Constants.RecipeDetail.reviewPadding)
     .accessibilityIdentifier("recipe-reviews")
@@ -222,7 +240,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
         ],
         id: 633265,
         title: "Bacon & Egg Toast Cups",
-        readyInMinutes: 45,
+        readyInMinutes: 630,
         servings: 2,
         summary:
         """
@@ -252,6 +270,10 @@ struct RecipeDetailView_Previews: PreviewProvider {
     ]
 
     RecipeDetailView(recipe: recipe[0])
+      .environmentObject(ReviewRecipeViewModel())
+      .environmentObject(FavoriteRecipeViewModel())
+    RecipeDetailView(recipe: recipe[0])
+      .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))
       .environmentObject(ReviewRecipeViewModel())
       .environmentObject(FavoriteRecipeViewModel())
   }
