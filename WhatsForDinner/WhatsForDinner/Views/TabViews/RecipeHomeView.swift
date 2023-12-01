@@ -42,18 +42,18 @@ struct RecipeHomeView: View {
       .toolbarBackground(.yellow, for: .navigationBar)
       .toolbarBackground(.visible, for: .navigationBar)
       .listStyle(.plain)
-      .onAppear {
-        if randomRecipeVM.recipes.isEmpty {
-          randomRecipeVM.fetchBundleRecipe(for: "recipestub")
-        }
-      }
-      // .task {
+      // .onAppear {
       //  if randomRecipeVM.recipes.isEmpty {
-      //    do {
-      //      try await randomRecipeVM.fetchRandomRecipe()
-      //    } catch { }
+      //    randomRecipeVM.fetchBundleRecipe(for: "recipestub")
       //  }
       // }
+      .task {
+        if randomRecipeVM.recipes.isEmpty {
+          do {
+            try await randomRecipeVM.fetchRandomRecipe()
+          } catch { }
+        }
+      }
       .overlay {
         if randomRecipeVM.showFailureScreen {
           NoRecipesView()
@@ -78,8 +78,10 @@ struct RefreshButtonView: View {
       isSpinning.toggle()
     } label: {
       Image(systemName: "arrow.clockwise")
-        .rotationEffect(.degrees(isSpinning ? 0 : 360))
-        .animation(.easeInOut(duration: 1), value: isSpinning)
+        .rotationEffect(.degrees(
+          isSpinning ? Constants.HomeView.rotationEffectDefault : Constants.HomeView.rotationEffectFullCircle))
+        .animation(.easeInOut(
+          duration: Constants.General.animationDuration), value: isSpinning)
     }
     .accessibilityIdentifier("refresh-button")
     .foregroundColor(.red)

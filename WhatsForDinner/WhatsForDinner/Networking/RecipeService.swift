@@ -29,7 +29,7 @@ struct RecipeService: RecipeServiceProtocol {
     }
 
     urlComponents.queryItems = [
-      URLQueryItem(name: "number", value: "25"),
+      URLQueryItem(name: "number", value: "\(Constants.Service.randomRecipeCount)"),
       URLQueryItem(name: "apiKey", value: apiKey)
     ]
 
@@ -61,7 +61,7 @@ struct RecipeService: RecipeServiceProtocol {
       URLQueryItem(name: "type", value: "main course"),
       URLQueryItem(name: "instructionsRequired", value: "true"),
       URLQueryItem(name: "addRecipeNutrition", value: "true"),
-      URLQueryItem(name: "number", value: "50"),
+      URLQueryItem(name: "number", value: "\(Constants.Service.searchResultCount)"),
       URLQueryItem(name: "apiKey", value: apiKey)
     ]
 

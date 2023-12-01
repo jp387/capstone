@@ -38,7 +38,7 @@ struct FavoriteHeaderView: View {
     VStack {
       Text(recipe.title)
         .font(.headline)
-        .frame(width: 350)
+        .frame(width: Constants.RecipeDetail.detailFrameWidth)
       AsyncImage(url: recipe.fullImageURL) { image in
         image
       } placeholder: {
@@ -46,7 +46,9 @@ struct FavoriteHeaderView: View {
           .tint(.red)
           .controlSize(.large)
       }
-      .frame(width: 480, height: 360)
+      .frame(
+        width: Constants.RecipeDetail.headerImageWidth,
+        height: Constants.RecipeDetail.headerImageHeight)
       .background(.gray)
     }
     .accessibilityIdentifier("favorite-recipe-header")
@@ -83,7 +85,7 @@ struct FavoriteSummaryView: View {
       Text("Summary")
         .padding()
       Text(recipe.summary.stripHTML)
-        .frame(width: 350)
+        .frame(width: Constants.RecipeDetail.detailFrameWidth)
       ReviewButtonView(recipeId: recipe.id)
         .accessibilityIdentifier("favorite-detail-review-button")
     }
@@ -102,7 +104,7 @@ struct FavoriteIngredientsView: View {
         Text("* \(ingredient.original ?? "")")
       }
     }
-    .frame(width: 350)
+    .frame(width: Constants.RecipeDetail.detailFrameWidth)
     .accessibilityIdentifier("favorite-recipe-ingredients")
   }
 }
@@ -120,7 +122,7 @@ struct FavoriteInstructionsView: View {
         }
       }
     }
-    .frame(width: 350)
+    .frame(width: Constants.RecipeDetail.detailFrameWidth)
     .accessibilityIdentifier("favorite-recipe-instructions")
   }
 }
@@ -140,16 +142,16 @@ struct FavoriteReviewsView: View {
       ForEach(filteredReviews) { review in
         Text("Posted on \(review.date)")
         Text("Rating: \(String(review.rating))")
-          .padding(.bottom, 5)
+          .padding(.bottom, Constants.RecipeDetail.reviewPadding)
         Text("Comment: \(review.comment)")
         Divider()
       }
     }
-    .frame(width: 350)
+    .frame(width: Constants.RecipeDetail.detailFrameWidth)
     .overlay {
       if filteredReviews.isEmpty { Text("No reviews for this recipe.") }
     }
-    .padding(5)
+    .padding(Constants.RecipeDetail.reviewPadding)
     .accessibilityIdentifier("favorite-recipe-reviews")
   }
 }

@@ -12,11 +12,14 @@ struct DefaultSearchView: View {
     VStack {
       HStack {
         Image(systemName: "magnifyingglass")
-          .font(.system(size: 30))
+          .font(.system(size: Constants.General.imageFontSize))
           .foregroundColor(.yellow)
         .bold()
         Text("Not sure what to cook?!")
-          .font(.system(size: 25, weight: .bold, design: .rounded))
+          .font(.system(
+            size: Constants.DefaultView.textFontSize,
+            weight: .bold,
+            design: .rounded))
           .bold()
       }
       Text("Find your dinner recipes here!")

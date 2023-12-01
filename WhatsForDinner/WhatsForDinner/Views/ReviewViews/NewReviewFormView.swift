@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewReviewFormView: View {
   @Binding var isPresented: Bool
-  @State private var selectedRating = 1
+  @State private var selectedRating = Constants.ReviewForm.defaultRating
   @State private var comments = ""
   @EnvironmentObject var reviewRecipeVM: ReviewRecipeViewModel
   @Environment (
@@ -27,7 +27,7 @@ struct NewReviewFormView: View {
         }
         Section("Write a Comment") {
           TextField("", text: $comments, axis: .vertical)
-            .lineLimit(5...)
+            .lineLimit(Constants.ReviewForm.defaultLineLimit...)
         }
       }
       .accessibilityIdentifier("review-form")

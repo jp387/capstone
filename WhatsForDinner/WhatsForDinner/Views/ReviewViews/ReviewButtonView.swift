@@ -42,7 +42,7 @@ struct ButtonView: View {
     HStack {
       Image(systemName: systemName)
         .foregroundColor(.yellow)
-        .padding(.bottom, 5)
+        .padding(.bottom, Constants.RecipeDetail.reviewPadding)
       Text(title)
         .bold()
         .font(.subheadline)

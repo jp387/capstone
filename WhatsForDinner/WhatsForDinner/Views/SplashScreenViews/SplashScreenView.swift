@@ -14,28 +14,32 @@ struct SplashScreenView: View {
   var body: some View {
     ZStack {
       Rectangle()
-        .foregroundColor(.red)
+        .foregroundColor(.yellow)
         .ignoresSafeArea()
       VStack {
         Text("What's For")
-          .font(Font.custom("MeowScript-regular", size: 60))
-          .rotationEffect(.degrees(-8.37))
-          .foregroundColor(.yellow)
+          .font(Font.custom("MeowScript-regular", size: Constants.SplashScreen.meowScriptFontSize))
+          .rotationEffect(.degrees(Constants.SplashScreen.textRotationInDegrees))
+          .foregroundColor(.red)
         if fadeInOut {
           Image("dinner")
             .transition(.opacity)
         }
         Text("Dinner?!")
-          .font(Font.custom("MeowScript-regular", size: 60))
-          .rotationEffect(.degrees(-8.37))
-          .foregroundColor(.yellow)
+          .font(Font.custom("MeowScript-regular", size: Constants.SplashScreen.meowScriptFontSize))
+          .rotationEffect(.degrees(Constants.SplashScreen.textRotationInDegrees))
+          .foregroundColor(.red)
       }
-      .animation(.easeInOut(duration: 1).delay(0.5), value: fadeInOut)
+      .animation(.easeInOut(
+        duration: Constants.General.animationDuration)
+        .delay(
+          Constants.SplashScreen.animationDelay
+        ), value: fadeInOut)
       .onAppear {
         self.fadeInOut.toggle()
       }
       .task {
-        try? await Task.sleep(for: Duration.seconds(3.5))
+        try? await Task.sleep(for: Duration.seconds(Constants.SplashScreen.taskSleep))
         self.isActive.toggle()
       }
     }

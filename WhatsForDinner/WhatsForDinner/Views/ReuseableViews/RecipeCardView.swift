@@ -10,8 +10,12 @@ import SwiftUI
 struct CardModifier: ViewModifier {
   func body(content: Content) -> some View {
     content
-      .cornerRadius(20)
-      .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 0)
+      .cornerRadius(Constants.RecipeCard.cardModifierCornerRadius)
+      .shadow(
+        color: Color.black.opacity(Constants.RecipeCard.cardModifierOpacity),
+        radius: Constants.RecipeCard.cardModifierCornerRadius,
+        x: Constants.RecipeCard.cardModifierXYAxis,
+        y: Constants.RecipeCard.cardModifierXYAxis)
   }
 }
 
@@ -23,29 +27,31 @@ struct RecipeCardView: View {
       AsyncImage(url: recipe.thumbnailURL) { image in
         image
           .resizable()
-          .cornerRadius(10)
+          .cornerRadius(Constants.RecipeCard.imageCornerRadius)
           .aspectRatio(contentMode: .fit)
-          .frame(width: 90)
-          .padding(.all, 10)
+          .frame(width: Constants.RecipeCard.imageFrameSize)
+          .padding(.all, Constants.RecipeCard.imagePadding)
       } placeholder: {
         ProgressView()
           .tint(.red)
           .controlSize(.large)
       }
-      .frame(width: 90, height: 90)
+      .frame(
+        width: Constants.RecipeCard.imageFrameSize,
+        height: Constants.RecipeCard.imageFrameSize)
 
       VStack(alignment: .leading) {
         Text(recipe.title)
           .bold()
           .foregroundColor(Color("CardTextColor"))
           .multilineTextAlignment(.leading)
-          .padding(.bottom, 5)
+          .padding(.bottom, Constants.RecipeCard.textPadding)
         recipe.cardCookingTime
         Text("Serving: \(recipe.servings)")
           .foregroundColor(Color("CardTextColor"))
           .font(.caption)
       }
-      .padding(.trailing, 20)
+      .padding(.trailing, Constants.RecipeCard.vStackPadding)
       Spacer()
     }
     .frame(maxWidth: .infinity, alignment: .center)
@@ -54,7 +60,7 @@ struct RecipeCardView: View {
       green: 250 / 255,
       blue: 250 / 255))
     .modifier(CardModifier())
-    .padding(.all, 10)
+    .padding(.all, Constants.RecipeCard.hStackPadding)
   }
 }
 

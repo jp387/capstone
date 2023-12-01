@@ -24,7 +24,7 @@ class OnboardingViewModel: ObservableObject {
         last: false),
       OnboardingDetails(
         emoji: "❤️",
-        title: "Favorite Your Recipes!",
+        title: "Favorite Your Recipes",
         content: "Add your favorite dinner recipes so that you can make them for tonight or any other night!",
         last: true)
     ]
