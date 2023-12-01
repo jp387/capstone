@@ -155,3 +155,68 @@ struct FavoriteReviewsView: View {
     .accessibilityIdentifier("favorite-recipe-reviews")
   }
 }
+
+struct FavoriteDetailView_Previews: PreviewProvider {
+  static var previews: some View {
+    let recipe: [Recipe] = [
+      Recipe(
+        pricePerServing: 141.03,
+        extendedIngredients: [
+          ExtendedIngredient(
+            id: 18369,
+            aisle: "Baking",
+            consistency: Consistency(rawValue: "SOLID"),
+            name: "baking powder",
+            original: "3/4 teaspoon baking powder",
+            originalName: "baking powder",
+            amount: 0.75,
+            unit: "teaspoon",
+            meta: [],
+            measures: Measures(
+              usa: Metric(
+                amount: 0.75,
+                unitShort: "tsps",
+                unitLong: "teaspoons"),
+              metric: Metric(
+                amount: 0.75,
+                unitShort: "tsps",
+                unitLong: "teaspoons")
+            )
+          )
+        ],
+        id: 633265,
+        title: "Bacon & Egg Toast Cups",
+        readyInMinutes: 45,
+        servings: 2,
+        summary:
+        """
+        It takes about 45 minutes to make one portion of Bacon & Egg Toast Cup.
+        """,
+        instructions: "Preheat oven to 375.",
+        analyzedInstructions: [
+          AnalyzedInstruction(
+            name: "",
+            steps: [
+              Step(
+                number: 1,
+                step: "Preheat oven to 37",
+                ingredients: [],
+                equipment: [
+                  Ent(
+                    id: 404784,
+                    name: "oven",
+                    localizedName: "oven",
+                    image: "oven.jpg"
+                  )
+                ],
+                length: nil)
+            ])
+        ]
+      )
+    ]
+
+    FavoriteDetailView(recipe: recipe[0])
+      .environmentObject(ReviewRecipeViewModel())
+      .environmentObject(FavoriteRecipeViewModel())
+  }
+}
