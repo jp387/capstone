@@ -14,10 +14,11 @@ The What's For Dinner project folders are organized in the following order:
 **App**
 - The folder contains files that are used to setup the fonts used for the Splash Screen view and the logic to setup the views for the Onboarding, Splash Screen and Home screen. Also, the folder contains the Asset Catalog.
   The following app files/folder are contained in this folder:
-    - **_ViewCoordinator.swift_** (contains the view code used to manage the views for the splash, onboarding and main screen and uses AppStorage to save the onboarding completion state)
+    - **_ViewCoordinator.swift_** (contains the code used to manage the views for the splash, onboarding and main screen and uses AppStorage to save the onboarding completion state)
     - **_WhatsForDinnerApp.swift_** (contains the code used to setup the enviroment objects and view coordinator)
     - **_Assets.xcassets_** (contains icons and colors used throughout the application)
     - **_Fonts_** (folder that contains the font used to style the splash screen text)
+    - **_Constants.swift_** (contains constant values used on various files of the application to remove magic numbers)
 
 **Extensions**
 - The folder contains extension files that are used to strip the HTML from the summary in the detail screen and the FileManager used to store files in the Document Directory.
@@ -119,7 +120,7 @@ The What's For Dinner project folders are organized in the following order:
 **WhatsForDinnerUITests**
 - The folder contains files used to peform UI testing.
   - The following UI test files are contained in this folder:
-    - **_WhatsForDinnerUITests.swift_**
+    - **_WhatsForDinnerUITests.swift_** (contains test cases to test various screens in the application)
    
 # Testing Notes
 
