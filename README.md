@@ -147,6 +147,7 @@ The API chosen for the What's For Dinner project is the Spoonacular API and sinc
 - Add the ability to create shopping list for ingredients.
 - Add the ability to create personal recipes to be shareable with anyone.
 - Add the ability to create profiles to store review, favorites and any other relevant information.
+- Add the nutrition widget created by the Spoonacular API for the recipe detail view.
 - Refine the search and random recipe data to make it display different types of recipes based on filtering criteria.
 - Refine the unit and UI test cases to cover more areas of the application.
 - Refactor the code for better readability, performance and any other changes to enhance the application.
