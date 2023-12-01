@@ -5,7 +5,7 @@ The What's For Dinner application is an application that performs the following 
 - Save recipes as favorites that can be searched and removed.
 - Create reviews for recipes.
 
-The application does not use any third party libraries to perform the features listed above and relies solely on the frameworks provided by Apple through Xcode and the Spoonacular API.
+The application does not use any third party libraries to perform the features listed above and relies solely on the frameworks provided by Apple through Xcode and the API provided by Spoonacular.
 
 # Project Organization
 
@@ -119,12 +119,8 @@ The What's For Dinner project folders are organized in the following order:
 **WhatsForDinnerUITests**
 - The folder contains files used to peform UI testing.
   - The following UI test files are contained in this folder:
-    - **_OnboardingViewUITests.swift_** (contains test cases to test the UI for the onboarding view)
-    - **_RecipeHomeViewUITests.swift_** (contains test cases to test the UI for the home tab view)
-    - **_RecipeDetailViewUITests.swift_** (contains test cases to test the UI for the recipe detail view view)
-    - **_RecipeFavoritesViewUITests.swift_** (contains test cases to test the UI for the favorites tab view)
-    - **_RecipeSearchViewUITests.swift_** (contains test cases to test the UI for the search tab view)
-
+    - **_WhatsForDinnerUITests.swift_**
+   
 # Testing Notes
 
 > [!IMPORTANT]
@@ -136,7 +132,7 @@ The What's For Dinner project folders are organized in the following order:
 The API chosen for the What's For Dinner project is the Spoonacular API and since the project itself is using the free account, there is an API request limit of 150 points per day. Once the API request has reached 150 points, a 402 error code response is called and prevents any new request from being execute until it gets reset at midnight UTC time. The Spoonacular API is used in the following way on the project:
 
 * Fetching random recipes from application launch and through the refresh button: The application will fetch 25 random recipes from launch and tapping on the refresh button will launch another set of 25 random recipes. Based on the Spoonacular API setup, the request cost **1 point** and each result will cost **0.01 points**, which means the total comes out to be **1 point + (25 * 0.01 points) = 1.25 points**
-* Searching recipes from the search screen: The application will fetch 100 results when a search is performed. Based on the Spoonacular API setup, the search request cost **1 point** and each result will cost **0.01 points**. Also, there are additional cost when using the search filters and in the project, two search filters are used to fill in missing ingredients and adding nutritional information, which cost **0.025 points** each. The total number of points used is dependent on the number of search results that come back from the API request, with the maximum value of **1 point + (100 * (0.01 points per result returned)) + (100 * (0.025 points per result return with missing ingredient filter)) + (100 * (0.025 points per result with nutritional information filter)) = 7 points**.
+* Searching recipes from the search screen: The application will fetch 50 results when a search is performed. Based on the Spoonacular API setup, the search request cost **1 point** and each result will cost **0.01 points**. Also, there are additional cost when using the search filters and in the project, two search filters are used to fill in missing ingredients and adding nutritional information, which cost **0.025 points** each. The total number of points used is dependent on the number of search results that come back from the API request, with the maximum value of **1 point + (50 * (0.01 points per result returned)) + (50 * (0.025 points per result return with missing ingredient filter)) + (50 * (0.025 points per result with nutritional information filter)) = 4 points**.
 
 # Additional Information
 
